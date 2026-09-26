@@ -1,4 +1,4 @@
-# casa-bxl
+# casabxl
 
 Case in vendita in Belgio a 5-10 minuti di bici da una stazione con treno per Bruxelles-Luxembourg (Parlamento europeo) in 30 minuti al massimo.
 

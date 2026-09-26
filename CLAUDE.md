@@ -1,4 +1,4 @@
-# casa-bxl
+# casabxl
 
 Ricerca casa per Francesco e Karin: comprare in Belgio, andare al Parlamento europeo in treno scendendo a Bruxelles-Luxembourg.
 
