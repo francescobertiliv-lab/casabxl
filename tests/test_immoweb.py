@@ -72,7 +72,7 @@ class Blocking(Fake):
 
 def args(**kw):
     d = dict(postcodes="3090", date="2026-09-27", max_price=800000, min_bedrooms=4, max_bedrooms=5,
-             max_pages=5, max_details=150, max_km=3.5, bike=True, min_land=300)
+             max_pages=5, max_details=150, max_km=3.5, bike=True, min_land=300, time_budget=0)
     d.update(kw)
     return types.SimpleNamespace(**d)
 
@@ -112,6 +112,10 @@ assert "immoweb-1" not in {d["id"] for d in res5["listings"]} and st5["immoweb-1
 # limite di annunci per giro
 res3, _ = immoweb.run(args(max_details=2), Fake(LISTINGS), ST, {})
 assert res3["summary"]["details"] == 2 and res3["summary"]["deferred"] == 7, res3["summary"]
+
+# tempo finito: nessun annuncio aperto, tutti rinviati
+res6, _ = immoweb.run(args(time_budget=-1), Fake(LISTINGS), ST, {})
+assert res6["summary"]["details"] == 0 and res6["summary"]["deferred"] == 9, res6["summary"]
 
 # blocco
 res4, _ = immoweb.run(args(), Blocking(LISTINGS), ST, {})

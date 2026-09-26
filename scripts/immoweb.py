@@ -379,6 +379,7 @@ def run(a, fetcher, stations=None, state=None):
                "found": 0, "details": 0, "new": 0, "kept": 0, "deferred": 0, "dropped": {}}
     drop = lambda why: summary["dropped"].__setitem__(why, summary["dropped"].get(why, 0) + 1)  # noqa: E731
     kept, first = [], True
+    started = time.monotonic()
     try:
         items = {}
         for i in range(0, len(postcodes), CHUNK):
@@ -421,9 +422,11 @@ def run(a, fetcher, stations=None, state=None):
                 continue
             todo.append((cid, known))
         for n, (cid, known) in enumerate(todo, 1):
-            if summary["details"] >= a.max_details:
+            over_time = a.time_budget and time.monotonic() - started > a.time_budget * 60
+            if summary["details"] >= a.max_details or over_time:
                 summary["deferred"] = len(todo) - n + 1
-                log(f"limite di {a.max_details} annunci raggiunto: {summary['deferred']} rinviati a domani")
+                why = "tempo a disposizione finito" if over_time else f"limite di {a.max_details} annunci"
+                log(f"{why}: {summary['deferred']} annunci rinviati al prossimo giro")
                 break
             pause()
             url = DETAIL.format(id=cid)
@@ -477,6 +480,8 @@ def main():
     ap.add_argument("--max-bedrooms", type=int, default=5)
     ap.add_argument("--max-pages", type=int, default=10, help="pagine per gruppo di codici postali")
     ap.add_argument("--max-details", type=int, default=150, help="annunci aperti per giro")
+    ap.add_argument("--time-budget", type=float, default=16,
+                    help="minuti oltre i quali non apre altri annunci e salva (0 = nessun limite)")
     ap.add_argument("--max-km", type=float, default=3.5, help="distanza in linea d'aria dalla stazione")
     ap.add_argument("--min-land", type=int, default=300,
                     help="se l'annuncio non dice nulla del giardino, terreno minimo (m²) per tenere la casa")
