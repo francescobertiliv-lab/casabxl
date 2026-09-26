@@ -14,7 +14,8 @@ Come funziona (approccio preso da feldeh/immoweb-scraper e fortiax/ghent-real-es
    terreno, indirizzo, coordinate, EPC). Con `--state` la apre solo per le case nuove o con prezzo cambiato;
 4. con `--bike` calcola il percorso reale in bici fino alle stazioni vicine (routing.openstreetmap.de)
    e sceglie la stazione migliore; senza `--bike` la distanza bici resta "da verificare";
-5. applica i criteri e calcola punteggio e motivo come in `.claude/agents/monitor-case.md`.
+5. applica i criteri (giardino non indicato: tiene la casa solo con almeno `--min-land` m² di terreno)
+   e calcola punteggio e motivo come in `.claude/agents/monitor-case.md`.
 Nessun login: gli annunci sono pubblici.
 
 Regole: una richiesta alla volta, 3-5 s tra una richiesta a Immoweb e l'altra. Se bloccato prova una
@@ -214,6 +215,11 @@ def to_listing(c, url, crit):
         return None, "casa a schiera (2 facciate)"
     if has_garden is False:
         return None, "senza giardino"
+    land = g(c, "property", "land", "surface")
+    if g(c, "property", "gardenSurface"):
+        has_garden = True
+    if has_garden is None and (land is None or land < crit.min_land):
+        return None, "giardino non indicato e terreno sotto la soglia"
 
     if not price:
         price = None
@@ -254,7 +260,7 @@ def to_listing(c, url, crit):
         "facades": facades,
         "garden": True if has_garden else None,
         "garden_m2": g(c, "property", "gardenSurface"),
-        "land_m2": g(c, "property", "land", "surface"),
+        "land_m2": land,
         "living_m2": g(c, "property", "netHabitableSurface"),
         "address": " ".join(x for x in [street, number] if x) or None,
         "approx": approx,
@@ -465,6 +471,8 @@ def main():
     ap.add_argument("--max-pages", type=int, default=10, help="pagine per gruppo di codici postali")
     ap.add_argument("--max-details", type=int, default=150, help="annunci aperti per giro")
     ap.add_argument("--max-km", type=float, default=3.5, help="distanza in linea d'aria dalla stazione")
+    ap.add_argument("--min-land", type=int, default=300,
+                    help="se l'annuncio non dice nulla del giardino, terreno minimo (m²) per tenere la casa")
     ap.add_argument("--bike", action="store_true", help="percorso reale in bici (routing.openstreetmap.de)")
     ap.add_argument("--browser", action="store_true", help="usa Chromium con playwright-stealth")
     a = ap.parse_args()

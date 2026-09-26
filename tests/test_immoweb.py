@@ -20,12 +20,13 @@ FAR = (51.30, 5.50)        # lontanissima
 EDGE_A = (50.925, 4.53)    # ~3,4 km in linea d'aria, ~4,4 in bici: oltre 3 km
 
 
-def classified(cid, at=NEAR_A, price=650000, beds=4, facades=4, garden=True, region="Flanders", street="Teststraat"):
+def classified(cid, at=NEAR_A, price=650000, beds=4, facades=4, garden=True, region="Flanders", street="Teststraat",
+               land=900, garden_m2=500):
     return {"id": cid, "flags": {"isNewlyBuilt": False, "isPublicSale": False},
             "transaction": {"sale": {"price": price, "isSubjectToVat": False},
                             "certificates": {"primaryEnergyConsumptionPerSqm": 150, "epcScore": "B"}},
             "property": {"subtype": "VILLA", "bedroomCount": beds, "netHabitableSurface": 200,
-                         "hasGarden": garden, "gardenSurface": 500, "land": {"surface": 900},
+                         "hasGarden": garden, "gardenSurface": garden_m2, "land": {"surface": land},
                          "building": {"facadeCount": facades, "constructionYear": 1990, "condition": "GOOD"},
                          "location": {"region": region, "locality": "Testdorp", "postalCode": "9999",
                                       "street": street, "number": "1", "latitude": at[0], "longitude": at[1]}}}
@@ -37,7 +38,9 @@ LISTINGS = {
     3: classified(3, facades=3),                                # tenuta: 3 facciate ma condizioni ottime
     4: classified(4, facades=2),                                # scartata: a schiera
     5: classified(5, garden=False),                             # scartata: senza giardino
-    6: classified(6, price=0, facades=None, garden=None, street=None),  # tenuta, da verificare
+    6: classified(6, price=0, facades=None, garden=None, garden_m2=None, street=None),  # tenuta, da verificare
+    9: classified(9, garden=None, garden_m2=None, land=185),   # scartata: giardino non detto, terreno piccolo
+    10: classified(10, garden=None, garden_m2=120),             # tenuta: superficie giardino indicata
     7: classified(7, at=FAR),                                   # scartata prima del dettaglio: lontana
     8: classified(8, at=EDGE_A),                                # scartata: bici oltre 3 km
 }
@@ -69,7 +72,7 @@ class Blocking(Fake):
 
 def args(**kw):
     d = dict(postcodes="3090", date="2026-09-27", max_price=800000, min_bedrooms=4, max_bedrooms=5,
-             max_pages=5, max_details=150, max_km=3.5, bike=True)
+             max_pages=5, max_details=150, max_km=3.5, bike=True, min_land=300)
     d.update(kw)
     return types.SimpleNamespace(**d)
 
@@ -78,10 +81,12 @@ def args(**kw):
 f = Fake(LISTINGS)
 res, state = immoweb.run(args(), f, ST, {})
 s, kept = res["summary"], {d["id"]: d for d in res["listings"]}
-assert s["status"] == "ok" and s["found"] == 8 and s["details"] == 7 and s["new"] == 3, s
-assert set(kept) == {"immoweb-1", "immoweb-3", "immoweb-6"}, kept.keys()
+assert s["status"] == "ok" and s["found"] == 10 and s["details"] == 9 and s["new"] == 4, s
+assert set(kept) == {"immoweb-1", "immoweb-3", "immoweb-6", "immoweb-10"}, kept.keys()
 assert s["dropped"] == {"lontana dalle stazioni": 1, "3 facciate senza condizioni ottime": 1,
-                        "casa a schiera (2 facciate)": 1, "senza giardino": 1, "bici oltre 3 km": 1}, s["dropped"]
+                        "casa a schiera (2 facciate)": 1, "senza giardino": 1, "bici oltre 3 km": 1,
+                        "giardino non indicato e terreno sotto la soglia": 1}, s["dropped"]
+assert kept["immoweb-10"]["garden"] is True and "giardino" not in kept["immoweb-10"]["to_verify"]
 k1 = kept["immoweb-1"]
 assert k1["station"] == "Stazione A" and k1["train_min"] == 15 and k1["bike_km"] <= 3 and k1["type"] == "open"
 assert k1["first_seen"] == "2026-09-27" and k1["score"] > kept["immoweb-6"]["score"] and "diretto" in k1["reason"]
@@ -101,7 +106,7 @@ assert [p["price"] for p in kept2["immoweb-1"]["price_history"]] == [650000, 620
 
 # limite di annunci per giro
 res3, _ = immoweb.run(args(max_details=2), Fake(LISTINGS), ST, {})
-assert res3["summary"]["details"] == 2 and res3["summary"]["deferred"] == 5, res3["summary"]
+assert res3["summary"]["details"] == 2 and res3["summary"]["deferred"] == 7, res3["summary"]
 
 # blocco
 res4, _ = immoweb.run(args(), Blocking(LISTINGS), ST, {})

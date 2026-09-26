@@ -32,6 +32,7 @@ Lingua: Fiandre (`nl`) preferite; i 19 comuni di Bruxelles sono bilingui (`bi`);
 - Non inventare annunci, prezzi, indirizzi, tempi. Ogni casa ha il link all'annuncio originale.
 - Se un sito non è raggiungibile o blocca la lettura automatica, registralo (`status` diverso da "ok") e passa alla fonte successiva. Non ricostruire i dati.
 - Se un criterio non risulta dall'annuncio (lati liberi, giardino, terreno, camere), non darlo per soddisfatto: `type: "unknown"`, `garden: null`, e aggiungilo a `to_verify`.
+- Giardino: se l'annuncio non lo nomina (né "tuin"/"jardin" né una superficie del giardino), tieni la casa solo se il terreno è di almeno 300 m², con "giardino" in `to_verify`; sotto i 300 m² o con terreno ignoto scartala (sono quasi sempre case senza vero giardino).
 - Se manca l'indirizzo esatto usa la via o il quartiere e metti `approx: true`. Se c'è solo il comune, usa il centro del comune, `approx: true` e metti "posizione" in `to_verify`.
 - Non toccare mai la collezione `stars`: la gestiscono Francesco e Karin dalla mappa.
 - Manda la mail solo a francesco.berti.liv@gmail.com e cuppens.karin@gmail.com.
