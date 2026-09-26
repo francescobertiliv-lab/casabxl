@@ -714,6 +714,25 @@ tr:last-child td{border-bottom:0}
 .note p{margin:0;font-size:.88rem;color:var(--muted)}
 .foot{font-size:.82rem;color:var(--muted)}
 .foot ul{margin:4px 0 0;padding-left:18px}
+nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:inherit;font-weight:700;padding:8px 12px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.fin{display:grid;gap:20px}
+.fingrid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.fingrid{grid-template-columns:minmax(0,1fr)}.fingrid>.card:first-child{order:2}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.form{display:grid;gap:10px}
+.form label{display:grid;grid-template-columns:1fr 130px;align-items:center;gap:8px;font-size:.9rem}
+.form input[type=number]{width:100%;font:inherit;font-family:var(--mono);text-align:right;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+.form .check{grid-template-columns:auto 1fr}
+.form h3{margin:6px 0 0;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.kpi{background:var(--bg);border-radius:8px;padding:10px 12px;display:grid;gap:2px}
+.kpi b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.8rem;color:var(--muted)}
+.fine{font-size:.82rem;color:var(--muted)}
+.fine a{color:var(--accent)}
+.pill.ok{color:var(--ok);background:var(--ok-bg);border-color:transparent}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -725,6 +744,11 @@ tr:last-child td{border-bottom:0}
     </div>
     <p class="sub" id="status">Caricamento dei dati…</p>
   </header>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="t-map" aria-selected="true" aria-controls="tab-map">Mappa e case</button>
+    <button role="tab" id="t-fin" aria-selected="false" aria-controls="tab-fin">Piano finanziario</button>
+  </nav>
+  <div id="tab-map" role="tabpanel" style="display:grid;grid-template-columns:minmax(0,1fr);gap:20px">
 
   <div class="app">
     <aside class="panel" aria-label="Date e filtri">
@@ -812,6 +836,53 @@ tr:last-child td{border-bottom:0}
   </section>
 
   <section class="foot" id="sources"></section>
+  </div>
+
+  <section id="tab-fin" class="fin" role="tabpanel" hidden>
+    <div class="fingrid">
+      <div class="card">
+        <h2 style="margin:0">I vostri numeri</h2>
+        <p class="fine" id="finsave">Valgono per tutti e due: ogni modifica si salva per entrambi.</p>
+        <div class="form" id="finform">
+          <h3>Risparmi</h3>
+          <label>Francesco <input type="number" step="1000" data-k="sav_f"></label>
+          <label>Karin <input type="number" step="1000" data-k="sav_k"></label>
+          <label>Riserva da non toccare <input type="number" step="1000" data-k="buffer"></label>
+          <h3>Reddito netto mensile</h3>
+          <label>Francesco <input type="number" step="100" data-k="inc_f"></label>
+          <label>Karin <input type="number" step="100" data-k="inc_k"></label>
+          <label>Rata massima (% del reddito) <input type="number" step="1" data-k="max_pct"></label>
+          <h3>Mutuo</h3>
+          <label>Tasso fisso 20 anni (%) <input type="number" step="0.05" data-k="rate20"></label>
+          <label>Tasso fisso 25 anni (%) <input type="number" step="0.05" data-k="rate25"></label>
+          <label>Spese atto di mutuo (% del mutuo) <input type="number" step="0.1" data-k="mort_cost"></label>
+          <label>Quota massima del prezzo finanziata (%) <input type="number" step="1" data-k="max_ltv"></label>
+          <h3>Altro</h3>
+          <label>Lavori per le case da ristrutturare (€) <input type="number" step="5000" data-k="reno_budget"></label>
+          <label class="check"><input type="checkbox" data-k="first_home"> Prima e unica casa: aliquota ridotta (Fiandre 2%, Vallonia 3%, abbattimento a Bruxelles)</label>
+        </div>
+      </div>
+      <div style="display:grid;gap:16px;min-width:0">
+        <div class="card">
+          <h2 style="margin:0">Fin dove potete arrivare</h2>
+          <div class="kpis" id="kpis"></div>
+          <p class="fine" id="kpinote"></p>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div style="padding:14px 16px 0"><h2 style="margin:0" id="fintitle">Le case, una per una</h2>
+          <p class="fine">Imposta di registro e notaio secondo la Regione della casa. Il mutuo copre ciò che manca dopo i vostri risparmi (meno la riserva). Tocca il nome per vederla sulla mappa.</p></div>
+          <div class="tablebox" style="border:0;border-radius:0"><table><thead><tr><th>Casa</th><th>Prezzo</th><th>Costi</th><th>Totale</th><th>Mutuo</th><th>Rata 20 anni</th><th>Rata 25 anni</th><th>Sostenibile?</th></tr></thead><tbody id="fintable"></tbody></table></div>
+        </div>
+        <div class="card fine" id="finsources">
+          <b style="color:var(--ink)">Da dove vengono i numeri</b>
+          <span><b>Fiandre</b>: 2% per l'unica casa di abitazione (atti dal 1/1/2025), altrimenti 12%. Condizioni: nessun'altra abitazione o terreno edificabile in piena proprietà, in Belgio o all'estero; residenza nella casa entro 3 anni e per almeno 1 anno. <a href="https://www.vlaanderen.be/belastingen-en-begroting/vlaamse-belastingen/registratiebelasting/verkooprecht/tarieven-in-het-verkooprecht/verlaagd-tarief-in-het-verkooprecht-voor-de-aankoop-van-de-enige-eigen-woning" target="_blank" rel="noopener">vlaanderen.be</a></span>
+          <span><b>Bruxelles</b>: 12,5%; i primi 200.000 € sono esenti se il prezzo non supera 600.000 € e ci andate a vivere. <a href="https://be.brussels/fr/impots-financement/impots-et-taxes/fiscalite-immobiliere/droits-denregistrement/abattement-sur-les-droits-de-vente" target="_blank" rel="noopener">be.brussels</a></span>
+          <span><b>Vallonia</b>: 12,5%, ridotto al 3% se non possedete un'altra abitazione (o la vendete entro 3 anni) e ci stabilite la residenza entro 3 anni per almeno 3 anni. <a href="https://www.notaire.be/sites/default/files/files/2025-07/infofiche-achat-droit-enregistrement-wallonie_0.pdf" target="_blank" rel="noopener">notaire.be</a></span>
+          <span><b>Notaio</b>: onorario dalla tabella di legge più spese fisse (≈ 850 € amministrative, 300 € esborsi, 285 € trascrizione, 200 € diritto di scrittura) e IVA 21%: una stima, sull'esempio di <a href="https://www.notaire.be/sites/default/files/files/2025-07/infofiche-immo-frais-acte-wallonie.pdf" target="_blank" rel="noopener">notaire.be</a>. <b>Spese dell'atto di mutuo</b> e <b>tassi</b> sono ipotesi da aggiornare con le offerte delle banche; il calcolo esatto: <a href="https://www.notaire.be/calculateurs/immobilier/calcul-de-frais-dacte-de-credit-hypothecaire" target="_blank" rel="noopener">calcolatore dei notai</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -968,6 +1039,7 @@ function popupHtml(h,inDay,isNew){
     <dt>In bici</dt><dd>${bike}</dd>
     <dt>Treno</dt><dd>${tr}</dd>
     <dt>Maaseik</dt><dd>${maasTxt(maas(h))}</dd>
+    <dt>Mutuo</dt><dd>${(x=>`${eur(x.loan)} · rata ${eur(Math.round(x.r25))}/mese a 25 anni (${pct(x.p25)} del reddito)`)(finFor(h.price,h.lang,h.renovation==="to_renovate"||h.renovation==="refresh"))}</dd>
     <dt>Comune</dt><dd>${esc(h.commune||"–")} · ${LANG[h.lang]||"?"}${h.facilities?" · a facilità":""}</dd>
     <dt>Indirizzo</dt><dd>${esc(h.address||"–")}</dd>
     <dt>Vista</dt><dd>dal ${fmtDate(h.first_seen)} al ${fmtDate(h.last_seen)}</dd>
@@ -1069,7 +1141,68 @@ function renderEmpty(){
   e.hidden=false;
 }
 
-function renderAll(){renderDays();renderHouses();renderStars();renderEmpty()}
+function renderAll(){renderDays();renderHouses();renderStars();renderEmpty();renderFin()}
+
+// ---------- piano finanziario ----------
+const FIN0={sav_f:150000,sav_k:200000,buffer:30000,inc_f:8000,inc_k:3000,max_pct:33,rate20:3.2,rate25:3.4,mort_cost:2,max_ltv:90,reno_budget:0,first_home:true};
+S.fin={...FIN0};
+const NOTARY=[[7500,.0456],[17500,.0285],[30000,.0228],[45495,.0171],[64095,.0114],[250095,.0057],[Infinity,.00057]];
+function notary(p){let h=0,lo=0;for(const [hi,r] of NOTARY){if(p>lo)h+=(Math.min(p,hi)-lo)*r;lo=hi}const fixed=850+300+285+200;return Math.round(h+fixed+.21*(h+850+300+200))}
+function duty(p,lang){const f=S.fin.first_home;
+  if(lang==="nl")return{amt:Math.round(p*(f?.02:.12)),txt:f?"2%":"12%"};
+  if(lang==="bi"){if(f&&p<=600000)return{amt:Math.round(Math.max(0,p-200000)*.125),txt:"12,5% oltre 200k"};return{amt:Math.round(p*.125),txt:"12,5%"}}
+  return{amt:Math.round(p*(f?.03:.125)),txt:f?"3%":"12,5%"}}
+function annuity(M,ratePct,years){const r=ratePct/1200,n=years*12;return r?M*r/(1-Math.pow(1+r,-n)):M/n}
+function capacity(ratePct,years,R){const r=ratePct/1200,n=years*12;return r?R*(1-Math.pow(1+r,-n))/r:R*n}
+function finFor(price,lang,reno){
+  const F=S.fin,own=Math.max(0,(F.sav_f||0)+(F.sav_k||0)-(F.buffer||0)),d=duty(price,lang),n=notary(price),w=reno?(F.reno_budget||0):0;
+  const base=price+d.amt+n+w-own,mc=(F.mort_cost||0)/100,M=Math.max(0,Math.round(base/(1-mc))),mcost=Math.round(M*mc);
+  const inc=(F.inc_f||0)+(F.inc_k||0);const r20=annuity(M,F.rate20,20),r25=annuity(M,F.rate25,25);
+  return{price,duty:d,notary:n,works:w,mcost,total:price+d.amt+n+w+mcost,own,loan:M,ltv:M/price*100,r20,r25,p20:inc?r20/inc*100:null,p25:inc?r25/inc*100:null}}
+function maxPrice(lang,years){const F=S.fin,inc=(F.inc_f||0)+(F.inc_k||0),R=inc*(F.max_pct||0)/100,cap=capacity(years===20?F.rate20:F.rate25,years,R);
+  let lo=50000,hi=3000000;for(let i=0;i<40;i++){const m=(lo+hi)/2,x=finFor(m,lang,false);if(x.loan<=cap&&x.ltv<=(F.max_ltv||100))lo=m;else hi=m}return{price:Math.floor(lo/5000)*5000,cap:Math.round(cap),R:Math.round(R)}}
+const pct=v=>v==null?"–":String(Math.round(v*10)/10).replace(".",",")+"%";
+function sustain(x){const F=S.fin,lim=F.max_pct||33,p=x.p25;if(p==null)return'<span class="pill reno-unk">–</span>';
+  if(x.ltv>(F.max_ltv||100))return`<span class="pill dear">mutuo oltre il ${F.max_ltv}% del prezzo</span>`;
+  return p<=lim?'<span class="pill ok">sì</span>':p<=lim+5?'<span class="pill warn">al limite</span>':'<span class="pill dear">troppo alta</span>'}
+function renderFin(){
+  const F=S.fin;document.querySelectorAll("#finform [data-k]").forEach(i=>{if(document.activeElement===i)return;if(i.type==="checkbox")i.checked=!!F[i.dataset.k];else i.value=F[i.dataset.k]??""});
+  const own=Math.max(0,(F.sav_f||0)+(F.sav_k||0)-(F.buffer||0)),inc=(F.inc_f||0)+(F.inc_k||0);
+  const m25={nl:maxPrice("nl",25),bi:maxPrice("bi",25),fr:maxPrice("fr",25)},m20=maxPrice("nl",20);
+  $("#kpis").innerHTML=[
+    [eur(own),"risparmi da usare (tolta la riserva)"],
+    [eur(m25.nl.R),`rata massima al mese (${F.max_pct}% di ${eur(inc)})`],
+    [eur(m25.nl.cap),"mutuo massimo a 25 anni"],
+    [eur(m25.nl.price),"prezzo massimo nelle Fiandre (25 anni)"],
+    [eur(m20.price),"prezzo massimo nelle Fiandre (20 anni)"],
+    [eur(m25.fr.price),"prezzo massimo in Vallonia (25 anni)"],
+    [eur(m25.bi.price),"prezzo massimo a Bruxelles (25 anni)"]
+  ].map(([v,l])=>`<div class="kpi"><b>${v}</b><span>${esc(l)}</span></div>`).join("");
+  const sf=(F.sav_f||0),sk=(F.sav_k||0),tf=(F.inc_f||0),tk=(F.inc_k||0);
+  $("#kpinote").textContent=`Il prezzo massimo tiene conto di imposta, notaio e spese del mutuo, e del limite del ${F.max_ltv}% di prezzo finanziato. Se dividete in proporzione: risparmi ${sf+sk?Math.round(sf/(sf+sk)*100):0}% Francesco e ${sf+sk?Math.round(sk/(sf+sk)*100):0}% Karin; rata ${tf+tk?Math.round(tf/(tf+tk)*100):0}% Francesco e ${tf+tk?Math.round(tk/(tf+tk)*100):0}% Karin.`;
+  const day=curDay();const ids=new Set(day?day.ids||[]:[]);
+  const rows=[...S.listings.values()].filter(h=>h.price&&(ids.has(h.id)||S.stars.has(h.id))).sort((a,b)=>(b.score??0)-(a.score??0));
+  $("#fintitle").textContent=day?`Le case del ${fmtDate(day.date)}, una per una`:"Le case, una per una";
+  $("#fintable").innerHTML=rows.length?rows.map(h=>{const x=finFor(h.price,h.lang,h.renovation==="to_renovate"||h.renovation==="refresh");
+    return`<tr><td><button class="linkbtn" data-go="${esc(h.id)}">${esc(h.commune||"?")}</button><br><span class="pill ${h.lang||""}">${h.lang?h.lang.toUpperCase():"?"}</span> ${(r=>`<span class="pill ${r[1]}">${r[0]}</span>`)(reno(h))}</td>
+    <td class="num">${eur(h.price)}</td>
+    <td class="num"><small>imposta ${eur(x.duty.amt)} (${x.duty.txt})<br>notaio ${eur(x.notary)}<br>atto mutuo ${eur(x.mcost)}${x.works?`<br>lavori ${eur(x.works)}`:(h.renovation==="to_renovate"||h.renovation==="refresh"?'<br><span class="sub">lavori da stimare</span>':"")}</small></td>
+    <td class="num"><b>${eur(x.total)}</b></td><td class="num">${eur(x.loan)}<br><small class="sub">${pct(x.ltv)} del prezzo</small></td>
+    <td class="num">${eur(Math.round(x.r20))}<br><small class="sub">${pct(x.p20)} del reddito</small></td><td class="num">${eur(Math.round(x.r25))}<br><small class="sub">${pct(x.p25)} del reddito</small></td><td>${sustain(x)}</td></tr>`}).join("")
+    :`<tr><td colspan="8">Nessuna casa per questa data.</td></tr>`;
+}
+let finTimer=null,finRef=null;
+function finChanged(e){const i=e.target.closest("[data-k]");if(!i)return;
+  S.fin[i.dataset.k]=i.type==="checkbox"?i.checked:(i.value===""?null:+i.value);renderFin();renderHouses();
+  safe(()=>localStorage.setItem("fin",JSON.stringify(S.fin)));
+  clearTimeout(finTimer);finTimer=setTimeout(async()=>{if(!finRef||!S.canWrite)return;
+    try{await finRef.set({...S.fin,at:new Date().toISOString(),by:S.me||null});$("#finsave").textContent="Salvato per tutti e due."}
+    catch(err){$("#finsave").textContent="Non salvato per l'altro: serve l'accesso da Editor. Le modifiche restano su questo dispositivo."}},800)}
+$("#finform").addEventListener("input",finChanged);
+function setTab(t){const fin=t==="fin";$("#tab-map").hidden=fin;$("#tab-map").style.display=fin?"none":"grid";$("#tab-fin").hidden=!fin;
+  $("#t-map").setAttribute("aria-selected",!fin);$("#t-fin").setAttribute("aria-selected",fin);safe(()=>localStorage.setItem("tab",t));
+  if(fin)renderFin();else setTimeout(()=>map.invalidateSize(),0)}
+$("#t-map").onclick=()=>setTab("map");$("#t-fin").onclick=()=>setTab("fin");
 function setDay(i){if(!S.days.length)return;S.dayIdx=Math.max(0,Math.min(S.days.length-1,i));safe(()=>localStorage.setItem("day",S.days[S.dayIdx].date));renderDays();renderHouses()}
 
 // ---------- events ----------
@@ -1084,7 +1217,7 @@ $("#fmaas").oninput=e=>{const v=+e.target.value;$("#fmaasout").textContent=v>=20
 document.querySelectorAll(".chips input").forEach(i=>i.onchange=renderHouses);
 document.addEventListener("click",async e=>{
   const g=e.target.closest("[data-go]");
-  if(g){const m=markers.get(g.dataset.go);if(m){$("#map").scrollIntoView({block:"nearest"});map.setView(m.getLatLng(),14,{animate:false});setTimeout(()=>m.openPopup(),60)}return}
+  if(g){if(!$("#tab-fin").hidden)setTab("map");const m=markers.get(g.dataset.go);if(m){$("#map").scrollIntoView({block:"nearest"});map.setView(m.getLatLng(),14,{animate:false});setTimeout(()=>m.openPopup(),60)}return}
   const b=e.target.closest("[data-star]");if(!b||!S.db)return;
   const id=b.dataset.star;b.disabled=true;
   try{
@@ -1100,6 +1233,9 @@ new MutationObserver(()=>{drawBase();renderHouses()}).observe(document.documentE
 
 // ---------- data ----------
 (async()=>{
+  const lf=safe(()=>JSON.parse(localStorage.getItem("fin")||"null"));if(lf)Object.assign(S.fin,lf);
+  if(safe(()=>localStorage.getItem("tab"))==="fin"||location.hash==="#finanza")setTab("fin");
+  renderFin();
   renderEmpty();
   const db=await claude.use("db");
   if(!db){$("#status").textContent="Il database della mappa non è disponibile in questa vista.";return}
@@ -1121,6 +1257,8 @@ new MutationObserver(()=>{drawBase();renderHouses()}).observe(document.documentE
     if(keep&&!wasLast)i=S.days.findIndex(d=>d.date===keep);
     else if(!keep&&saved)i=-1; // open on the latest day
     S.dayIdx=i>=0?i:S.days.length-1;renderAll()});
+  finRef=db.doc("finance/plan");
+  finRef.onSnapshot(s=>{if(s.exists){const d=s.data();for(const k of Object.keys(FIN0))if(d[k]!==undefined)S.fin[k]=d[k]}renderFin();renderHouses()});
   db.collection("stars").onSnapshot(q=>{S.stars=new Map(q.docs.map(d=>[d.id,d.data()]));renderHouses();renderStars()});
 })();
 let geoKey="";
