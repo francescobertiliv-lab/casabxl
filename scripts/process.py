@@ -93,7 +93,7 @@ def solve(A, y, ridge=1e-3):
 
 
 def market(all_ads):
-    ok = [d for d in all_ads if d.get("price") and d.get("living_m2") and 40 <= d["living_m2"] <= 1500]
+    ok = [d for d in all_ads if d.get("price") and d.get("postcode") and d.get("living_m2") and 40 <= d["living_m2"] <= 1500]
     communes = sorted({d["postcode"] for d in ok})
 
     def row(d):
@@ -110,7 +110,7 @@ def market(all_ads):
     n_by = {c: sum(1 for d in ok if d["postcode"] == c) for c in communes}
 
     def expect(d):
-        if not d.get("living_m2") or d["postcode"] not in communes:
+        if not d.get("living_m2") or d.get("postcode") not in communes:
             return None
         return math.exp(sum(b * x for b, x in zip(beta, row(d)))), n_by[d["postcode"]]
     return expect, len(ok)
