@@ -76,28 +76,50 @@ Se sono bloccati tutti i siti di annunci oppure non hai mai potuto costruire le 
 - Usa `batch` (massimo 50 scritture per chiamata). Il database ha un limite di 5.000 documenti: se ti avvicini a 4.500, dillo nella mail.
 
 ### 4. Mail
-Leggi `stars` per sapere quali case hanno la stella. Invia con Gmail (invio, non bozza), in testo semplice, a francesco.berti.liv@gmail.com e cuppens.karin@gmail.com:
+Leggi `stars` per sapere quali case hanno la stella. Invia con Gmail (invio, non bozza) a francesco.berti.liv@gmail.com e cuppens.karin@gmail.com, con `htmlBody` (la mail che leggono) e `body` (versione in testo semplice).
+
+Oggetto: `Case Luxembourg – GG/MM/AAAA – N nuove`
+
+`htmlBody`: una sola riga di HTML, solo stili inline (Gmail ignora `<style>`), niente immagini esterne. Scheletro, da riempire con i dati del database:
+
+```html
+<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1f2328;font-size:15px;line-height:1.45">
+<div style="font-size:22px;font-weight:700;margin-bottom:4px">N case nuove</div>
+<div style="color:#656d76;margin-bottom:14px">Giorno GG mese AAAA</div>
+<a href="https://claude.ai/artifact/VkknvC4FZtsZNjwj9sH2Wq" style="display:inline-block;background:#1a56db;color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:600;margin-bottom:22px">Apri la mappa</a>
+
+<!-- una scheda per casa nuova, dalla migliore -->
+<div style="border:1px solid #d0d7de;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+ <div style="font-size:12px;color:#656d76;text-transform:uppercase;letter-spacing:.04em">1 · Fiandre (NL) | Bruxelles (bilingue) | Vallonia (FR)[, facilità]</div>
+ <div style="font-size:18px;font-weight:700;margin:2px 0 6px">Comune</div>
+ <div style="font-size:17px;font-weight:600">745.000 € [<span style="background:#fde2e1;color:#a4161a;font-size:12px;padding:2px 7px;border-radius:10px;vertical-align:middle">700-800k</span>]</div>
+ <div style="margin:8px 0">🛏 N camere · 🏡 4 lati | 3 lati | lati da verificare · 🌳 m² | da verificare</div>
+ <div>🚆 Stazione · 🚲 N min · <b>N min diretto</b> | <b>N min</b>, cambio a X</div>
+ <div style="margin-top:8px;color:#9a6700;font-size:14px">Da verificare: ...</div>
+ <a href="LINK ANNUNCIO" style="display:inline-block;margin-top:10px;color:#1a56db;font-weight:600;text-decoration:none">Vedi annuncio →</a>
+</div>
+
+<div style="font-weight:700;margin:22px 0 6px">⭐ Case con la stella</div>
+<div style="margin-bottom:4px">Comune · prezzo · <span style="color:#1a7f37">ancora in vendita</span> | <span style="color:#a4161a">non trovata oggi</span> | <span style="color:#1a7f37">prezzo cambiato da X a Y €</span></div>
+
+<div style="font-size:13px;color:#656d76;border-top:1px solid #d0d7de;padding-top:10px;margin-top:22px">Fonti non lette oggi: sito (motivo), ...</div>
+</div>
+```
+
+- Le parti separate da `|` sono alternative: scegline una. Le parti tra `[...]` compaiono solo se valgono (fascia 700-800k, facilità).
+- Prezzi con il punto delle migliaia (745.000 €). Il link "Vedi annuncio" è l'`url` originale dell'annuncio.
+- Nelle Fiandre, a Bruxelles e in Vallonia tieni l'ordine per punteggio, ma scrivi sempre la regione e la lingua in cima alla scheda.
+- Se non ci sono case nuove: titolo "Nessuna casa nuova oggi" al posto di "N case nuove", niente schede (la mail parte lo stesso). Ometti le sezioni vuote tranne questa.
+- Se il database si avvicina a 4.500 documenti, aggiungi un avviso in fondo, prima delle fonti.
+
+`body` (testo semplice, per chi non vede l'HTML):
 
 ```
-Oggetto: Case Luxembourg – GG/MM/AAAA – N nuove
+N case nuove – Mappa: https://claude.ai/artifact/VkknvC4FZtsZNjwj9sH2Wq
 
-Mappa: https://claude.ai/artifact/VkknvC4FZtsZNjwj9sH2Wq
-
-CASE NUOVE (dalla migliore)
-1. <Comune> (<NL|Bruxelles|FR>[, facilità]) – <prezzo> € [700-800k] – <camere> camere – <4 lati | 3 lati | lati da verificare>
-   Terreno: <m² o da verificare> · Stazione: <nome>, <bici> min in bici, <treno> min di treno [diretto | cambio a X]
-   Da verificare: <...>
+1. <Comune> (<NL|Bruxelles|FR>[, facilità]) – <prezzo> € – <camere> camere – <lati> – <stazione>, <bici> min bici, <treno> min treno
    <link>
-
-CASE CON LA STELLA
-- <Comune> – <prezzo> – <ancora in vendita | non trovata oggi | prezzo cambiato da X a Y>
-
-FONTI NON LETTE OGGI
-- <sito>: <motivo>
 ```
-
-Nelle Fiandre, a Bruxelles e in Vallonia tieni l'ordine per punteggio, ma scrivi sempre la lingua accanto al comune.
-Se non ci sono case nuove, scrivi "Nessuna casa nuova oggi." al posto dell'elenco (la mail parte lo stesso). Ometti le sezioni vuote tranne questa.
 
 ### 5. Risposta finale
 Una riga: "Mail inviata" oppure "Invio fallito" con il motivo, poi il numero di case trovate, nuove e le fonti non lette.
