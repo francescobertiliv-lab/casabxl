@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+pagine/
+pages/
+*.zip
+stations_trains.json
