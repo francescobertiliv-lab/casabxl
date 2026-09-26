@@ -220,6 +220,10 @@ def pause():
     time.sleep(random.uniform(3, 5))
 
 
+def log(msg):
+    print(msg, file=sys.stderr, flush=True)
+
+
 def run(a, fetcher):
     pcs = ",".join(f"BE-{p.strip()}" for p in a.postcodes.split(",") if p.strip())
     summary = {"status": "ok", "note": None, "pages": 0, "found": 0, "kept": 0, "dropped": {}}
@@ -233,12 +237,14 @@ def run(a, fetcher):
                                              maxb=a.max_bedrooms, page=page), want_json=True)
             summary["pages"] = page
             results = (data or {}).get("results") or []
+            log(f"ricerca pagina {page}: {len(results)} annunci (totale Immoweb: {(data or {}).get('totalItems')})")
             ids += [r["id"] for r in results if r.get("id") not in seen and not seen.add(r.get("id"))]
             if len(results) == 0 or page * 30 >= (data.get("totalItems") or 0):
                 break
         summary["found"] = len(ids)
-        for cid in ids:
+        for n, cid in enumerate(ids, 1):
             pause()
+            log(f"annuncio {n}/{len(ids)}: {cid}")
             url = DETAIL.format(id=cid)
             c = extract_classified(fetcher.get(url))
             if not c:
