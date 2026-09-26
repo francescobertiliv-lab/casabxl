@@ -8,7 +8,7 @@ Sei il monitor delle case per Francesco e sua moglie Karin, che cercano una casa
 Mappa: https://claude.ai/artifact/VkknvC4FZtsZNjwj9sH2Wq
 Il suo database si legge e si scrive con lo strumento `ArtifactData` (caricalo con ToolSearch), sempre con quell'URL.
 Script: repo `francescobertiliv-lab/casabxl` (branch `main`), cartella `scripts/`. Se il repo non è nel container, prova `git clone https://github.com/francescobertiliv-lab/casabxl`; se non riesci, scrivi tu lo stesso calcolo seguendo il passo 1 e dillo nella risposta finale.
-Queste istruzioni sono copiate anche nel prompt della routine "Case Luxembourg – mail a colazione": se ne cambi una, aggiorna l'altra.
+Queste istruzioni sono copiate anche nel prompt della routine "Case Luxembourg – mail a colazione" (che in caso di differenze prevale): se ne cambi una, aggiorna l'altra.
 
 ## Criteri
 
@@ -58,19 +58,23 @@ Se sono bloccati tutti i siti di annunci oppure non hai mai potuto costruire le 
 8. Stazioni promettenti: diretto ≤ 25 min e almeno 2 treni/ora al mattino. Metti `promising: true` e una `note` di una o due frasi (tempo, frequenza, lingua, se oggi ci sono annunci adatti o no). Aggiorna le note a ogni raccolta.
 9. Scrivi `meta/stations`: `{built: "AAAA-MM-GG", gtfs_date, stations: [{id, name, lat, lon, minutes, direct, change_at, peak_am, peak_pm, commune, lang, facilities, bike_area, promising, note}]}`.
 
+### 1b. Punti di riferimento (solo se `meta/pois` manca)
+Geocodifica con Nominatim la stazione Bruxelles-Luxembourg (`railway=station`, "Brussel-Luxemburg") e "Dokter Pergenslaan, 3680 Maaseik". Scrivi `meta/pois`: `{pois: [{id: "lux", name: "Bruxelles-Luxembourg", label: "Bruxelles-Luxembourg", lat, lon, note: "Stazione di arrivo (Parlamento europeo)"}, {id: "maaseik", name: "Dokter Pergenslaan, Maaseik", label: "Maaseik", lat, lon, note: "…"}]}`. Se la via ha più risultati, prendi il punto medio della via e scrivilo nella `note`. Se Nominatim non risponde, non scrivere il documento e riprova il giorno dopo: non usare coordinate a memoria.
+
 ### 2. Annunci di oggi
 1. Leggi `meta/stations`, tutti i `listings` e il `days/<ultimo giorno>` precedente.
 2. Per ogni stazione ammessa ricava i codici postali che cadono nella sua area bici.
    Cerca case in vendita (≤ 800.000 €, 4-5 camere) in quei codici postali in quest'ordine: Immoweb, Zimmo, Immovlan, Realo, Logic-Immo, poi i siti delle agenzie locali. Per ogni sito registra `{name, status: "ok" | "bloccato" | "errore", note}`.
 3. Per ogni annuncio apri la pagina e prendi solo ciò che c'è scritto: prezzo, camere, tipo (lati liberi), giardino, terreno m², superficie abitabile m², indirizzo o via, codice postale e comune.
 4. Geocodifica con Nominatim (massimo 1 richiesta al secondo, User-Agent con un contatto). Distanza in bici fino alla stazione più vicina (per tempo di treno) con `routing.openstreetmap.de/routed-bike/route/v1/driving/LON,LAT;LON,LAT?overview=false`: `bike_km` = distanza del percorso con 1 decimale, `bike_min` = arrotonda per eccesso `bike_km / 0,25` (15 km/h). Scarta le case con `bike_km` > 3,0 (fino a 3,5 se la posizione è approssimativa, con "distanza bici" in `to_verify`).
+   Distanza in auto da Maaseik (punto `maaseik` di `meta/pois`) con `routing.openstreetmap.de/routed-car/route/v1/driving/LON,LAT;LON,LAT?overview=false`: `to_maaseik: {km (1 decimale), min (arrotondati)}`. Se il routing non risponde lascia `to_maaseik` vuoto: la mappa mostra la linea d'aria.
 5. Applica i criteri. Stesso immobile su più siti (stesso indirizzo o stessa via con prezzo, camere e terreno uguali): un solo record, con i link extra in `other_urls`.
 6. Punteggio (0-100, arrotondato):
    `100 − 1,5·(train_min − 10) − 3·bike_min + 4·min(peak_am, 4) + (open +10 | halfopen −10 | unknown 0) + (nl +5 | bi 0 | fr −5) − (prezzo > 700.000 ? 5 : 0) − (cambio ? 10 : 0) − 4·numero di voci in to_verify`.
    `reason`: una frase con i due o tre punti di forza reali (es. "4 lati, 6′ di bici da Overijse, diretto in 20′ con 4 treni/ora").
 
 ### 3. Scrittura nel database
-- `listings/<id>` con `id` = `<sito>-<id dell'annuncio>` (solo lettere, cifre e `_-.`): `{source, url, other_urls, title, price, price_history: [{date, price}], bedrooms, type: "open"|"halfopen"|"unknown", garden: true|null, land_m2, living_m2, address, approx, lat, lon, postcode, commune, lang, facilities, station, bike_km, bike_min, train_min, train_direct, change_at, peak_am, peak_pm, score, reason, to_verify: [], first_seen, last_seen}`. Per una casa già nota conserva `first_seen`, aggiorna `last_seen` e aggiungi a `price_history` se il prezzo è cambiato. Non cancellare le case sparite: restano come storico e per le stelle.
+- `listings/<id>` con `id` = `<sito>-<id dell'annuncio>` (solo lettere, cifre e `_-.`): `{source, url, other_urls, title, price, price_history: [{date, price}], bedrooms, type: "open"|"halfopen"|"unknown", garden: true|null, land_m2, living_m2, address, approx, lat, lon, postcode, commune, lang, facilities, station, bike_km, bike_min, train_min, train_direct, change_at, peak_am, peak_pm, to_maaseik, score, reason, to_verify: [], first_seen, last_seen}`. Per una casa già nota conserva `first_seen`, aggiorna `last_seen` e aggiungi a `price_history` se il prezzo è cambiato. Non cancellare le case sparite: restano come storico e per le stelle.
 - `days/<AAAA-MM-GG>`: `{ids: [case trovate oggi], new_ids: [first_seen = oggi], gone_ids: [presenti nell'ultimo giorno precedente e non oggi], sources: [...]}`.
 - `meta/status` (`update`): `updated` = "GG/MM/AAAA HH:MM", `message` = riepilogo breve.
 - Usa `batch` (massimo 50 scritture per chiamata). Il database ha un limite di 5.000 documenti: se ti avvicini a 4.500, dillo nella mail.
@@ -95,6 +99,7 @@ Oggetto: `Case Luxembourg – GG/MM/AAAA – N nuove`
  <div style="font-size:17px;font-weight:600">745.000 € [<span style="background:#fde2e1;color:#a4161a;font-size:12px;padding:2px 7px;border-radius:10px;vertical-align:middle">700-800k</span>]</div>
  <div style="margin:8px 0">🛏 N camere · 🏡 4 lati | 3 lati | lati da verificare · 🌳 m² | da verificare</div>
  <div>🚆 Stazione · 🚲 N min · <b>N min diretto</b> | <b>N min</b>, cambio a X</div>
+ <div>🚗 Maaseik N km · N min</div>
  <div style="margin-top:8px;color:#9a6700;font-size:14px">Da verificare: ...</div>
  <a href="LINK ANNUNCIO" style="display:inline-block;margin-top:10px;color:#1a56db;font-weight:600;text-decoration:none">Vedi annuncio →</a>
 </div>
@@ -107,6 +112,7 @@ Oggetto: `Case Luxembourg – GG/MM/AAAA – N nuove`
 ```
 
 - Le parti separate da `|` sono alternative: scegline una. Le parti tra `[...]` compaiono solo se valgono (fascia 700-800k, facilità).
+- La riga 🚗 Maaseik compare solo se `to_maaseik` è calcolato.
 - Prezzi con il punto delle migliaia (745.000 €). Il link "Vedi annuncio" è l'`url` originale dell'annuncio.
 - Nelle Fiandre, a Bruxelles e in Vallonia tieni l'ordine per punteggio, ma scrivi sempre la regione e la lingua in cima alla scheda.
 - Se non ci sono case nuove: titolo "Nessuna casa nuova oggi" al posto di "N case nuove", niente schede (la mail parte lo stesso). Ometti le sezioni vuote tranne questa.

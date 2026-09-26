@@ -673,6 +673,9 @@ button{font:inherit}
 .hmark.half{background:var(--panel)!important;border-width:3px}
 .hmark.approx{border-style:dashed}
 .hmark.gone{opacity:.55}
+.poi{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:16px;border:2px solid var(--panel);box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.poi.lux{background:var(--accent);color:var(--accent-ink)}
+.leaflet-tooltip.poilabel{font-weight:700;font-size:.8rem}
 .hmark.star{box-shadow:0 0 0 3px var(--star),0 1px 3px rgba(0,0,0,.4)}
 .tablebox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
 table{border-collapse:collapse;width:100%;min-width:860px;font-size:.88rem}
@@ -733,6 +736,10 @@ tr:last-child td{border-bottom:0}
             <label><input type="checkbox" id="flfr" value="fr" checked>Vallonia (FR)</label>
             <label><input type="checkbox" id="flfac" value="fac">Solo comuni a facilità</label>
           </div>
+          <div>
+            <div class="row"><label for="fmaas">Da Maaseik al massimo</label><span class="mono" id="fmaasout">qualsiasi</span></div>
+            <input type="range" id="fmaas" min="20" max="200" step="10" value="200">
+          </div>
           <div class="chips">
             <label><input type="checkbox" id="fnew">Solo nuove del giorno</label>
           </div>
@@ -753,7 +760,8 @@ tr:last-child td{border-bottom:0}
         <span><i style="background:var(--t3)"></i>21-25 min</span>
         <span><i style="background:var(--t4)"></i>26-30 min</span>
         <span><i style="background:var(--panel);border:2px solid var(--muted)"></i>con cambio</span>
-        <span style="margin-top:4px">Pieno = 4 lati · anello = 3 lati · tratteggio = posizione approssimativa · alone giallo = stella</span>
+        <span style="margin-top:4px"><i class="poi lux" style="width:11px;height:11px;border-radius:3px"></i>Bruxelles-Luxembourg · <i class="poi" style="width:11px;height:11px;border-radius:3px"></i>Maaseik</span>
+        <span>Pieno = 4 lati · anello = 3 lati · tratteggio = posizione approssimativa · alone giallo = stella</span>
       </div>
       <div class="empty" id="empty" hidden><div id="emptymsg"></div></div>
     </div>
@@ -763,8 +771,8 @@ tr:last-child td{border-bottom:0}
     <h2 id="toptitle">Le 10 migliori del giorno</h2>
     <div class="tablebox">
       <table>
-        <thead><tr><th>#</th><th>Casa</th><th>Prezzo</th><th>Camere</th><th>Tipo</th><th>Stazione</th><th>Bici</th><th>Treno</th><th>Perché</th><th>Da verificare</th><th></th></tr></thead>
-        <tbody id="top"><tr><td colspan="11">Nessuna casa per questa data.</td></tr></tbody>
+        <thead><tr><th>#</th><th>Casa</th><th>Prezzo</th><th>Camere</th><th>Tipo</th><th>Stazione</th><th>Bici</th><th>Treno</th><th>Maaseik</th><th>Perché</th><th>Da verificare</th><th></th></tr></thead>
+        <tbody id="top"><tr><td colspan="12">Nessuna casa per questa data.</td></tr></tbody>
       </table>
     </div>
   </section>
@@ -781,7 +789,7 @@ tr:last-child td{border-bottom:0}
 <script>
 (function(){
 const $=s=>document.querySelector(s);
-const S={status:null,stations:[],lines:[],communes:[],listings:new Map(),days:[],stars:new Map(),dayIdx:-1,me:null,canWrite:true,db:null,user:null,names:{}};
+const S={status:null,stations:[],lines:[],communes:[],listings:new Map(),days:[],pois:[],stars:new Map(),dayIdx:-1,me:null,canWrite:true,db:null,user:null,names:{}};
 const eur=n=>n==null?"–":new Intl.NumberFormat("it-IT").format(n)+" €";
 const fmtDate=d=>{if(!d)return"–";const [y,m,g]=d.split("-");return `${g}/${m}/${y}`};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -791,14 +799,25 @@ const TYPE={open:"4 lati",halfopen:"3 lati (semi-isolata)",unknown:"da verificar
 const typeOf=h=>h.type==="open"||h.type==="halfopen"?h.type:"unknown";
 const tcol=m=>m==null?tok("--muted"):m<=15?tok("--t1"):m<=20?tok("--t2"):m<=25?tok("--t3"):tok("--t4");
 function safe(f){try{return f()}catch(e){return null}}
+const km=n=>String(Math.round(n*10)/10).replace(".",",")+" km";
+function airKm(a,b){const r=Math.PI/180,dl=(b.lat-a.lat)*r,dn=(b.lon-a.lon)*r;const x=Math.sin(dl/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)**2;return 12742*Math.asin(Math.sqrt(x))}
+const poi=id=>S.pois.find(p=>p.id===id&&p.lat!=null&&p.lon!=null);
+// distanza da Maaseik: in auto se l'ha calcolata la raccolta, altrimenti in linea d'aria
+function maas(h){
+  const d=h.to_maaseik;
+  if(d&&d.km!=null)return{km:d.km,min:d.min,exact:true};
+  const p=poi("maaseik");if(!p||h.lat==null)return null;
+  return{km:airKm(p,h),min:null,exact:false};
+}
+const maasTxt=m=>!m?"–":m.exact?`${km(m.km)}${m.min!=null?" · "+m.min+" min":""} in auto`:`≈ ${km(m.km)} in linea d'aria`;
 
 // ---------- map ----------
 const map=L.map("map",{zoomSnap:.5,attributionControl:true}).setView([50.8,4.45],10);
 map.attributionControl.setPrefix(false);
 map.attributionControl.addAttribution("Dati: NMBS/SNCB GTFS, OpenStreetMap contributors");
-const layers={communes:L.layerGroup().addTo(map),lines:L.layerGroup().addTo(map),bike:L.layerGroup().addTo(map),stations:L.layerGroup().addTo(map),houses:L.layerGroup().addTo(map)};
-L.control.layers(null,{"Comuni":layers.communes,"Linee ferroviarie":layers.lines,"Area bici 10'":layers.bike,"Stazioni":layers.stations,"Case":layers.houses},{collapsed:true,position:"topright"}).addTo(map);
-let fitted=false;const markers=new Map();
+const layers={communes:L.layerGroup().addTo(map),lines:L.layerGroup().addTo(map),bike:L.layerGroup().addTo(map),stations:L.layerGroup().addTo(map),houses:L.layerGroup().addTo(map),pois:L.layerGroup().addTo(map)};
+L.control.layers(null,{"Comuni":layers.communes,"Linee ferroviarie":layers.lines,"Area bici 10'":layers.bike,"Stazioni":layers.stations,"Case":layers.houses,"Punti di riferimento":layers.pois},{collapsed:true,position:"topright"}).addTo(map);
+let fitted=0;const markers=new Map();
 
 function drawBase(){
   layers.communes.clearLayers();layers.lines.clearLayers();layers.bike.clearLayers();layers.stations.clearLayers();
@@ -830,9 +849,19 @@ function drawBase(){
     m.bindTooltip(`${esc(s.name)} · ${s.minutes}′`);
     m.addTo(layers.stations);
   }
-  if(!fitted&&S.stations.length){
+  layers.pois.clearLayers();
+  for(const p of S.pois){
+    if(p.lat==null||p.lon==null)continue;
+    const lux=p.id==="lux";
+    L.marker([p.lat,p.lon],{icon:L.divIcon({html:`<div class="poi${lux?" lux":""}">${lux?"🏛":"🏠"}</div>`,className:"",iconSize:[30,30]}),zIndexOffset:2000,title:p.name})
+      .bindTooltip(esc(p.label||p.name),{permanent:true,direction:"top",offset:[0,-16],className:"poilabel"})
+      .bindPopup(`<div class="pop"><h3>${esc(p.name)}</h3><p class="sub">${esc(p.note||"")}</p></div>`)
+      .addTo(layers.pois);
+  }
+  if(S.stations.length||S.pois.length){
     const pts=S.stations.filter(s=>s.minutes!=null&&s.minutes<=30).map(s=>[s.lat,s.lon]);
-    if(pts.length){map.fitBounds(pts,{padding:[30,30]});fitted=true}
+    for(const p of S.pois)if(p.lat!=null&&p.lon!=null)pts.push([p.lat,p.lon]);
+    if(pts.length&&pts.length!==fitted){map.fitBounds(pts,{padding:[30,30],maxZoom:13,animate:false});fitted=pts.length}
   }
 }
 
@@ -842,7 +871,7 @@ function F(){
   const beds=[...document.querySelectorAll("#fbeds input:checked")].map(i=>+i.value);
   const types=[...document.querySelectorAll("#ftype input:checked")].map(i=>i.value);
   const langs=[...document.querySelectorAll("#flang input:checked")].map(i=>i.value).filter(v=>v!=="fac");
-  return{price:+$("#fprice").value,beds,types,langs,fac:$("#flfac").checked,onlyNew:$("#fnew").checked};
+  return{maas:+$("#fmaas").value,price:+$("#fprice").value,beds,types,langs,fac:$("#flfac").checked,onlyNew:$("#fnew").checked};
 }
 function passes(h,f,day){
   if(h.price!=null&&h.price>f.price)return false;
@@ -850,6 +879,7 @@ function passes(h,f,day){
   if(!f.types.includes(typeOf(h)))return false;
   if(h.lang&&!f.langs.includes(h.lang))return false;
   if(f.fac&&!h.facilities)return false;
+  if(f.maas<200){const m=maas(h);if(m&&m.km>f.maas)return false}
   if(f.onlyNew&&!(day&&(day.new_ids||[]).includes(h.id)))return false;
   return true;
 }
@@ -881,6 +911,7 @@ function popupHtml(h,inDay,isNew){
     <dt>Stazione</dt><dd>${esc(h.station||"–")}</dd>
     <dt>In bici</dt><dd>${bike}</dd>
     <dt>Treno</dt><dd>${tr}</dd>
+    <dt>Maaseik</dt><dd>${maasTxt(maas(h))}</dd>
     <dt>Comune</dt><dd>${esc(h.commune||"–")} · ${LANG[h.lang]||"?"}${h.facilities?" · a facilità":""}</dd>
     <dt>Indirizzo</dt><dd>${esc(h.address||"–")}</dd>
     <dt>Vista</dt><dd>dal ${fmtDate(h.first_seen)} al ${fmtDate(h.last_seen)}</dd>
@@ -912,7 +943,7 @@ function renderTop(v){
   $("#toptitle").textContent=day?`Le 10 migliori del ${fmtDate(day.date)}`:"Le 10 migliori del giorno";
   const rows=v.filter(x=>x.inDay).sort((a,b)=>(b.h.score??-1)-(a.h.score??-1)).slice(0,10);
   const tb=$("#top");
-  if(!rows.length){tb.innerHTML=`<tr><td colspan="11">Nessuna casa per questa data con i filtri attuali.</td></tr>`;return}
+  if(!rows.length){tb.innerHTML=`<tr><td colspan="12">Nessuna casa per questa data con i filtri attuali.</td></tr>`;return}
   tb.innerHTML=rows.map(({h,isNew},i)=>{
     const st=S.stars.has(h.id);
     return `<tr><td class="num">${i+1}</td>
@@ -922,6 +953,7 @@ function renderTop(v){
     <td>${esc(h.station||"–")}</td>
     <td class="num">${h.bike_min!=null?h.bike_min+"′":"?"}</td>
     <td class="num">${h.train_min!=null?h.train_min+"′"+(h.train_direct===false?" +cambio":""):"?"}</td>
+    <td class="num">${(m=>!m?"–":(m.exact?"":"≈")+Math.round(m.km)+" km")(maas(h))}</td>
     <td>${esc(h.reason||"")}</td><td>${esc((h.to_verify||[]).join(", "))||"–"}</td>
     <td><button class="starbtn" data-star="${esc(h.id)}" aria-pressed="${st}" ${S.canWrite?"":"disabled"} aria-label="Stella">${st?"★":"☆"}</button> <a href="${esc(h.url)}" target="_blank" rel="noopener">annuncio</a></td></tr>`;
   }).join("");
@@ -988,6 +1020,7 @@ $("#dayrange").oninput=e=>setDay(+e.target.value);
 $("#days").onclick=e=>{const b=e.target.closest(".day");if(b)setDay(+b.dataset.i)};
 document.addEventListener("keydown",e=>{if(e.target.matches("input,textarea"))return;if(e.key==="ArrowLeft")setDay(S.dayIdx-1);if(e.key==="ArrowRight")setDay(S.dayIdx+1)});
 $("#fprice").oninput=e=>{$("#fpriceout").textContent=eur(+e.target.value);renderHouses()};
+$("#fmaas").oninput=e=>{const v=+e.target.value;$("#fmaasout").textContent=v>=200?"qualsiasi":v+" km";renderHouses()};
 document.querySelectorAll(".chips input").forEach(i=>i.onchange=renderHouses);
 document.addEventListener("click",async e=>{
   const g=e.target.closest("[data-go]");
@@ -1017,6 +1050,7 @@ new MutationObserver(()=>{drawBase();renderHouses()}).observe(document.documentE
     // geo parts listed in status
     loadGeo(d);renderEmpty()});
   db.doc("meta/stations").onSnapshot(s=>{S.stations=s.exists?(s.data().stations||[]):[];drawBase();renderNotes();renderEmpty()});
+  db.doc("meta/pois").onSnapshot(s=>{S.pois=s.exists?(s.data().pois||[]):[];drawBase();renderHouses()});
   db.doc("geo/lines").onSnapshot(s=>{S.lines=s.exists?(s.data().lines||[]):[];drawBase()});
   db.collection("listings").onSnapshot(q=>{S.listings=new Map(q.docs.map(d=>[d.id,{id:d.id,...d.data()}]));renderHouses();renderStars()});
   db.collection("days").onSnapshot(q=>{
