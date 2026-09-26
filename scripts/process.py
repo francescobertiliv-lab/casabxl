@@ -56,6 +56,11 @@ def _route(s, url, a, b):
     return None
 
 
+# terreno con progetto da costruire: non è una casa da comprare
+TO_BUILD = re.compile(r"bouwgrond|nog te bouwen|te bouwen woning|projet de construction|à construire|terrain à bâtir|"
+                      r"grond \+ woning|sleutel.op.de.deur|clé sur porte|cle sur porte|verschillende modellen mogelijk", re.I)
+NEW_BUILD = re.compile(r"nieuwbouw|nieuw pand|in opbouw|neuf|nouvelle construction", re.I)
+
 CENTERS = {}
 
 
@@ -178,13 +183,18 @@ def main():
             continue
         if d.get("bedrooms") not in (4, 5):
             continue
+        if TO_BUILD.search((d.get("description") or "")[:400]) or TO_BUILD.search(d.get("title") or ""):
+            continue
         if d.get("garden") is False:
             continue  # giardino obbligatorio: se l'annuncio non lo dice resta "da verificare"
-        if d.get("lat") is None:
+        if d.get("lat") is None or d.get("approx"):
+            # senza indirizzo le coordinate della pagina possono essere sbagliate: se cadono
+            # lontano dal comune dell'annuncio si usa il centro del comune
             c = commune_center(s, d.get("postcode"), d.get("commune"))
-            if not c:
-                continue
-            d["lat"], d["lon"], d["approx"], d["pos_commune"] = c[0], c[1], True, True
+            if d.get("lat") is None or (c and air_km((d["lat"], d["lon"]), c) > 5):
+                if not c:
+                    continue
+                d["lat"], d["lon"], d["approx"], d["pos_commune"] = c[0], c[1], True, True
         here = (d["lat"], d["lon"])
         near = sorted((x for x in stations if air_km(here, (x["lat"], x["lon"])) <= 3.5),
                       key=lambda x: air_km(here, (x["lat"], x["lon"])))[:4]
@@ -224,6 +234,8 @@ def main():
             to_verify.append("distanza bici")
         if d.get("renovation") == "unknown":
             to_verify.append("stato dei lavori")
+        if NEW_BUILD.search(" ".join([d.get("state") or "", (d.get("description") or "")[:300]])):
+            to_verify.append("nuova costruzione: IVA 21% invece dell'imposta di registro?")
         mk = None
         e = expect(d) if expect else None
         if e:
