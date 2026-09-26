@@ -1,0 +1,55 @@
+name: Immoweb giornaliero
+
+# Raccoglie ogni mattina le case da Immoweb attorno alle stazioni e salva
+# data/immoweb/<data>.json; la routine delle 6:50 lo mette sulla mappa e manda la mail.
+on:
+  schedule:
+    - cron: "7 4 * * *"   # 04:07 UTC = 06:07 a Bruxelles d'estate, 05:07 d'inverno
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: immoweb
+
+jobs:
+  raccolta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25   # tetto ai minuti: al massimo 25 × 31 = 775 al mese
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Dipendenze
+        run: pip install -r requirements.txt cloudscraper
+
+      - name: Raccolta Immoweb
+        run: |
+          set +e
+          ARGS="--postcodes-file data/postcodes.txt --stations data/stations.json --state data/immoweb/state.json --out-dir data/immoweb --bike"
+          python scripts/immoweb.py $ARGS
+          code=$?
+          if [ $code -eq 2 ]; then
+            echo "Bloccato senza browser: riprovo una volta con Chromium"
+            python -m playwright install --with-deps chromium
+            python scripts/immoweb.py $ARGS --browser
+            code=$?
+          fi
+          echo "codice di uscita: $code"
+          exit 0   # il risultato (anche un blocco) è scritto nel file del giorno
+
+      - name: Salva nel repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/immoweb
+          if git diff --cached --quiet; then
+            echo "Niente di nuovo."
+          else
+            git commit -m "Immoweb: raccolta del $(TZ=Europe/Brussels date +%F)"
+            git push
+          fi
