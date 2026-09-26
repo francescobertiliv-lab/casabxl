@@ -303,17 +303,24 @@ def near_stations(lat, lon, stations, max_km):
 
 def assign_station(item, stations, crit):
     """Sceglie la stazione migliore e compila i campi di spostamento. Restituisce il motivo di scarto o None."""
+    from_postcode = False
     if item["lat"] is None or item["lon"] is None:
-        item.update(station=None, bike_km=None, bike_min=None, train_min=None, train_direct=None,
-                    change_at=None, peak_am=None, peak_pm=None)
-        return None
-    cands = near_stations(item["lat"], item["lon"], stations, crit.max_km)[:3]
+        c = (getattr(crit, "centroids", None) or {}).get(str(item.get("postcode")))
+        if not c:
+            item.update(station=None, bike_km=None, bike_min=None, train_min=None, train_direct=None,
+                        change_at=None, peak_am=None, peak_pm=None)
+            return None
+        # posizione approssimativa: centro del codice postale; niente percorso in bici da lì
+        item.update(lat=c[0], lon=c[1], approx=True, position="centro del codice postale")
+        from_postcode = True
+    cands = near_stations(item["lat"], item["lon"], stations,
+                          crit.max_km + (1.5 if from_postcode else 0))[:3]
     if not cands:
         return "lontana dalle stazioni"
     limit = 3.5 if item["approx"] else 3.0
     best = None
     for line_km, s in cands:
-        bkm = bike_route_km(item["lat"], item["lon"], s["lat"], s["lon"]) if crit.bike else None
+        bkm = bike_route_km(item["lat"], item["lon"], s["lat"], s["lon"]) if crit.bike and not from_postcode else None
         if bkm is not None and bkm > limit:
             continue
         bmin = math.ceil(bkm / 0.25) if bkm is not None else None
@@ -337,6 +344,19 @@ def assign_station(item, stations, crit):
             and (item["peak_am"] or 0) >= 2):
         return "3 facciate senza condizioni ottime"
     return None
+
+
+def priority(postcode):
+    """Ordine in cui aprire gli annunci: 0 Fiandre, 1 Bruxelles, 2 Vallonia, 3 ignoto."""
+    try:
+        pc = int(postcode)
+    except (TypeError, ValueError):
+        return 3
+    if 1000 <= pc <= 1299:
+        return 1
+    if 1300 <= pc <= 1499 or 4000 <= pc <= 7999:
+        return 2
+    return 0
 
 
 def score(item):
@@ -428,7 +448,9 @@ def run(a, fetcher, stations=None, state=None):
                     known["last_seen"] = date
                     kept.append(known)
                 continue
-            todo.append((cid, known))
+            todo.append((priority(g(r, "property", "location", "postalCode")), cid, known))
+        todo.sort(key=lambda t: t[0])  # prima le Fiandre, poi Bruxelles, poi la Vallonia
+        todo = [(cid, known) for _, cid, known in todo]
         for n, (cid, known) in enumerate(todo, 1):
             over_time = a.time_budget and time.monotonic() - started > a.time_budget * 60
             if summary["details"] >= a.max_details or over_time:
@@ -479,6 +501,7 @@ def main():
     ap.add_argument("--postcodes", help="codici postali separati da virgola")
     ap.add_argument("--postcodes-file", help="file con un codice postale per riga")
     ap.add_argument("--stations", help="JSON delle stazioni (data/stations.json)")
+    ap.add_argument("--centroids", help="centri dei codici postali (data/postcode_centroids.json) per annunci senza coordinate")
     ap.add_argument("--state", help="JSON di stato tra un giro e l'altro (data/immoweb/state.json)")
     ap.add_argument("--out", default="immoweb.json")
     ap.add_argument("--out-dir", help="scrive <out-dir>/<data>.json invece di --out")
@@ -506,6 +529,7 @@ def main():
     if a.stations:
         stations = [s for s in load_json(a.stations, {}).get("stations", []) if s.get("minutes") is not None]
     state = load_json(a.state, {}) if a.state else None
+    a.centroids = load_json(a.centroids, {}).get("centroids", {}) if a.centroids else {}
 
     fetcher = BrowserFetcher() if a.browser else RequestsFetcher()
     try:

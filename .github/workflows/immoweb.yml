@@ -30,7 +30,7 @@ jobs:
       - name: Raccolta Immoweb
         run: |
           set +e
-          ARGS="--postcodes-file data/postcodes.txt --stations data/stations.json --state data/immoweb/state.json --out-dir data/immoweb --bike"
+          ARGS="--postcodes-file data/postcodes.txt --stations data/stations.json --centroids data/postcode_centroids.json --state data/immoweb/state.json --out-dir data/immoweb --bike"
           python scripts/immoweb.py $ARGS
           code=$?
           if [ $code -eq 2 ]; then

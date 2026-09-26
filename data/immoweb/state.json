@@ -1,52 +1,9 @@
 {
  "immoweb-21868932": {
   "id": "immoweb-21868932",
-  "source": "Immoweb",
-  "url": "https://www.immoweb.be/en/classified/21868932",
-  "other_urls": [],
-  "title": "HOUSE te koop 1130 Bruxelles",
   "price": 625000,
-  "bedrooms": 4,
-  "type": "halfopen",
-  "facades": 3,
-  "garden": true,
-  "garden_m2": 270,
-  "land_m2": 324,
-  "living_m2": 220,
-  "address": null,
-  "approx": true,
-  "lat": null,
-  "lon": null,
-  "postcode": "1130",
-  "commune": "Bruxelles",
-  "lang": "bi",
-  "facilities": false,
-  "year": null,
-  "condition": "JUST_RENOVATED",
-  "epc_kwh": 165,
-  "epc_score": "D",
-  "new_build": false,
-  "to_verify": [
-   "posizione"
-  ],
-  "station": null,
-  "bike_km": null,
-  "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
-  "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 20,
-  "reason": "3 lati",
-  "first_seen": "2026-09-26",
-  "last_seen": "2026-09-26",
-  "price_history": [
-   {
-    "date": "2026-09-26",
-    "price": 625000
-   }
-  ]
+  "dropped": "3 facciate senza condizioni ottime",
+  "last_seen": "2026-09-26"
  },
  "immoweb-21862031": {
   "id": "immoweb-21862031",
@@ -643,52 +600,9 @@
  },
  "immoweb-21804548": {
   "id": "immoweb-21804548",
-  "source": "Immoweb",
-  "url": "https://www.immoweb.be/en/classified/21804548",
-  "other_urls": [],
-  "title": "HOUSE te koop 1330 Rixensart",
   "price": 395000,
-  "bedrooms": 5,
-  "type": "halfopen",
-  "facades": 3,
-  "garden": true,
-  "garden_m2": 220,
-  "land_m2": 437,
-  "living_m2": 200,
-  "address": null,
-  "approx": true,
-  "lat": null,
-  "lon": null,
-  "postcode": "1330",
-  "commune": "Rixensart",
-  "lang": "fr",
-  "facilities": false,
-  "year": null,
-  "condition": "TO_RENOVATE",
-  "epc_kwh": 446,
-  "epc_score": "F",
-  "new_build": false,
-  "to_verify": [
-   "posizione"
-  ],
-  "station": null,
-  "bike_km": null,
-  "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
-  "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 15,
-  "reason": "3 lati",
-  "first_seen": "2026-09-26",
-  "last_seen": "2026-09-26",
-  "price_history": [
-   {
-    "date": "2026-09-26",
-    "price": 395000
-   }
-  ]
+  "dropped": "3 facciate senza condizioni ottime",
+  "last_seen": "2026-09-26"
  },
  "immoweb-21870916": {
   "id": "immoweb-21870916",
@@ -1017,8 +931,8 @@
   "living_m2": 215,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.71118,
+  "lon": 4.5894,
   "postcode": "1301",
   "commune": "Wavre",
   "lang": "fr",
@@ -1030,18 +944,19 @@
   "new_build": false,
   "to_verify": [
    "giardino",
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "Ottignies",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 21,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 26,
-  "reason": "4 lati",
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 52,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1049,7 +964,8 @@
     "date": "2026-09-26",
     "price": 750000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21799844": {
   "id": "immoweb-21799844",
@@ -1181,8 +1097,8 @@
   "living_m2": 200,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.72074,
+  "lon": 4.49714,
   "postcode": "1332",
   "commune": "GENVAL",
   "lang": "fr",
@@ -1193,18 +1109,19 @@
   "epc_score": "D",
   "new_build": false,
   "to_verify": [
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "La Hulpe",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 20,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 35,
-  "reason": "4 lati",
+  "peak_am": 3,
+  "peak_pm": 3,
+  "score": 58,
+  "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1212,7 +1129,8 @@
     "date": "2026-09-26",
     "price": 575000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21847674": {
   "id": "immoweb-21847674",
@@ -1310,8 +1228,8 @@
   "living_m2": 175,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.66951,
+  "lon": 4.57477,
   "postcode": "1340",
   "commune": "Ottignies",
   "lang": "fr",
@@ -1324,18 +1242,19 @@
   "to_verify": [
    "lati liberi",
    "giardino",
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "Ottignies",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 21,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 17,
-  "reason": "",
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 42,
+  "reason": "bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1343,7 +1262,8 @@
     "date": "2026-09-26",
     "price": 575000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21837535": {
   "id": "immoweb-21837535",
@@ -1373,8 +1293,8 @@
   "living_m2": 232,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.66951,
+  "lon": 4.57477,
   "postcode": "1340",
   "commune": "Ottignies-Louvain-la-Neuve",
   "lang": "fr",
@@ -1385,18 +1305,19 @@
   "epc_score": "B",
   "new_build": false,
   "to_verify": [
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "Ottignies",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 21,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 30,
-  "reason": "4 lati",
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 56,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1404,7 +1325,8 @@
     "date": "2026-09-26",
     "price": 790000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21578975": {
   "id": "immoweb-21578975",
@@ -1525,52 +1447,9 @@
  },
  "immoweb-21817081": {
   "id": "immoweb-21817081",
-  "source": "Immoweb",
-  "url": "https://www.immoweb.be/en/classified/21817081",
-  "other_urls": [],
-  "title": "HOUSE te koop 1310 La Hulpe",
   "price": 450000,
-  "bedrooms": 4,
-  "type": "halfopen",
-  "facades": 3,
-  "garden": true,
-  "garden_m2": 1200,
-  "land_m2": 1200,
-  "living_m2": 295,
-  "address": null,
-  "approx": true,
-  "lat": null,
-  "lon": null,
-  "postcode": "1310",
-  "commune": "La Hulpe",
-  "lang": "fr",
-  "facilities": false,
-  "year": null,
-  "condition": "TO_RENOVATE",
-  "epc_kwh": 498,
-  "epc_score": "F",
-  "new_build": false,
-  "to_verify": [
-   "posizione"
-  ],
-  "station": null,
-  "bike_km": null,
-  "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
-  "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 15,
-  "reason": "3 lati",
-  "first_seen": "2026-09-26",
-  "last_seen": "2026-09-26",
-  "price_history": [
-   {
-    "date": "2026-09-26",
-    "price": 450000
-   }
-  ]
+  "dropped": "3 facciate senza condizioni ottime",
+  "last_seen": "2026-09-26"
  },
  "immoweb-21815300": {
   "id": "immoweb-21815300",
@@ -1618,8 +1497,8 @@
   "living_m2": 180,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.66951,
+  "lon": 4.57477,
   "postcode": "1340",
   "commune": "OTTIGNIES",
   "lang": "fr",
@@ -1630,18 +1509,19 @@
   "epc_score": "C",
   "new_build": false,
   "to_verify": [
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "Ottignies",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 21,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 35,
-  "reason": "4 lati",
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 60,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1649,7 +1529,8 @@
     "date": "2026-09-26",
     "price": 699000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21808402": {
   "id": "immoweb-21808402",
@@ -1714,8 +1595,8 @@
   "living_m2": 300,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.70472,
+  "lon": 4.59082,
   "postcode": "1300",
   "commune": "Wavre",
   "lang": "fr",
@@ -1726,18 +1607,19 @@
   "epc_score": "C",
   "new_build": false,
   "to_verify": [
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "Ottignies",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 21,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 35,
-  "reason": "4 lati",
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 60,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1745,7 +1627,8 @@
     "date": "2026-09-26",
     "price": 645000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21770262": {
   "id": "immoweb-21770262",
@@ -1769,8 +1652,8 @@
   "living_m2": 205,
   "address": null,
   "approx": true,
-  "lat": null,
-  "lon": null,
+  "lat": 50.70472,
+  "lon": 4.59082,
   "postcode": "1300",
   "commune": "WAVRE",
   "lang": "fr",
@@ -1781,18 +1664,19 @@
   "epc_score": "D",
   "new_build": false,
   "to_verify": [
-   "posizione"
+   "posizione",
+   "distanza bici"
   ],
-  "station": null,
+  "station": "Ottignies",
   "bike_km": null,
   "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
+  "train_min": 21,
+  "train_direct": true,
   "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 30,
-  "reason": "4 lati",
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 56,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
   "last_seen": "2026-09-26",
   "price_history": [
@@ -1800,7 +1684,8 @@
     "date": "2026-09-26",
     "price": 750000
    }
-  ]
+  ],
+  "position": "centro del codice postale"
  },
  "immoweb-21803898": {
   "id": "immoweb-21803898",
@@ -2201,53 +2086,9 @@
  },
  "immoweb-21722675": {
   "id": "immoweb-21722675",
-  "source": "Immoweb",
-  "url": "https://www.immoweb.be/en/classified/21722675",
-  "other_urls": [],
-  "title": "MANSION te koop 1330 RIXENSART",
   "price": 450000,
-  "bedrooms": 4,
-  "type": "halfopen",
-  "facades": 3,
-  "garden": null,
-  "garden_m2": null,
-  "land_m2": 525,
-  "living_m2": 165,
-  "address": null,
-  "approx": true,
-  "lat": null,
-  "lon": null,
-  "postcode": "1330",
-  "commune": "RIXENSART",
-  "lang": "fr",
-  "facilities": false,
-  "year": 1880,
-  "condition": "TO_RENOVATE",
-  "epc_kwh": 365,
-  "epc_score": "E",
-  "new_build": false,
-  "to_verify": [
-   "giardino",
-   "posizione"
-  ],
-  "station": null,
-  "bike_km": null,
-  "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
-  "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 11,
-  "reason": "3 lati",
-  "first_seen": "2026-09-26",
-  "last_seen": "2026-09-26",
-  "price_history": [
-   {
-    "date": "2026-09-26",
-    "price": 450000
-   }
-  ]
+  "dropped": "3 facciate senza condizioni ottime",
+  "last_seen": "2026-09-26"
  },
  "immoweb-21757701": {
   "id": "immoweb-21757701",
@@ -2257,52 +2098,9 @@
  },
  "immoweb-21755495": {
   "id": "immoweb-21755495",
-  "source": "Immoweb",
-  "url": "https://www.immoweb.be/en/classified/21755495",
-  "other_urls": [],
-  "title": "HOUSE te koop 1310 La Hulpe",
   "price": 765000,
-  "bedrooms": 4,
-  "type": "halfopen",
-  "facades": 3,
-  "garden": true,
-  "garden_m2": 390,
-  "land_m2": 514,
-  "living_m2": 221,
-  "address": null,
-  "approx": true,
-  "lat": null,
-  "lon": null,
-  "postcode": "1310",
-  "commune": "La Hulpe",
-  "lang": "fr",
-  "facilities": false,
-  "year": 1930,
-  "condition": "GOOD",
-  "epc_kwh": 216,
-  "epc_score": "C",
-  "new_build": false,
-  "to_verify": [
-   "posizione"
-  ],
-  "station": null,
-  "bike_km": null,
-  "bike_min": null,
-  "train_min": null,
-  "train_direct": null,
-  "change_at": null,
-  "peak_am": null,
-  "peak_pm": null,
-  "score": 10,
-  "reason": "3 lati",
-  "first_seen": "2026-09-26",
-  "last_seen": "2026-09-26",
-  "price_history": [
-   {
-    "date": "2026-09-26",
-    "price": 765000
-   }
-  ]
+  "dropped": "3 facciate senza condizioni ottime",
+  "last_seen": "2026-09-26"
  },
  "immoweb-21754399": {
   "id": "immoweb-21754399",
