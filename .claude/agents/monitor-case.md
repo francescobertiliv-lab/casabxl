@@ -38,7 +38,8 @@ Lingua: Fiandre (`nl`) preferite; i 19 comuni di Bruxelles sono bilingui (`bi`);
 
 ## Procedura
 
-### 0. Controllo delle fonti
+### 0. Preparazione e controllo delle fonti
+Installa le dipendenze: `pip install -r requirements.txt` (Playwright 1.56 con playwright-stealth). Non lanciare `playwright install`: Chromium è già in `/opt/pw-browsers` e il download è bloccato.
 Prova a raggiungere (curl con timeout, oppure WebFetch): il GTFS NMBS/SNCB, `api.irail.be`, `www.immoweb.be`, `www.zimmo.be`, `immovlan.be`, `realo.be`, `www.logic-immo.be`, `overpass-api.de`, `nominatim.openstreetmap.org`, `routing.openstreetmap.de`, `valhalla1.openstreetmap.de`.
 Se sono bloccati tutti i siti di annunci oppure non hai mai potuto costruire le stazioni e il GTFS è bloccato:
 - aggiorna `meta/status` (`update`) con `updated` = data di oggi e `message` = quali host sono bloccati e che serve cambiare l'accesso di rete dell'ambiente;
@@ -62,6 +63,7 @@ Se sono bloccati tutti i siti di annunci oppure non hai mai potuto costruire le 
 1. Leggi `meta/stations`, tutti i `listings` e il `days/<ultimo giorno>` precedente.
 2. Per ogni stazione ammessa ricava i codici postali che cadono nella sua area bici.
    Cerca case in vendita (≤ 800.000 €, 4-5 camere) in quei codici postali in quest'ordine: Immoweb, Zimmo, Immovlan, Realo, Logic-Immo, poi i siti delle agenzie locali. Per ogni sito registra `{name, status: "ok" | "bloccato" | "errore", note}`.
+   Apri le pagine dei siti di annunci con `python3 scripts/browser.py URL [URL ...] --out pagine` (Chromium con stealth, una pagina ogni 2-3 secondi): per ogni URL stampa `status` = `ok` (HTML salvato), `proxy` (bloccato dalla rete del container), `blocked` (captcha o anti-bot del sito) o `error`. Con `proxy` o `blocked` registra il sito come "bloccato" con il motivo e passa al successivo, senza ritentare né aggirare il blocco.
 3. Per ogni annuncio apri la pagina e prendi solo ciò che c'è scritto: prezzo, camere, tipo (lati liberi), giardino, terreno m², superficie abitabile m², indirizzo o via, codice postale e comune.
 4. Geocodifica con Nominatim (massimo 1 richiesta al secondo, User-Agent con un contatto). Distanza in bici fino alla stazione più vicina (per tempo di treno) con `routing.openstreetmap.de/routed-bike/route/v1/driving/LON,LAT;LON,LAT?overview=false`: `bike_km` = distanza del percorso con 1 decimale, `bike_min` = arrotonda per eccesso `bike_km / 0,25` (15 km/h). Scarta le case con `bike_km` > 3,0 (fino a 3,5 se la posizione è approssimativa, con "distanza bici" in `to_verify`).
 5. Applica i criteri. Stesso immobile su più siti (stesso indirizzo o stessa via con prezzo, camere e terreno uguali): un solo record, con i link extra in `other_urls`.
