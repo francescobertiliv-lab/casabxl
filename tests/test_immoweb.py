@@ -104,6 +104,11 @@ assert f2.details == 1 and s2["new"] == 0 and set(kept2) == set(kept), (f2.detai
 assert kept2["immoweb-1"]["first_seen"] == "2026-09-27" and kept2["immoweb-1"]["last_seen"] == "2026-09-28"
 assert [p["price"] for p in kept2["immoweb-1"]["price_history"]] == [650000, 620000]
 
+# regola del giardino applicata anche alle case già note
+old = {"immoweb-1": dict(state["immoweb-1"], garden=None, land_m2=150)}
+res5, st5 = immoweb.run(args(date="2026-09-29"), Fake(L2), ST, dict(state, **old))
+assert "immoweb-1" not in {d["id"] for d in res5["listings"]} and st5["immoweb-1"]["dropped"]
+
 # limite di annunci per giro
 res3, _ = immoweb.run(args(max_details=2), Fake(LISTINGS), ST, {})
 assert res3["summary"]["details"] == 2 and res3["summary"]["deferred"] == 7, res3["summary"]

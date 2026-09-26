@@ -408,6 +408,13 @@ def run(a, fetcher, stations=None, state=None):
             known = state.get(f"immoweb-{cid}")
             price = g(r, "transaction", "sale", "price")
             if known and known.get("price") == (price or None):
+                if not known.get("dropped") and known.get("garden") is None \
+                        and (known.get("land_m2") is None or known["land_m2"] < a.min_land):
+                    known = {"id": known["id"], "price": known.get("price"), "last_seen": date,
+                             "dropped": "giardino non indicato e terreno sotto la soglia"}
+                    state[known["id"]] = known
+                    drop(known["dropped"])
+                    continue
                 if not known.get("dropped"):
                     known["last_seen"] = date
                     kept.append(known)
