@@ -940,8 +940,8 @@ const RENO={renovated:["Ristrutturata","ok"],to_renovate:["Da ristrutturare","ba
 const reno=h=>RENO[h.renovation]||RENO.unknown;
 const renoTag=h=>{const r=reno(h);return `<span class="tag ${r[1]==="unk"?"line":r[1]}">${r[0]}</span>`};
 function epcLabel(h){if(h.epc_label&&h.lang==="nl")return `${h.epc_label}${h.epc_kwh!=null?` (${h.epc_kwh} kWh/m²)`:""}`;if(h.epc_kwh==null)return null;if(h.lang!=="nl")return `${h.epc_kwh} kWh/m²`;const k=h.epc_kwh;const l=k<0?"A+":k<=100?"A":k<=200?"B":k<=300?"C":k<=400?"D":k<=500?"E":"F";return `${l} (${k} kWh/m²)`}
-const gap=h=>h.market&&h.market.gap_pct!=null?h.market.gap_pct:null;
-const gapTag=h=>{const g=gap(h);if(g==null)return"";return g<=-5?`<span class="tag ok">${-g}% sotto mercato</span>`:g>=5?`<span class="tag bad">${g}% sopra mercato</span>`:`<span class="tag">in linea col mercato</span>`};
+const gap=h=>h.market&&h.market.gap_pct!=null&&!h.market.outlier?h.market.gap_pct:null;
+const gapTag=h=>{if(h.market&&h.market.outlier)return'<span class="tag line">mercato da verificare</span>';const g=gap(h);if(g==null)return"";return g<=-5?`<span class="tag ok">${-g}% sotto mercato</span>`:g>=5?`<span class="tag bad">${g}% sopra mercato</span>`:`<span class="tag">in linea col mercato</span>`};
 const LINECOL=["--ln1","--ln2","--ln3","--ln4","--ln5"];
 function lineCode(l){const m=(l.name||"").match(/^(S\d+|IC|P|L)\b/);return m?m[1]:(l.kind||"?")}
 const ICON_LUX='<svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1 1.5 4v1h11V4L7 1Zm-4 5v5h1.5V6H3Zm3.25 0v5h1.5V6h-1.5ZM9.5 6v5H11V6H9.5ZM1.5 12h11v1.2h-11z"/></svg>';
@@ -1046,7 +1046,7 @@ function popupHtml(h,inDay,isNew){
     <dt>Treno</dt><dd>${tr} da ${esc(h.station||"–")}</dd>
     <dt>Bici</dt><dd>${bike}</dd>
     <dt>Maaseik</dt><dd>${maasTxt(maas(h))}</dd>
-    <dt>Mercato</dt><dd>${gap(h)==null?"da stimare":(gap(h)>0?"+":"")+gap(h)+"% rispetto alle case simili"}${mk}</dd>
+    <dt>Mercato</dt><dd>${h.market&&h.market.outlier?"scarto anomalo: controlla le superfici nell'annuncio":gap(h)==null?"da stimare":(gap(h)>0?"+":"")+gap(h)+"% rispetto alle case simili"}${mk}</dd>
     <dt>Mutuo</dt><dd>${eur(x.loan)} · ${eur(x.r25)}/mese a 25 anni</dd>
   </dl>
   ${h.to_verify&&h.to_verify.length?`<div class="note">Da verificare: ${esc(h.to_verify.join(", "))}</div>`:""}

@@ -16,6 +16,7 @@ Richiede requests.
 """
 import argparse
 import json
+import re
 import math
 import sys
 import time
@@ -135,7 +136,12 @@ def main():
     # stesso immobile su più siti o pubblicato due volte: stesso CAP, prezzo e camere,
     # superficie abitabile simile se entrambi la dicono. Resta il record con l'indirizzo esatto;
     # i campi che gli mancano si prendono dagli altri annunci.
+    def addr(d):
+        return re.sub(r"[^a-z0-9]", "", (d.get("address") or "").lower())
+
     def same(a, b):
+        if addr(a) and addr(a) == addr(b) and a.get("price") == b.get("price") and a.get("postcode") == b.get("postcode"):
+            return True
         if (a.get("postcode"), a.get("price"), a.get("bedrooms")) != (b.get("postcode"), b.get("price"), b.get("bedrooms")):
             return False
         if a.get("price") is None or a.get("bedrooms") is None:
@@ -223,10 +229,14 @@ def main():
         if e:
             exp, n = e
             mk = {"expected": int(round(exp, -3)), "gap_pct": round((d["price"] / exp - 1) * 100),
-                  "n": n, "n_model": n_model, "method": "regressione sui prezzi richiesti della zona (Immovlan)"}
+                  "n": n, "n_model": n_model, "method": "regressione sui prezzi richiesti della zona"}
+            if abs(mk["gap_pct"]) > 40:
+                # scarto enorme: quasi sempre una superficie scritta male nell'annuncio
+                mk["outlier"] = True
+                to_verify.append("superfici (scarto dal mercato anomalo)")
         car = route(s, CAR, here, (maaseik["lat"], maaseik["lon"])) if maaseik else None
         reno_pts = {"renovated": 8, "refresh": -3, "to_renovate": -8}.get(d.get("renovation"), 0)
-        mk_pts = max(-10, min(10, -(mk["gap_pct"]) * 0.5)) if mk else 0
+        mk_pts = max(-10, min(10, -(mk["gap_pct"]) * 0.5)) if mk and not mk.get("outlier") else 0
         score = (100 - 1.5 * (st["minutes"] - 10) - 3 * bmin + 4 * min(st.get("peak_am") or 0, 4)
                  + {"open": 10, "halfopen": -10}.get(typ, 0) + {"nl": 5, "bi": 0, "fr": -5}[st["lang"]]
                  - (5 if d["price"] > 700000 else 0) - (0 if st["direct"] else 10) - 4 * len(to_verify)
@@ -236,7 +246,7 @@ def main():
             why.append("ristrutturata")
         why.append(f"{bmin}′ di bici da {st['name']}")
         why.append(f"{'diretto' if st['direct'] else 'con cambio'} in {st['minutes']}′ con {int(st.get('peak_am') or 0)} treni/ora")
-        if mk and mk["gap_pct"] <= -5:
+        if mk and not mk.get("outlier") and mk["gap_pct"] <= -5:
             why.append(f"{-mk['gap_pct']}% sotto il mercato")
         rec = {k: d.get(k) for k in ("source", "url", "title", "price", "bedrooms", "type", "facades", "garden",
                                      "garden_m2", "land_m2", "living_m2", "year", "epc_kwh", "state", "renovation",
