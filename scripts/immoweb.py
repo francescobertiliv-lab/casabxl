@@ -9,7 +9,8 @@ Uso minimo:  python3 scripts/immoweb.py --postcodes 3070,1930 --out immoweb.json
 
 Come funziona (approccio preso da feldeh/immoweb-scraper e fortiax/ghent-real-estate; codice riscritto):
 1. l'endpoint JSON di ricerca di Immoweb dà gli annunci che rispettano i filtri, per gruppi di codici postali;
-2. con `--stations` scarta subito le case a più di `--max-km` in linea d'aria da ogni stazione;
+2. scarta subito, senza aprire l'annuncio, le case con camere fuori intervallo, terreno sotto `--min-land-search` m²
+   e, con `--stations`, a più di `--max-km` in linea d'aria da ogni stazione;
 3. la pagina di ogni annuncio contiene i dati completi in `window.classified` (facciate, giardino,
    terreno, indirizzo, coordinate, EPC). Con `--state` la apre solo per le case nuove o con prezzo cambiato;
 4. con `--bike` calcola il percorso reale in bici fino alle stazioni vicine (routing.openstreetmap.de)
@@ -406,6 +407,13 @@ def run(a, fetcher, stations=None, state=None):
                     and not near_stations(lat, lon, stations, a.max_km):
                 drop("lontana dalle stazioni")
                 continue
+            beds, land = g(r, "property", "bedroomCount"), g(r, "property", "landSurface")
+            if beds is not None and not (a.min_bedrooms <= beds <= a.max_bedrooms):
+                drop("camere fuori intervallo")
+                continue
+            if land is not None and land < a.min_land_search:
+                drop(f"terreno sotto {a.min_land_search} m²")
+                continue
             known = state.get(f"immoweb-{cid}")
             price = g(r, "transaction", "sale", "price")
             if known and known.get("price") == (price or None):
@@ -479,7 +487,9 @@ def main():
     ap.add_argument("--min-bedrooms", type=int, default=4)
     ap.add_argument("--max-bedrooms", type=int, default=5)
     ap.add_argument("--max-pages", type=int, default=10, help="pagine per gruppo di codici postali")
-    ap.add_argument("--max-details", type=int, default=150, help="annunci aperti per giro")
+    ap.add_argument("--max-details", type=int, default=300, help="annunci aperti per giro")
+    ap.add_argument("--min-land-search", type=int, default=200,
+                    help="scarta già dai risultati di ricerca le case con terreno sotto questa soglia (m²)")
     ap.add_argument("--time-budget", type=float, default=16,
                     help="minuti oltre i quali non apre altri annunci e salva (0 = nessun limite)")
     ap.add_argument("--max-km", type=float, default=3.5, help="distanza in linea d'aria dalla stazione")

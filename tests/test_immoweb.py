@@ -41,6 +41,8 @@ LISTINGS = {
     6: classified(6, price=0, facades=None, garden=None, garden_m2=None, street=None),  # tenuta, da verificare
     9: classified(9, garden=None, garden_m2=None, land=185),   # scartata: giardino non detto, terreno piccolo
     10: classified(10, garden=None, garden_m2=120),             # tenuta: superficie giardino indicata
+    11: classified(11, garden=None, garden_m2=None, land=250),  # scartata dopo il dettaglio: giardino non detto
+    12: classified(12, beds=6),                                 # scartata dalla ricerca: camere
     7: classified(7, at=FAR),                                   # scartata prima del dettaglio: lontana
     8: classified(8, at=EDGE_A),                                # scartata: bici oltre 3 km
 }
@@ -54,7 +56,9 @@ class Fake:
 
     def get(self, url, want_json=False):
         if want_json:
-            res = [{"id": c["id"], "property": {"location": c["property"]["location"]},
+            res = [{"id": c["id"], "property": {"location": c["property"]["location"],
+                                                "bedroomCount": c["property"]["bedroomCount"],
+                                                "landSurface": c["property"]["land"]["surface"]},
                     "transaction": {"sale": {"price": c["transaction"]["sale"]["price"]}}}
                    for c in self.listings.values()]
             return {"results": res, "totalItems": len(res)}
@@ -72,7 +76,7 @@ class Blocking(Fake):
 
 def args(**kw):
     d = dict(postcodes="3090", date="2026-09-27", max_price=800000, min_bedrooms=4, max_bedrooms=5,
-             max_pages=5, max_details=150, max_km=3.5, bike=True, min_land=300, time_budget=0)
+             max_pages=5, max_details=150, max_km=3.5, bike=True, min_land=300, time_budget=0, min_land_search=200)
     d.update(kw)
     return types.SimpleNamespace(**d)
 
@@ -81,11 +85,12 @@ def args(**kw):
 f = Fake(LISTINGS)
 res, state = immoweb.run(args(), f, ST, {})
 s, kept = res["summary"], {d["id"]: d for d in res["listings"]}
-assert s["status"] == "ok" and s["found"] == 10 and s["details"] == 9 and s["new"] == 4, s
+assert s["status"] == "ok" and s["found"] == 12 and s["details"] == 9 and s["new"] == 4, s
 assert set(kept) == {"immoweb-1", "immoweb-3", "immoweb-6", "immoweb-10"}, kept.keys()
 assert s["dropped"] == {"lontana dalle stazioni": 1, "3 facciate senza condizioni ottime": 1,
                         "casa a schiera (2 facciate)": 1, "senza giardino": 1, "bici oltre 3 km": 1,
-                        "giardino non indicato e terreno sotto la soglia": 1}, s["dropped"]
+                        "giardino non indicato e terreno sotto la soglia": 1, "terreno sotto 200 m²": 1,
+                        "camere fuori intervallo": 1}, s["dropped"]
 assert kept["immoweb-10"]["garden"] is True and "giardino" not in kept["immoweb-10"]["to_verify"]
 k1 = kept["immoweb-1"]
 assert k1["station"] == "Stazione A" and k1["train_min"] == 15 and k1["bike_km"] <= 3 and k1["type"] == "open"
