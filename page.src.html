@@ -1,0 +1,463 @@
+<title>Case sulla linea Luxembourg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/*LEAFLET_CSS*/
+:root{
+  --bg:#f1f4f7; --panel:#ffffff; --ink:#16202b; --muted:#566373; --line:#d3dbe4;
+  --accent:#1f4e9c; --accent-ink:#ffffff; --star:#c98f00; --land:#e3e9ef; --land-line:#c5cfda;
+  --t1:#0f7a5c; --t2:#5e9c2f; --t3:#c08a0a; --t4:#cf5a1c; --warn:#b54708; --warn-bg:#fdf1e7;
+  --nl:#1f4e9c; --bi:#7a3e9d; --fr:#b3261e;
+  --sans:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#0e1319; --panel:#161d25; --ink:#e4eaf0; --muted:#95a3b2; --line:#2a3541;
+  --accent:#86aef0; --accent-ink:#0e1319; --star:#f2b632; --land:#1a222b; --land-line:#2c3844;
+  --t1:#34b98c; --t2:#8cc653; --t3:#e7b53c; --t4:#f07f45; --warn:#f5a25d; --warn-bg:#35220f;
+  --nl:#86aef0; --bi:#c28be0; --fr:#f07d74;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0e1319; --panel:#161d25; --ink:#e4eaf0; --muted:#95a3b2; --line:#2a3541;
+  --accent:#86aef0; --accent-ink:#0e1319; --star:#f2b632; --land:#1a222b; --land-line:#2c3844;
+  --t1:#34b98c; --t2:#8cc653; --t3:#e7b53c; --t4:#f07f45; --warn:#f5a25d; --warn-bg:#35220f;
+  --nl:#86aef0; --bi:#c28be0; --fr:#f07d74;
+}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.wrap{padding-inline:16px;padding-block:16px 40px;max-width:1500px;margin:0 auto;display:grid;gap:20px}
+header.top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px}
+h1{font-size:1.45rem;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:1.1rem;margin:0 0 10px;text-wrap:balance}
+.sub{color:var(--muted);margin:0;font-size:.92rem}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.app{display:grid;grid-template-columns:300px 1fr;gap:16px;min-height:640px}
+@media (max-width:860px){.app{grid-template-columns:1fr}}
+aside.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;min-height:0;max-height:760px}
+@media (max-width:860px){aside.panel{max-height:none}}
+.sec{padding:14px 14px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.sec:last-child{border-bottom:0}
+.label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.daynav{display:flex;gap:6px;align-items:center}
+.daynav button{flex:none}
+.daynav output{flex:1;text-align:center;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.days{overflow:auto;flex:1;min-height:140px;padding:6px}
+.day{display:grid;grid-template-columns:1fr auto;gap:2px 8px;width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:1px solid transparent;background:none;color:inherit;font:inherit;cursor:pointer}
+.day:hover{background:var(--bg)}
+.day[aria-current="true"]{border-color:var(--accent);background:var(--bg)}
+.day .d{font-weight:700}
+.day .n{color:var(--muted);font-size:.85rem;grid-column:1/-1}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.pill.new{color:var(--t1)}
+.pill.warn{color:var(--warn);background:var(--warn-bg);border-color:transparent}
+.pill.nl{color:var(--nl)}.pill.bi{color:var(--bi)}.pill.fr{color:var(--fr)}
+.pill.approx{color:var(--muted);border-style:dashed}
+button{font:inherit}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;padding:5px 10px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:default}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.filters{display:grid;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips label{display:flex;align-items:center;gap:5px;font-size:.88rem;padding:3px 8px;border:1px solid var(--line);border-radius:99px;cursor:pointer}
+.chips input{accent-color:var(--accent);margin:0}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.starlist{display:grid;gap:6px}
+.staritem{display:grid;grid-template-columns:auto 1fr;gap:0 8px;align-items:start;background:none;border:0;color:inherit;text-align:left;padding:4px 2px;cursor:pointer;font:inherit}
+.staritem small{color:var(--muted);grid-column:2}
+.starglyph{color:var(--star);font-size:1.05rem;line-height:1.2}
+.mapbox{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;min-height:560px;background:var(--bg)}
+#map{position:absolute;inset:0;background:var(--bg)}
+@media (max-width:860px){.mapbox{min-height:70vh}}
+.legend{position:absolute;right:10px;bottom:10px;z-index:500;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.78rem;display:grid;gap:3px;max-width:230px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.empty{position:absolute;inset:0;z-index:600;display:grid;place-items:center;padding:24px;background:color-mix(in srgb,var(--bg) 88%,transparent)}
+.empty div{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:8px}
+.empty p{margin:0}
+.leaflet-container{font-family:var(--sans);background:var(--bg)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);box-shadow:0 3px 14px rgba(0,0,0,.25)}
+.leaflet-popup-content{margin:12px 14px;min-width:240px}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.leaflet-tooltip{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.pop h3{margin:0 0 4px;font-size:1.02rem}
+.pop dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:8px 0;font-size:.86rem}
+.pop dt{color:var(--muted)}
+.pop dd{margin:0}
+.pop .acts{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px}
+.pop a{color:var(--accent);font-weight:700}
+.starbtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:99px;padding:3px 10px;cursor:pointer}
+.starbtn[aria-pressed="true"]{border-color:var(--star);color:var(--star);font-weight:700}
+.hmark{display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.hmark.half{background:var(--panel)!important;border-width:3px}
+.hmark.approx{border-style:dashed}
+.hmark.gone{opacity:.55}
+.hmark.star{box-shadow:0 0 0 3px var(--star),0 1px 3px rgba(0,0,0,.4)}
+.tablebox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.linkbtn{background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-weight:700;text-align:left}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:4px;align-content:start}
+.note b{font-size:.98rem}
+.note p{margin:0;font-size:.88rem;color:var(--muted)}
+.foot{font-size:.82rem;color:var(--muted)}
+.foot ul{margin:4px 0 0;padding-left:18px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Case sulla linea Luxembourg</h1>
+      <p class="sub">Case in vendita a 5-10 minuti di bici da una stazione con treno per Bruxelles-Luxembourg in 30 minuti al massimo. Aggiornata ogni mattina.</p>
+    </div>
+    <p class="sub" id="status">Caricamento dei dati…</p>
+  </header>
+
+  <div class="app">
+    <aside class="panel" aria-label="Date e filtri">
+      <div class="sec">
+        <span class="label">Data della raccolta</span>
+        <div class="daynav">
+          <button class="btn" id="prev" type="button" aria-label="Giorno precedente">‹</button>
+          <output id="dayout">–</output>
+          <button class="btn" id="next" type="button" aria-label="Giorno successivo">›</button>
+        </div>
+        <input type="range" id="dayrange" min="0" max="0" value="0" aria-label="Scorri le date">
+      </div>
+      <div class="days" id="days" role="list"></div>
+      <div class="sec">
+        <span class="label">Filtri</span>
+        <div class="filters">
+          <div>
+            <div class="row"><label for="fprice">Prezzo massimo</label><span class="mono" id="fpriceout">800.000 €</span></div>
+            <input type="range" id="fprice" min="400000" max="800000" step="10000" value="800000">
+          </div>
+          <div class="chips" id="fbeds" aria-label="Camere">
+            <label><input type="checkbox" id="fb4" value="4" checked>4 camere</label>
+            <label><input type="checkbox" id="fb5" value="5" checked>5 camere</label>
+          </div>
+          <div class="chips" id="ftype" aria-label="Tipo di casa">
+            <label><input type="checkbox" id="ftopen" value="open" checked>4 lati</label>
+            <label><input type="checkbox" id="fthalf" value="halfopen" checked>3 lati</label>
+            <label><input type="checkbox" id="ftunk" value="unknown" checked>Da verificare</label>
+          </div>
+          <div class="chips" id="flang" aria-label="Lingua del comune">
+            <label><input type="checkbox" id="flnl" value="nl" checked>Fiandre (NL)</label>
+            <label><input type="checkbox" id="flbi" value="bi" checked>Bruxelles (bilingue)</label>
+            <label><input type="checkbox" id="flfr" value="fr" checked>Vallonia (FR)</label>
+            <label><input type="checkbox" id="flfac" value="fac">Solo comuni a facilità</label>
+          </div>
+          <div class="chips">
+            <label><input type="checkbox" id="fnew">Solo nuove del giorno</label>
+          </div>
+        </div>
+      </div>
+      <div class="sec">
+        <div class="row"><span class="label">Con la stella</span><span class="mono" id="starcount">0</span></div>
+        <div class="starlist" id="starlist"><p class="sub">Tocca ☆ su una casa per seguirla: resta sulla mappa in tutte le date.</p></div>
+      </div>
+    </aside>
+
+    <div class="mapbox">
+      <div id="map" aria-label="Mappa"></div>
+      <div class="legend" id="legend">
+        <b>Treno fino a Luxembourg</b>
+        <span><i style="background:var(--t1)"></i>fino a 15 min</span>
+        <span><i style="background:var(--t2)"></i>16-20 min</span>
+        <span><i style="background:var(--t3)"></i>21-25 min</span>
+        <span><i style="background:var(--t4)"></i>26-30 min</span>
+        <span><i style="background:var(--panel);border:2px solid var(--muted)"></i>con cambio</span>
+        <span style="margin-top:4px">Pieno = 4 lati · anello = 3 lati · tratteggio = posizione approssimativa · alone giallo = stella</span>
+      </div>
+      <div class="empty" id="empty" hidden><div id="emptymsg"></div></div>
+    </div>
+  </div>
+
+  <section>
+    <h2 id="toptitle">Le 10 migliori del giorno</h2>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>#</th><th>Casa</th><th>Prezzo</th><th>Camere</th><th>Tipo</th><th>Stazione</th><th>Bici</th><th>Treno</th><th>Perché</th><th>Da verificare</th><th></th></tr></thead>
+        <tbody id="top"><tr><td colspan="11">Nessuna casa per questa data.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Stazioni da tenere d'occhio</h2>
+    <div class="notes" id="notes"><p class="sub">Compariranno dopo il primo calcolo degli orari.</p></div>
+  </section>
+
+  <section class="foot" id="sources"></section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const S={status:null,stations:[],lines:[],communes:[],listings:new Map(),days:[],stars:new Map(),dayIdx:-1,me:null,canWrite:true,db:null,user:null,names:{}};
+const eur=n=>n==null?"–":new Intl.NumberFormat("it-IT").format(n)+" €";
+const fmtDate=d=>{if(!d)return"–";const [y,m,g]=d.split("-");return `${g}/${m}/${y}`};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const LANG={nl:"Fiandre (NL)",bi:"Bruxelles (bilingue)",fr:"Vallonia (FR)"};
+const TYPE={open:"4 lati",halfopen:"3 lati (semi-isolata)",unknown:"da verificare"};
+const typeOf=h=>h.type==="open"||h.type==="halfopen"?h.type:"unknown";
+const tcol=m=>m==null?tok("--muted"):m<=15?tok("--t1"):m<=20?tok("--t2"):m<=25?tok("--t3"):tok("--t4");
+function safe(f){try{return f()}catch(e){return null}}
+
+// ---------- map ----------
+const map=L.map("map",{zoomSnap:.5,attributionControl:true}).setView([50.8,4.45],10);
+map.attributionControl.setPrefix(false);
+map.attributionControl.addAttribution("Dati: NMBS/SNCB GTFS, OpenStreetMap contributors");
+const layers={communes:L.layerGroup().addTo(map),lines:L.layerGroup().addTo(map),bike:L.layerGroup().addTo(map),stations:L.layerGroup().addTo(map),houses:L.layerGroup().addTo(map)};
+L.control.layers(null,{"Comuni":layers.communes,"Linee ferroviarie":layers.lines,"Area bici 10'":layers.bike,"Stazioni":layers.stations,"Case":layers.houses},{collapsed:true,position:"topright"}).addTo(map);
+let fitted=false;const markers=new Map();
+
+function drawBase(){
+  layers.communes.clearLayers();layers.lines.clearLayers();layers.bike.clearLayers();layers.stations.clearLayers();
+  for(const c of S.communes){
+    const col=tok("--"+(c.lang||"nl"));
+    L.polygon(c.rings||[],{color:tok("--land-line"),weight:.7,fillColor:tok("--land"),fillOpacity:1,interactive:true})
+      .bindTooltip(`${esc(c.name)} · ${LANG[c.lang]||"?"}${c.facilities?" · a facilità":""}`,{sticky:true})
+      .addTo(layers.communes);
+    if(c.facilities)L.polygon(c.rings||[],{color:col,weight:1.2,dashArray:"3 3",fill:false,interactive:false}).addTo(layers.communes);
+  }
+  for(const l of S.lines){
+    L.polyline(l.coords||[],{color:tok("--accent"),weight:l.serves_lux?4:1.5,opacity:l.serves_lux?.9:.45})
+      .bindTooltip(esc(l.name||""),{sticky:true}).addTo(layers.lines);
+  }
+  for(const s of S.stations){
+    if(s.minutes==null||s.minutes>30)continue;
+    const col=tcol(s.minutes);
+    if(s.bike_area&&s.bike_area.length)L.polygon(s.bike_area,{color:col,weight:1,opacity:.6,fillColor:col,fillOpacity:.08,interactive:false}).addTo(layers.bike);
+    else L.circle([s.lat,s.lon],{radius:2500,color:col,weight:1,dashArray:"4 4",fillColor:col,fillOpacity:.06,interactive:false}).addTo(layers.bike);
+    const direct=s.direct!==false;
+    const m=L.circleMarker([s.lat,s.lon],{radius:7,color:col,weight:3,fillColor:direct?col:tok("--panel"),fillOpacity:1});
+    const freq=[s.peak_am!=null?`mattina ${s.peak_am}/h`:null,s.peak_pm!=null?`sera ${s.peak_pm}/h`:null].filter(Boolean).join(" · ")||"frequenza da calcolare";
+    m.bindPopup(`<div class="pop"><h3>${esc(s.name)}</h3><dl>
+      <dt>Treno</dt><dd>${s.minutes} min ${direct?"diretto":"con cambio a "+esc(s.change_at||"?")}</dd>
+      <dt>Ore di punta</dt><dd>${esc(freq)}</dd>
+      <dt>Comune</dt><dd>${esc(s.commune||"–")} · ${LANG[s.lang]||"?"}${s.facilities?" · a facilità":""}</dd>
+      <dt>Area bici</dt><dd>${s.bike_area&&s.bike_area.length?"percorso reale 10 min":"cerchio 2,5 km (approssimato)"}</dd>
+    </dl></div>`);
+    m.bindTooltip(`${esc(s.name)} · ${s.minutes}′`);
+    m.addTo(layers.stations);
+  }
+  if(!fitted&&S.stations.length){
+    const pts=S.stations.filter(s=>s.minutes!=null&&s.minutes<=30).map(s=>[s.lat,s.lon]);
+    if(pts.length){map.fitBounds(pts,{padding:[30,30]});fitted=true}
+  }
+}
+
+// ---------- day / filters ----------
+function curDay(){return S.days[S.dayIdx]||null}
+function F(){
+  const beds=[...document.querySelectorAll("#fbeds input:checked")].map(i=>+i.value);
+  const types=[...document.querySelectorAll("#ftype input:checked")].map(i=>i.value);
+  const langs=[...document.querySelectorAll("#flang input:checked")].map(i=>i.value).filter(v=>v!=="fac");
+  return{price:+$("#fprice").value,beds,types,langs,fac:$("#flfac").checked,onlyNew:$("#fnew").checked};
+}
+function passes(h,f,day){
+  if(h.price!=null&&h.price>f.price)return false;
+  if(h.bedrooms!=null&&!f.beds.includes(h.bedrooms))return false;
+  if(!f.types.includes(typeOf(h)))return false;
+  if(h.lang&&!f.langs.includes(h.lang))return false;
+  if(f.fac&&!h.facilities)return false;
+  if(f.onlyNew&&!(day&&(day.new_ids||[]).includes(h.id)))return false;
+  return true;
+}
+function visible(){
+  const day=curDay(),f=F();const ids=new Set(day?day.ids||[]:[]);
+  const out=[];
+  for(const h of S.listings.values()){
+    const inDay=ids.has(h.id),starred=S.stars.has(h.id);
+    if(!inDay&&!starred)continue;
+    if(!starred&&!passes(h,f,day))continue;
+    out.push({h,inDay,starred,isNew:!!(day&&(day.new_ids||[]).includes(h.id))});
+  }
+  return out;
+}
+
+function popupHtml(h,inDay,isNew){
+  const st=S.stars.get(h.id);const who=st&&st.by?(S.names[st.by]||""):"";
+  const band=h.price>=700000?' <span class="pill warn">700-800k</span>':"";
+  const tr=h.train_min==null?"–":`${h.train_min} min ${h.train_direct===false?"con cambio a "+esc(h.change_at||"?"):"diretto"}`;
+  const bike=h.bike_min==null?"da verificare":`${h.bike_min} min (${h.bike_km!=null?String(h.bike_km).replace(".",",")+" km":"?"})`;
+  const land=h.land_m2?new Intl.NumberFormat("it-IT").format(h.land_m2)+" m²":"da verificare";
+  return `<div class="pop"><h3>${eur(h.price)}${band}</h3>
+  <div>${isNew?'<span class="pill new">nuova</span> ':""}${inDay?"":'<span class="pill warn">non trovata in questa data</span> '}${h.approx?'<span class="pill approx">posizione approssimativa</span>':""}</div>
+  <dl>
+    <dt>Camere</dt><dd>${h.bedrooms??"da verificare"}</dd>
+    <dt>Tipo</dt><dd>${TYPE[typeOf(h)]}</dd>
+    <dt>Giardino</dt><dd>${h.garden===true?"sì":"da verificare"}</dd>
+    <dt>Terreno</dt><dd>${land}</dd>
+    <dt>Stazione</dt><dd>${esc(h.station||"–")}</dd>
+    <dt>In bici</dt><dd>${bike}</dd>
+    <dt>Treno</dt><dd>${tr}</dd>
+    <dt>Comune</dt><dd>${esc(h.commune||"–")} · ${LANG[h.lang]||"?"}${h.facilities?" · a facilità":""}</dd>
+    <dt>Indirizzo</dt><dd>${esc(h.address||"–")}</dd>
+    <dt>Vista</dt><dd>dal ${fmtDate(h.first_seen)} al ${fmtDate(h.last_seen)}</dd>
+  </dl>
+  ${h.to_verify&&h.to_verify.length?`<div class="sub">Da verificare: ${esc(h.to_verify.join(", "))}</div>`:""}
+  <div class="acts"><a href="${esc(h.url)}" target="_blank" rel="noopener">Apri l'annuncio (${esc(h.source||"fonte")})</a>
+  <button class="starbtn" data-star="${esc(h.id)}" aria-pressed="${!!st}" ${S.canWrite?"":"disabled"}>${st?"★ Con stella":"☆ Stella"}</button></div>
+  ${who?`<div class="sub">Stella di ${esc(who)}</div>`:""}</div>`;
+}
+
+function renderHouses(){
+  layers.houses.clearLayers();markers.clear();
+  const v=visible();
+  for(const {h,inDay,starred,isNew} of v){
+    if(h.lat==null||h.lon==null)continue;
+    const t=typeOf(h);const col=tcol(h.train_min);
+    const cls=["hmark",t==="halfopen"?"half":"",h.approx?"approx":"",inDay?"":"gone",starred?"star":""].join(" ");
+    const size=isNew?24:20;
+    const html=`<div class="${cls}" style="width:${size}px;height:${size}px;background:${col};${t==="halfopen"?`border-color:${col};color:${col}`:""}">${h.bedrooms||"?"}</div>`;
+    const m=L.marker([h.lat,h.lon],{icon:L.divIcon({html,className:"",iconSize:[size,size]}),zIndexOffset:starred?1000:isNew?500:0,title:`${h.commune||""} ${eur(h.price)}`});
+    m.bindPopup(()=>popupHtml(h,inDay,isNew),{maxWidth:320});
+    m.addTo(layers.houses);markers.set(h.id,m);
+  }
+  renderTop(v);
+}
+
+function renderTop(v){
+  const day=curDay();
+  $("#toptitle").textContent=day?`Le 10 migliori del ${fmtDate(day.date)}`:"Le 10 migliori del giorno";
+  const rows=v.filter(x=>x.inDay).sort((a,b)=>(b.h.score??-1)-(a.h.score??-1)).slice(0,10);
+  const tb=$("#top");
+  if(!rows.length){tb.innerHTML=`<tr><td colspan="11">Nessuna casa per questa data con i filtri attuali.</td></tr>`;return}
+  tb.innerHTML=rows.map(({h,isNew},i)=>{
+    const st=S.stars.has(h.id);
+    return `<tr><td class="num">${i+1}</td>
+    <td><button class="linkbtn" data-go="${esc(h.id)}">${esc(h.commune||"?")}</button><br><span class="pill ${h.lang||""}">${h.lang?h.lang.toUpperCase():"?"}</span>${h.facilities?' <span class="pill">facilità</span>':""}${isNew?' <span class="pill new">nuova</span>':""}</td>
+    <td class="num">${eur(h.price)}${h.price>=700000?'<br><span class="pill warn">700-800k</span>':""}</td>
+    <td class="num">${h.bedrooms??"?"}</td><td>${TYPE[typeOf(h)]}</td>
+    <td>${esc(h.station||"–")}</td>
+    <td class="num">${h.bike_min!=null?h.bike_min+"′":"?"}</td>
+    <td class="num">${h.train_min!=null?h.train_min+"′"+(h.train_direct===false?" +cambio":""):"?"}</td>
+    <td>${esc(h.reason||"")}</td><td>${esc((h.to_verify||[]).join(", "))||"–"}</td>
+    <td><button class="starbtn" data-star="${esc(h.id)}" aria-pressed="${st}" ${S.canWrite?"":"disabled"} aria-label="Stella">${st?"★":"☆"}</button> <a href="${esc(h.url)}" target="_blank" rel="noopener">annuncio</a></td></tr>`;
+  }).join("");
+}
+
+function renderDays(){
+  const box=$("#days");const r=$("#dayrange");
+  r.max=Math.max(0,S.days.length-1);r.value=Math.max(0,S.dayIdx);
+  const d=curDay();$("#dayout").textContent=d?fmtDate(d.date):"–";
+  $("#prev").disabled=S.dayIdx<=0;$("#next").disabled=S.dayIdx>=S.days.length-1;
+  box.innerHTML=S.days.map((d,i)=>{
+    const bad=(d.sources||[]).filter(s=>s.status!=="ok").length;
+    return `<button class="day" role="listitem" data-i="${i}" aria-current="${i===S.dayIdx}">
+      <span class="d">${fmtDate(d.date)}</span>
+      <span>${(d.new_ids||[]).length?`<span class="pill new">+${d.new_ids.length}</span>`:""}</span>
+      <span class="n">${(d.ids||[]).length} case${(d.gone_ids||[]).length?` · ${d.gone_ids.length} tolte`:""}${bad?` · <span class="pill warn">${bad} fonti non lette</span>`:""}</span>
+    </button>`}).reverse().join("")||`<p class="sub" style="padding:8px">Ancora nessuna raccolta.</p>`;
+  renderSources();
+}
+
+function renderSources(){
+  const d=curDay();const el=$("#sources");
+  if(!d){el.innerHTML="";return}
+  el.innerHTML=`<b>Fonti lette il ${fmtDate(d.date)}</b><ul>${(d.sources||[]).map(s=>`<li>${esc(s.name)}: ${s.status==="ok"?"letta":esc(s.status)}${s.note?" – "+esc(s.note):""}</li>`).join("")}</ul>`;
+}
+
+async function renderStars(){
+  const list=[...S.stars.keys()].map(id=>S.listings.get(id)).filter(Boolean);
+  $("#starcount").textContent=list.length;
+  const ids=[...new Set([...S.stars.values()].map(s=>s.by).filter(Boolean))];
+  if(S.user&&ids.length){const ps=await safe(()=>S.user.profiles(ids))?.catch?.(()=>null);if(ps)for(const id of ids)S.names[id]=(ps[id]&&ps[id].name)||""}
+  $("#starlist").innerHTML=list.length?list.sort((a,b)=>(b.score??0)-(a.score??0)).map(h=>{
+    const who=S.names[S.stars.get(h.id).by]||"";
+    return `<button class="staritem" data-go="${esc(h.id)}"><span class="starglyph">★</span><span>${esc(h.commune||"?")} · ${eur(h.price)}</span><small>${h.bedrooms??"?"} camere · ${TYPE[typeOf(h)]} · vista l'ultima volta il ${fmtDate(h.last_seen)}${who?" · "+esc(who):""}</small></button>`}).join("")
+    :`<p class="sub">Tocca ☆ su una casa per seguirla: resta sulla mappa in tutte le date.</p>`;
+}
+
+function renderNotes(){
+  const box=$("#notes");
+  const p=S.stations.filter(s=>s.promising);
+  if(!p.length){box.innerHTML=`<p class="sub">${S.stations.length?"Nessuna stazione segnata come promettente.":"Compariranno dopo il primo calcolo degli orari."}</p>`;return}
+  box.innerHTML=p.sort((a,b)=>a.minutes-b.minutes).map(s=>`<div class="note"><b>${esc(s.name)} · <span class="mono">${s.minutes}′</span></b>
+    <span><span class="pill ${s.lang||""}">${LANG[s.lang]||"?"}</span>${s.facilities?' <span class="pill">facilità</span>':""} ${s.direct===false?'<span class="pill warn">cambio</span>':""}</span>
+    <p>${esc(s.note||"")}</p></div>`).join("");
+}
+
+function renderEmpty(){
+  const e=$("#empty");
+  if(S.days.length&&S.stations.length){e.hidden=true;return}
+  const st=S.status;
+  $("#emptymsg").innerHTML=`<b>Ancora nessun dato sulla mappa</b>
+  <p>${esc(st&&st.message?st.message:"La raccolta giornaliera non è ancora partita.")}</p>
+  ${st&&st.updated?`<p class="sub">Ultimo controllo: ${esc(st.updated)}</p>`:""}`;
+  e.hidden=false;
+}
+
+function renderAll(){renderDays();renderHouses();renderStars();renderEmpty()}
+function setDay(i){if(!S.days.length)return;S.dayIdx=Math.max(0,Math.min(S.days.length-1,i));safe(()=>localStorage.setItem("day",S.days[S.dayIdx].date));renderDays();renderHouses()}
+
+// ---------- events ----------
+$("#prev").onclick=()=>setDay(S.dayIdx-1);
+$("#next").onclick=()=>setDay(S.dayIdx+1);
+$("#dayrange").oninput=e=>setDay(+e.target.value);
+$("#days").onclick=e=>{const b=e.target.closest(".day");if(b)setDay(+b.dataset.i)};
+document.addEventListener("keydown",e=>{if(e.target.matches("input,textarea"))return;if(e.key==="ArrowLeft")setDay(S.dayIdx-1);if(e.key==="ArrowRight")setDay(S.dayIdx+1)});
+$("#fprice").oninput=e=>{$("#fpriceout").textContent=eur(+e.target.value);renderHouses()};
+document.querySelectorAll(".chips input").forEach(i=>i.onchange=renderHouses);
+document.addEventListener("click",async e=>{
+  const g=e.target.closest("[data-go]");
+  if(g){const m=markers.get(g.dataset.go);if(m){map.setView(m.getLatLng(),14);m.openPopup();$("#map").scrollIntoView({block:"nearest",behavior:"smooth"})}return}
+  const b=e.target.closest("[data-star]");if(!b||!S.db)return;
+  const id=b.dataset.star;b.disabled=true;
+  try{
+    const ref=S.db.doc("stars/"+id);
+    if(S.stars.has(id))await ref.delete();
+    else await ref.set({by:S.me,at:new Date().toISOString()});
+  }catch(err){
+    if(err&&err.code==="invalid_argument"){S.canWrite=false;$("#status").textContent="Puoi vedere la mappa ma non mettere stelle: chiedi a Francesco di darti l'accesso da Editor."}
+  }finally{b.disabled=false}
+});
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{drawBase();renderHouses()});
+new MutationObserver(()=>{drawBase();renderHouses()}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+
+// ---------- data ----------
+(async()=>{
+  renderEmpty();
+  const db=await claude.use("db");
+  if(!db){$("#status").textContent="Il database della mappa non è disponibile in questa vista.";return}
+  S.db=db;
+  claude.use("user").then(async u=>{if(!u)return;S.user=u;S.me=await u.id();const c=await u.can("data.write");if(c===false)S.canWrite=false;renderStars()});
+  db.doc("meta/status").onSnapshot(s=>{S.status=s.exists?s.data():null;
+    const d=S.status;$("#status").textContent=d&&d.updated?`Ultimo aggiornamento: ${d.updated}`:"In attesa della prima raccolta";
+    // geo parts listed in status
+    loadGeo(d);renderEmpty()});
+  db.doc("meta/stations").onSnapshot(s=>{S.stations=s.exists?(s.data().stations||[]):[];drawBase();renderNotes();renderEmpty()});
+  db.doc("geo/lines").onSnapshot(s=>{S.lines=s.exists?(s.data().lines||[]):[];drawBase()});
+  db.collection("listings").onSnapshot(q=>{S.listings=new Map(q.docs.map(d=>[d.id,{id:d.id,...d.data()}]));renderHouses();renderStars()});
+  db.collection("days").onSnapshot(q=>{
+    const keep=curDay()&&curDay().date;const wasLast=S.dayIdx===S.days.length-1;
+    S.days=q.docs.map(d=>({date:d.id,...d.data()})).sort((a,b)=>a.date<b.date?-1:1);
+    let i=-1;const saved=safe(()=>localStorage.getItem("day"));
+    if(keep&&!wasLast)i=S.days.findIndex(d=>d.date===keep);
+    else if(!keep&&saved)i=-1; // open on the latest day
+    S.dayIdx=i>=0?i:S.days.length-1;renderAll()});
+  db.collection("stars").onSnapshot(q=>{S.stars=new Map(q.docs.map(d=>[d.id,d.data()]));renderHouses();renderStars()});
+})();
+let geoKey="";
+async function loadGeo(st){
+  const parts=(st&&st.commune_parts)||[];const key=parts.join(",");
+  if(key===geoKey||!S.db)return;geoKey=key;
+  const all=[];
+  for(const p of parts){const s=await S.db.doc("geo/"+p).get().catch(()=>null);if(s&&s.exists)all.push(...(s.data().communes||[]))}
+  S.communes=all;drawBase();renderHouses();
+}
+})();
+</script>
