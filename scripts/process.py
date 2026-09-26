@@ -55,6 +55,25 @@ def _route(s, url, a, b):
     return None
 
 
+CENTERS = {}
+
+
+def commune_center(s, postcode, commune):
+    """Centro del comune da Nominatim, per gli annunci senza indirizzo (es. avvisi via mail)."""
+    key = f"{postcode} {commune}"
+    if key not in CENTERS:
+        CENTERS[key] = None
+        try:
+            time.sleep(1)
+            r = s.get("https://nominatim.openstreetmap.org/search", timeout=30,
+                      params={"postalcode": postcode or "", "city": commune or "", "country": "Belgium", "format": "json", "limit": 1})
+            if r.ok and r.json():
+                CENTERS[key] = (float(r.json()[0]["lat"]), float(r.json()[0]["lon"]))
+        except (requests.RequestException, ValueError):
+            pass
+    return CENTERS[key]
+
+
 def solve(A, y, ridge=1e-3):
     """Minimi quadrati con un piccolo ridge, eliminazione di Gauss (solo libreria standard)."""
     k = len(A[0])
@@ -153,10 +172,13 @@ def main():
             continue
         if d.get("bedrooms") not in (4, 5):
             continue
-        if d.get("garden") is not True:
-            continue  # giardino obbligatorio e scritto nell'annuncio
+        if d.get("garden") is False:
+            continue  # giardino obbligatorio: se l'annuncio non lo dice resta "da verificare"
         if d.get("lat") is None:
-            continue
+            c = commune_center(s, d.get("postcode"), d.get("commune"))
+            if not c:
+                continue
+            d["lat"], d["lon"], d["approx"], d["pos_commune"] = c[0], c[1], True, True
         here = (d["lat"], d["lon"])
         near = sorted((x for x in stations if air_km(here, (x["lat"], x["lon"])) <= 3.5),
                       key=lambda x: air_km(here, (x["lat"], x["lon"])))[:4]
@@ -182,6 +204,10 @@ def main():
         if typ == "halfopen" and not (st["direct"] and st["minutes"] <= 20 and km <= 2.5 and (st.get("peak_am") or 0) >= 2):
             continue  # 3 lati solo se il resto è molto buono
         to_verify = []
+        if d.get("garden") is not True:
+            to_verify.append("giardino")
+        if d.get("pos_commune"):
+            to_verify.append("posizione")
         if typ == "unknown":
             to_verify.append("lati liberi")
         if not d.get("land_m2"):
