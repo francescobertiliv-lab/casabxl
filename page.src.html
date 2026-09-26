@@ -1,307 +1,337 @@
 <title>Case sulla linea Luxembourg</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /*LEAFLET_CSS*/
 :root{
-  --bg:#f1f4f7; --panel:#ffffff; --ink:#16202b; --muted:#566373; --line:#d3dbe4;
-  --accent:#1f4e9c; --accent-ink:#ffffff; --star:#c98f00; --land:#e3e9ef; --land-line:#c5cfda;
-  --t1:#0f7a5c; --t2:#5e9c2f; --t3:#c08a0a; --t4:#cf5a1c; --warn:#b54708; --warn-bg:#fdf1e7;
-  --nl:#1f4e9c; --bi:#7a3e9d; --fr:#b3261e;
-  --ln1:#d4145a; --ln2:#0b7a75; --ln3:#6b3fa0; --ln4:#e07b00; --ln5:#1f6fd1; --ln6:#5b6b00; --ln7:#8a5a44;
-  --ok:#1a7f37; --ok-bg:#e6f4ea; --bad:#b42318; --bad-bg:#fdecea; --region-nl:#e8eef8; --region-bi:#f1e9f6; --region-fr:#f9ebea;
-  --sans:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --bg:#f4f5f7; --surface:#ffffff; --surface-2:#f0f2f5; --ink:#1d2025; --ink-2:#3c4350; --muted:#6b7380; --line:#e3e6eb; --line-2:#d3d8df;
+  --accent:#0a6cff; --accent-ink:#ffffff; --accent-soft:#e8f1ff;
+  --ok:#12805c; --ok-bg:#e6f5ee; --warn:#a15c00; --warn-bg:#fff3e0; --bad:#c2352b; --bad-bg:#fdecea; --star:#d49b00;
+  --t1:#16875a; --t2:#5f9f34; --t3:#d1972a; --t4:#e06a36;
+  --ln1:#e5484d; --ln2:#0e9f8e; --ln3:#8e4ec6; --ln4:#f07a1a; --ln5:#2f7ff5; --ln6:#5b6573; --ln7:#a18072;
+  --land:#eceef1; --region-nl:#f3f5f8; --region-bi:#f1eff6; --region-fr:#f6f2ef; --region-line:#cfd5dd; --city:#8a919c;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.08);
+  --shadow-lg:0 2px 6px rgba(16,24,40,.08),0 12px 32px rgba(16,24,40,.14);
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:14px; --r-sm:10px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   color-scheme:dark;
-  --bg:#0e1319; --panel:#161d25; --ink:#e4eaf0; --muted:#95a3b2; --line:#2a3541;
-  --accent:#86aef0; --accent-ink:#0e1319; --star:#f2b632; --land:#1a222b; --land-line:#2c3844;
-  --t1:#34b98c; --t2:#8cc653; --t3:#e7b53c; --t4:#f07f45; --warn:#f5a25d; --warn-bg:#35220f;
-  --nl:#86aef0; --bi:#c28be0; --fr:#f07d74;
-  --ln1:#ff6b9a; --ln2:#3cc9c2; --ln3:#b58cf0; --ln4:#ffab40; --ln5:#6aa8ff; --ln6:#b8c95a; --ln7:#d6a288;
-  --ok:#56d17a; --ok-bg:#12301c; --bad:#ff8a80; --bad-bg:#3a1512; --region-nl:#18212d; --region-bi:#221a2a; --region-fr:#2a1a1b;
+  --bg:#0f1114; --surface:#1a1d21; --surface-2:#23272c; --ink:#eceef1; --ink-2:#c9ced6; --muted:#9aa2ad; --line:#2b3036; --line-2:#383e46;
+  --accent:#4c9bff; --accent-ink:#0b1320; --accent-soft:#1a2a40;
+  --ok:#4cc38a; --ok-bg:#12291f; --warn:#f0b35b; --warn-bg:#2d2213; --bad:#ff7b72; --bad-bg:#341716; --star:#f2c14e;
+  --t1:#3ccf8e; --t2:#9bd35a; --t3:#f0b949; --t4:#ff8a57;
+  --ln1:#ff6b70; --ln2:#35c7b4; --ln3:#b58cf0; --ln4:#ff9a45; --ln5:#5d9dff; --ln6:#9aa3ae; --ln7:#c9a58f;
+  --land:#16191d; --region-nl:#1b1f25; --region-bi:#1e1b24; --region-fr:#221d1b; --region-line:#343a42; --city:#7d8591;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.45),0 12px 32px rgba(0,0,0,.5);
 }}
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0e1319; --panel:#161d25; --ink:#e4eaf0; --muted:#95a3b2; --line:#2a3541;
-  --accent:#86aef0; --accent-ink:#0e1319; --star:#f2b632; --land:#1a222b; --land-line:#2c3844;
-  --t1:#34b98c; --t2:#8cc653; --t3:#e7b53c; --t4:#f07f45; --warn:#f5a25d; --warn-bg:#35220f;
-  --nl:#86aef0; --bi:#c28be0; --fr:#f07d74;
-  --ln1:#ff6b9a; --ln2:#3cc9c2; --ln3:#b58cf0; --ln4:#ffab40; --ln5:#6aa8ff; --ln6:#b8c95a; --ln7:#d6a288;
-  --ok:#56d17a; --ok-bg:#12301c; --bad:#ff8a80; --bad-bg:#3a1512; --region-nl:#18212d; --region-bi:#221a2a; --region-fr:#2a1a1b;
+  --bg:#0f1114; --surface:#1a1d21; --surface-2:#23272c; --ink:#eceef1; --ink-2:#c9ced6; --muted:#9aa2ad; --line:#2b3036; --line-2:#383e46;
+  --accent:#4c9bff; --accent-ink:#0b1320; --accent-soft:#1a2a40;
+  --ok:#4cc38a; --ok-bg:#12291f; --warn:#f0b35b; --warn-bg:#2d2213; --bad:#ff7b72; --bad-bg:#341716; --star:#f2c14e;
+  --t1:#3ccf8e; --t2:#9bd35a; --t3:#f0b949; --t4:#ff8a57;
+  --ln1:#ff6b70; --ln2:#35c7b4; --ln3:#b58cf0; --ln4:#ff9a45; --ln5:#5d9dff; --ln6:#9aa3ae; --ln7:#c9a58f;
+  --land:#16191d; --region-nl:#1b1f25; --region-bi:#1e1b24; --region-fr:#221d1b; --region-line:#343a42; --city:#7d8591;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.45),0 12px 32px rgba(0,0,0,.5);
 }
-html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
 *{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
 [hidden]{display:none!important}
-.wrap{padding-inline:16px;padding-block:16px 40px;max-width:1500px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
-.wrap>*,.app>*{min-width:0}
-header.top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px}
-h1{font-size:1.45rem;margin:0;text-wrap:balance;letter-spacing:-.01em}
-h2{font-size:1.1rem;margin:0 0 10px;text-wrap:balance}
-.sub{color:var(--muted);margin:0;font-size:.92rem}
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-.app{display:grid;grid-template-columns:300px 1fr;gap:16px;min-height:640px}
-@media (max-width:860px){.app{grid-template-columns:minmax(0,1fr)}}
-aside.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;min-height:0;max-height:760px;overflow:auto}
-@media (max-width:860px){aside.panel{max-height:none}}
-.sec{padding:14px 14px;border-bottom:1px solid var(--line);display:grid;gap:8px}
-.sec:last-child{border-bottom:0}
-.label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.daynav{display:flex;gap:6px;align-items:center}
-.daynav button{flex:none}
-.daynav output{flex:1;text-align:center;font-weight:700}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.num{font-variant-numeric:tabular-nums}
+.wrap{padding-inline:16px;padding-block:14px 32px;max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.wrap>*{min-width:0}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px}
+.brand h1{font-size:1.35rem;font-weight:700;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:8px;font-weight:600;font-size:.9rem;color:var(--muted);cursor:pointer}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.status{font-size:.82rem;color:var(--muted)}
+
+/* map + floating panel */
+.stage{position:relative;height:clamp(560px,calc(100vh - 150px),900px);border-radius:var(--r);overflow:hidden;background:var(--land);box-shadow:var(--shadow)}
+#map{position:absolute;inset:0;background:var(--land)}
+.panel{position:absolute;z-index:700;top:12px;left:12px;bottom:12px;width:372px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;overflow:hidden}
+.panel-head{padding:14px 14px 10px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
+.daybar{display:flex;align-items:center;gap:8px}
+.daybar select{flex:1;min-width:0;font:inherit;font-weight:600;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:9px;padding:6px 10px}
+.iconbtn{width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);border-radius:9px;cursor:pointer;color:var(--ink-2)}
+.iconbtn:disabled{opacity:.4;cursor:default}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:.84rem;font-weight:600;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.summary{display:flex;justify-content:space-between;align-items:baseline;font-size:.84rem;color:var(--muted)}
+.summary b{color:var(--ink);font-size:.95rem}
+.list{overflow-y:auto;flex:1;padding:8px;display:grid;gap:8px;align-content:start}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface);display:grid;gap:6px;cursor:pointer;text-align:left;width:100%}
+.card:hover{border-color:var(--line-2);box-shadow:var(--shadow)}
+.card[aria-current="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card-top b{font-size:1.08rem;letter-spacing:-.01em}
+.price{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.meta{font-size:.84rem;color:var(--muted)}
+.meta strong{color:var(--ink-2);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:.74rem;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.tag.bad{background:var(--bad-bg);color:var(--bad)}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}
+.tag.acc{background:var(--accent-soft);color:var(--accent)}
+.tag.line{background:none;border:1px dashed var(--line-2);color:var(--muted)}
+.tag.star{background:none;color:var(--star);border:1px solid currentColor}
+.filters{display:grid;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.filters label{font-size:.84rem;color:var(--ink-2)}
+.frow{display:flex;justify-content:space-between;align-items:baseline;font-size:.84rem}
+.frow output{font-weight:600;font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;accent-color:var(--accent)}
-.days{overflow:auto;flex:1 0 110px;min-height:110px;padding:6px}
-.day{display:grid;grid-template-columns:1fr auto;gap:2px 8px;width:100%;text-align:left;padding:8px 10px;border-radius:8px;border:1px solid transparent;background:none;color:inherit;font:inherit;cursor:pointer}
-.day:hover{background:var(--bg)}
-.day[aria-current="true"]{border-color:var(--accent);background:var(--bg)}
-.day .d{font-weight:700}
-.day .n{color:var(--muted);font-size:.85rem;grid-column:1/-1}
-.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
-.pill.new{color:var(--t1)}
-.pill.warn{color:var(--warn);background:var(--warn-bg);border-color:transparent}
-.pill.nl{color:var(--nl)}.pill.bi{color:var(--bi)}.pill.fr{color:var(--fr)}
-.pill.approx{color:var(--muted);border-style:dashed}
-button{font:inherit}
-.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;padding:5px 10px;cursor:pointer}
-.btn:hover{border-color:var(--accent)}
-.btn:disabled{opacity:.45;cursor:default}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.filters{display:grid;gap:10px}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips label{display:flex;align-items:center;gap:5px;font-size:.88rem;padding:3px 8px;border:1px solid var(--line);border-radius:99px;cursor:pointer}
-.chips input{accent-color:var(--accent);margin:0}
-.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.starlist{display:grid;gap:6px}
-.staritem{display:grid;grid-template-columns:auto 1fr;gap:0 8px;align-items:start;background:none;border:0;color:inherit;text-align:left;padding:4px 2px;cursor:pointer;font:inherit}
-.staritem small{color:var(--muted);grid-column:2}
-.starglyph{color:var(--star);font-size:1.05rem;line-height:1.2}
-.mapbox{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;min-height:560px;background:var(--bg)}
-#map{position:absolute;inset:0;background:var(--bg)}
-@media (max-width:860px){.mapbox{min-height:70vh}}
-.legend{position:absolute;right:10px;bottom:10px;z-index:500;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.78rem;display:grid;gap:3px;max-width:230px}
-.legend summary{cursor:pointer;font-weight:700;list-style-position:inside}
-.legend:not([open]){padding:6px 10px}
-.legend[open] summary{display:none}
-@media (max-width:860px){.legend[open] summary{display:list-item}}
-.legend.hide{display:none}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-.empty{position:absolute;left:56px;right:70px;top:10px;z-index:600;display:grid;justify-items:start;pointer-events:none}
-.empty.full{inset:0;right:0;place-items:center;padding:24px;background:color-mix(in srgb,var(--bg) 88%,transparent);pointer-events:auto}
-.empty:not(.full) div{padding:10px 14px;font-size:.88rem;pointer-events:auto}
-.empty div{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:8px}
-.empty p{margin:0}
-.leaflet-container{font-family:var(--sans);background:var(--bg)}
-.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);box-shadow:0 3px 14px rgba(0,0,0,.25)}
-.leaflet-popup-content{margin:12px 14px;min-width:240px}
-.leaflet-bar a,.leaflet-bar a:hover{background:var(--panel);color:var(--ink);border-color:var(--line)}
-.leaflet-tooltip{background:var(--panel);color:var(--ink);border-color:var(--line)}
-.pop h3{margin:0 0 4px;font-size:1.02rem}
-.pop dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:8px 0;font-size:.86rem}
-.pop dt{color:var(--muted)}
-.pop dd{margin:0}
-.pop .acts{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px}
-.pop a{color:var(--accent);font-weight:700}
-.starbtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:99px;padding:3px 10px;cursor:pointer}
-.starbtn[aria-pressed="true"]{border-color:var(--star);color:var(--star);font-weight:700}
-.hmark{display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)}
-.hmark.half{background:var(--panel)!important;border-width:3px}
-.hmark.approx{border-style:dashed}
-.hmark.gone{opacity:.55}
-.poi{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:16px;border:2px solid var(--panel);box-shadow:0 1px 4px rgba(0,0,0,.5)}
-.poi.lux{background:var(--accent);color:var(--accent-ink)}
-.leaflet-tooltip.poilabel{font-weight:700;font-size:.8rem}
-.pill.reno-ok{color:var(--ok);background:var(--ok-bg);border-color:transparent}
-.pill.reno-bad{color:var(--bad);background:var(--bad-bg);border-color:transparent}
-.pill.reno-unk{color:var(--muted);border-style:dashed}
-.pill.deal{color:var(--ok);background:var(--ok-bg);border-color:transparent}
-.pill.dear{color:var(--bad);background:var(--bad-bg);border-color:transparent}
-.renobar{margin:6px 0 2px;padding:6px 8px;border-radius:7px;font-size:.84rem;display:grid;gap:2px}
-.renobar.ok{background:var(--ok-bg);color:var(--ok)}.renobar.bad{background:var(--bad-bg);color:var(--bad)}.renobar.unk{background:var(--bg);color:var(--muted)}
-.renobar small{color:var(--muted)}
-.leaflet-tooltip.citylabel{background:none;border:0;box-shadow:none;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:0}
+.checks{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.84rem}
+.checks label{display:flex;align-items:center;gap:5px}
+.checks input{accent-color:var(--accent);margin:0}
+.panel-foot{padding:10px 14px;border-top:1px solid var(--line);font-size:.76rem;color:var(--muted)}
+.empty{padding:18px 14px;color:var(--muted);font-size:.9rem;display:grid;gap:6px}
+.empty b{color:var(--ink)}
+
+/* legend + layers */
+.legend{position:absolute;z-index:700;right:12px;bottom:28px;display:grid;justify-items:end;gap:8px}
+.legend .pillbtn{border:0;background:var(--surface);box-shadow:var(--shadow);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.legend .box{background:var(--surface);box-shadow:var(--shadow-lg);border-radius:var(--r);padding:12px 14px;display:grid;gap:10px;width:250px;font-size:.8rem}
+.legend h4{margin:0;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.lrow{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line-2)}
+.ls{display:inline-block;width:16px;height:4px;border-radius:2px;margin-right:5px;vertical-align:2px}
+.toggles{display:flex;gap:6px;flex-wrap:wrap}
+.banner{position:absolute;z-index:650;left:50%;top:12px;transform:translateX(-50%);max-width:min(520px,calc(100% - 420px));background:var(--surface);border-radius:12px;box-shadow:var(--shadow-lg);padding:10px 14px;font-size:.86rem;display:grid;gap:2px}
+.banner.full{top:50%;transform:translate(-50%,-50%);max-width:min(520px,calc(100% - 32px));padding:18px 20px}
+.banner p{margin:0;color:var(--muted)}
+
+/* leaflet skin */
+.leaflet-container{font-family:var(--sans);background:var(--land)}
+.leaflet-control-zoom{border:0!important;box-shadow:var(--shadow)!important;border-radius:10px!important;overflow:hidden}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--surface);color:var(--ink);border-color:var(--line)!important}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--surface) 80%,transparent)!important;color:var(--muted)!important;font-size:10px}
+.leaflet-popup-content-wrapper{background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:var(--shadow-lg);padding:0}
+.leaflet-popup-tip{background:var(--surface);box-shadow:none}
+.leaflet-popup-content{margin:0;min-width:260px}
+.leaflet-container a.leaflet-popup-close-button{top:8px;right:8px;color:var(--muted);font-size:20px}
+.leaflet-tooltip{background:var(--surface);color:var(--ink);border:0;border-radius:8px;box-shadow:var(--shadow);font-size:.8rem;padding:4px 8px}
+.leaflet-tooltip-top::before{border-top-color:var(--surface)}
+.leaflet-tooltip.citylabel{background:none;box-shadow:none;color:var(--city);font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:0}
 .leaflet-tooltip.citylabel::before{display:none}
-.hmark.star{box-shadow:0 0 0 3px var(--star),0 1px 3px rgba(0,0,0,.4)}
-.tablebox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
-table{border-collapse:collapse;width:100%;min-width:860px;font-size:.88rem}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-tr:last-child td{border-bottom:0}
-.linkbtn{background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-weight:700;text-align:left}
-.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:4px;align-content:start}
-.note b{font-size:.98rem}
-.note p{margin:0;font-size:.88rem;color:var(--muted)}
-.foot{font-size:.82rem;color:var(--muted)}
-.foot ul{margin:4px 0 0;padding-left:18px}
-nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
-nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:inherit;font-weight:700;padding:8px 12px;cursor:pointer}
-nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
-.fin{display:grid;gap:20px}
-.fingrid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start}
-@media (max-width:860px){.fingrid{grid-template-columns:minmax(0,1fr)}.fingrid>.card:first-child{order:2}}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
-.form{display:grid;gap:10px}
-.form label{display:grid;grid-template-columns:1fr 130px;align-items:center;gap:8px;font-size:.9rem}
-.form input[type=number]{width:100%;font:inherit;font-family:var(--mono);text-align:right;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
-.form .check{grid-template-columns:auto 1fr}
-.form h3{margin:6px 0 0;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
-.kpi{background:var(--bg);border-radius:8px;padding:10px 12px;display:grid;gap:2px}
-.kpi b{font-family:var(--mono);font-size:1.15rem;font-variant-numeric:tabular-nums}
-.kpi span{font-size:.8rem;color:var(--muted)}
-.fine{font-size:.82rem;color:var(--muted)}
+.leaflet-tooltip.poilabel{font-weight:700}
+
+/* map marks */
+.pin{position:absolute;transform:translate(-50%,calc(-100% - 6px));background:var(--surface);color:var(--ink);font-weight:700;font-size:12px;padding:3px 8px;border-radius:999px;box-shadow:0 1px 2px rgba(16,24,40,.2),0 3px 8px rgba(16,24,40,.18);white-space:nowrap;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:4px;cursor:pointer;border:1.5px solid transparent}
+.pin::after{content:"";position:absolute;left:50%;bottom:-5px;width:8px;height:8px;background:inherit;transform:translateX(-50%) rotate(45deg);border-right:inherit;border-bottom:inherit;border-radius:0 0 2px 0}
+.pin .dot{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.pin.new{background:var(--accent);color:var(--accent-ink)}
+.pin.new .dot{background:var(--accent-ink)}
+.pin.star{border-color:var(--star)}
+.pin.gone{opacity:.55}
+.pin.sel{background:var(--ink);color:var(--surface);z-index:5}
+.poi{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--ink);color:var(--surface);border:2px solid var(--surface);box-shadow:var(--shadow)}
+.poi.lux{background:var(--accent);color:var(--accent-ink)}
+.poi svg{width:14px;height:14px}
+
+/* popup */
+.pop{display:grid;gap:10px;padding:14px 16px 14px;max-width:320px}
+.pop-h{display:grid;gap:2px;padding-right:18px}
+.pop-h .price{font-size:1.3rem;letter-spacing:-.01em}
+.pop-h span{color:var(--muted);font-size:.86rem}
+.reno{border-radius:10px;padding:8px 10px;font-size:.82rem;display:grid;gap:2px}
+.reno b{font-size:.88rem}
+.reno.ok{background:var(--ok-bg);color:var(--ok)}.reno.bad{background:var(--bad-bg);color:var(--bad)}.reno.unk{background:var(--surface-2);color:var(--ink-2)}
+.reno small{color:var(--muted);line-height:1.35}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.84rem;margin:0}
+.facts dt{color:var(--muted)}.facts dd{margin:0;font-variant-numeric:tabular-nums}
+.pop-a{display:flex;gap:8px;align-items:center}
+.btn{border:0;border-radius:10px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink)}
+.btn.ghost[aria-pressed="true"]{color:var(--star)}
+.btn:disabled{opacity:.5;cursor:default}
+.pop .note{font-size:.78rem;color:var(--muted)}
+
+/* sections below */
+.sec h2{font-size:1.02rem;margin:4px 0 10px;letter-spacing:-.01em}
+.stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.st{background:var(--surface);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);display:grid;gap:4px}
+.st b{display:flex;justify-content:space-between;gap:8px}
+.st p{margin:0;font-size:.84rem;color:var(--muted)}
+.foot{font-size:.8rem;color:var(--muted)}
+
+/* finance */
+.fin{display:grid;gap:14px}
+.fingrid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:14px;align-items:start}
+.box{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:16px 18px;display:grid;gap:12px;min-width:0}
+.box h2{margin:0;font-size:1.02rem;letter-spacing:-.01em}
+.form{display:grid;gap:8px}
+.form h3{margin:8px 0 0;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.form label{display:grid;grid-template-columns:1fr 120px;align-items:center;gap:8px;font-size:.88rem}
+.form input[type=number]{width:100%;font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:6px 10px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);color:var(--ink)}
+.form .check{grid-template-columns:auto 1fr;align-items:start;font-size:.84rem}
+.form .check input{accent-color:var(--accent);margin-top:3px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.kpi{background:var(--surface-2);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+.kpi b{font-size:1.12rem;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.kpi span{font-size:.78rem;color:var(--muted)}
+.kpi.hi{background:var(--accent-soft)}.kpi.hi b{color:var(--accent)}
+.fine{font-size:.8rem;color:var(--muted);margin:0}
 .fine a{color:var(--accent)}
-.pill.ok{color:var(--ok);background:var(--ok-bg);border-color:transparent}
+.tablebox{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.86rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:600;cursor:pointer;text-align:left}
+.sources{display:grid;gap:6px}
+
+@media (max-width:900px){
+  .stage{height:auto;overflow:visible;background:none;box-shadow:none;display:grid;gap:12px}
+  #map{position:relative;height:62vh;min-height:380px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:static;width:auto;max-height:none;box-shadow:var(--shadow)}
+  .list{overflow:visible}
+  .legend{bottom:auto;top:calc(62vh - 52px)}
+  .banner{max-width:calc(100% - 32px)}
+  .fingrid{grid-template-columns:minmax(0,1fr)}
+  .fingrid>.box:first-child{order:2}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
 <div class="wrap">
   <header class="top">
-    <div>
+    <div class="brand">
       <h1>Case sulla linea Luxembourg</h1>
-      <p class="sub">Case in vendita a 5-10 minuti di bici da una stazione con treno per Bruxelles-Luxembourg in 30 minuti al massimo. Aggiornata ogni mattina.</p>
+      <p>Case con giardino a pochi minuti di bici da un treno per Bruxelles-Luxembourg</p>
     </div>
-    <p class="sub" id="status">Caricamento dei dati…</p>
+    <div class="seg" role="tablist" aria-label="Sezioni">
+      <button role="tab" id="t-map" aria-selected="true" aria-controls="tab-map">Mappa</button>
+      <button role="tab" id="t-fin" aria-selected="false" aria-controls="tab-fin">Piano finanziario</button>
+    </div>
+    <span class="status" id="status">Caricamento…</span>
   </header>
-  <nav class="tabs" role="tablist">
-    <button role="tab" id="t-map" aria-selected="true" aria-controls="tab-map">Mappa e case</button>
-    <button role="tab" id="t-fin" aria-selected="false" aria-controls="tab-fin">Piano finanziario</button>
-  </nav>
-  <div id="tab-map" role="tabpanel" style="display:grid;grid-template-columns:minmax(0,1fr);gap:20px">
 
-  <div class="app">
-    <aside class="panel" aria-label="Date e filtri">
-      <div class="sec">
-        <span class="label">Data della raccolta</span>
-        <div class="daynav">
-          <button class="btn" id="prev" type="button" aria-label="Giorno precedente">‹</button>
-          <output id="dayout">–</output>
-          <button class="btn" id="next" type="button" aria-label="Giorno successivo">›</button>
-        </div>
-        <input type="range" id="dayrange" min="0" max="0" value="0" aria-label="Scorri le date">
-      </div>
-      <div class="days" id="days" role="list"></div>
-      <div class="sec">
-        <span class="label">Filtri</span>
-        <div class="filters">
-          <div>
-            <div class="row"><label for="fprice">Prezzo massimo</label><span class="mono" id="fpriceout">800.000 €</span></div>
-            <input type="range" id="fprice" min="400000" max="800000" step="10000" value="800000">
+  <div id="tab-map" role="tabpanel" style="display:grid;grid-template-columns:minmax(0,1fr);gap:18px">
+    <div class="stage">
+      <div id="map" aria-label="Mappa delle case e delle linee"></div>
+
+      <aside class="panel" aria-label="Case e filtri">
+        <div class="panel-head">
+          <div class="daybar">
+            <button class="iconbtn" id="prev" type="button" aria-label="Raccolta precedente"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2 4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <select id="dayselect" aria-label="Data della raccolta"></select>
+            <button class="iconbtn" id="next" type="button" aria-label="Raccolta successiva"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m5 2 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="iconbtn" id="ftoggle" type="button" aria-label="Filtri" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M4.5 8h7M7 12h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
           </div>
-          <div class="chips" id="fbeds" aria-label="Camere">
+          <div class="chips" role="group" aria-label="Filtri rapidi">
+            <button class="chip" data-chip="reno" aria-pressed="false">Ristrutturate</button>
+            <button class="chip" data-chip="deal" aria-pressed="false">Sotto mercato</button>
+            <button class="chip" data-chip="open" aria-pressed="false">4 lati</button>
+            <button class="chip" data-chip="nl" aria-pressed="false">Solo Fiandre</button>
+            <button class="chip" data-chip="new" aria-pressed="false">Nuove</button>
+            <button class="chip" data-chip="star" aria-pressed="false">★ Con stella</button>
+          </div>
+        </div>
+        <div class="filters" id="filters" hidden>
+          <div>
+            <div class="frow"><label for="fprice">Prezzo massimo</label><output id="fpriceout">800.000 €</output></div>
+            <input type="range" id="fprice" min="300000" max="800000" step="10000" value="800000">
+          </div>
+          <div>
+            <div class="frow"><label for="fmaas">Da Maaseik al massimo</label><output id="fmaasout">qualsiasi</output></div>
+            <input type="range" id="fmaas" min="60" max="200" step="10" value="200">
+          </div>
+          <div class="checks" aria-label="Camere">
             <label><input type="checkbox" id="fb4" value="4" checked>4 camere</label>
             <label><input type="checkbox" id="fb5" value="5" checked>5 camere</label>
+            <label><input type="checkbox" id="ft3" checked>Anche 3 lati</label>
+            <label><input type="checkbox" id="ftu" checked>Anche lati da verificare</label>
           </div>
-          <div class="chips" id="ftype" aria-label="Tipo di casa">
-            <label><input type="checkbox" id="ftopen" value="open" checked>4 lati</label>
-            <label><input type="checkbox" id="fthalf" value="halfopen" checked>3 lati</label>
-            <label><input type="checkbox" id="ftunk" value="unknown" checked>Da verificare</label>
-          </div>
-          <div class="chips" id="flang" aria-label="Lingua del comune">
-            <label><input type="checkbox" id="flnl" value="nl" checked>Fiandre (NL)</label>
-            <label><input type="checkbox" id="flbi" value="bi" checked>Bruxelles (bilingue)</label>
-            <label><input type="checkbox" id="flfr" value="fr" checked>Vallonia (FR)</label>
-            <label><input type="checkbox" id="flfac" value="fac">Solo comuni a facilità</label>
-          </div>
-          <div>
-            <div class="row"><label for="fmaas">Da Maaseik al massimo</label><span class="mono" id="fmaasout">qualsiasi</span></div>
-            <input type="range" id="fmaas" min="20" max="200" step="10" value="200">
-          </div>
-          <div class="chips">
-            <label><input type="checkbox" id="fnew">Solo nuove del giorno</label>
-            <label><input type="checkbox" id="freno">Solo ristrutturate</label>
-            <label><input type="checkbox" id="fdeal">Solo sotto il prezzo di mercato</label>
+          <div class="checks" aria-label="Regione">
+            <label><input type="checkbox" id="fl-nl" checked>Fiandre</label>
+            <label><input type="checkbox" id="fl-bi" checked>Bruxelles</label>
+            <label><input type="checkbox" id="fl-fr" checked>Vallonia</label>
+            <label><input type="checkbox" id="ffac">Solo comuni a facilità</label>
           </div>
         </div>
+        <div class="summary" style="padding:10px 14px 0"><span><b id="count">0</b> case</span><span id="sortlabel">dalla migliore</span></div>
+        <div class="list" id="list"></div>
+        <div class="panel-foot" id="sources"></div>
+      </aside>
+
+      <div class="legend">
+        <div class="box" id="legendbox" hidden>
+          <div><h4>Treno fino a Luxembourg</h4>
+            <div class="lrow"><span><i class="sw" style="background:var(--t1)"></i>≤ 15′</span><span><i class="sw" style="background:var(--t2)"></i>16-20′</span><span><i class="sw" style="background:var(--t3)"></i>21-25′</span><span><i class="sw" style="background:var(--t4)"></i>26-30′</span></div></div>
+          <div><h4>Linee</h4><div class="lrow" id="linelegend">–</div></div>
+          <div><h4>Case</h4><div class="lrow" style="display:grid;gap:4px">
+            <span>Etichetta = prezzo in migliaia · blu = nuova di oggi</span>
+            <span><i class="sw" style="background:var(--ok);box-shadow:none;border:0;width:8px;height:8px"></i>ristrutturata · bordo giallo = con stella</span></div></div>
+          <div><h4>Livelli</h4><div class="toggles">
+            <button class="chip" id="lay-bike" aria-pressed="false">Aree bici 10′</button>
+            <button class="chip" id="lay-comm" aria-pressed="false">Comuni</button>
+            <button class="chip" id="lay-st" aria-pressed="true">Stazioni</button>
+          </div></div>
+        </div>
+        <button class="pillbtn" id="legendbtn" aria-expanded="false" aria-controls="legendbox">Legenda</button>
       </div>
-      <div class="sec">
-        <div class="row"><span class="label">Con la stella</span><span class="mono" id="starcount">0</span></div>
-        <div class="starlist" id="starlist"><p class="sub">Tocca ☆ su una casa per seguirla: resta sulla mappa in tutte le date.</p></div>
-      </div>
-    </aside>
-
-    <div class="mapbox">
-      <div id="map" aria-label="Mappa"></div>
-      <details class="legend" id="legend" open>
-        <summary>Legenda</summary>
-        <b>Treno fino a Luxembourg</b>
-        <span><i style="background:var(--t1)"></i>fino a 15 min</span>
-        <span><i style="background:var(--t2)"></i>16-20 min</span>
-        <span><i style="background:var(--t3)"></i>21-25 min</span>
-        <span><i style="background:var(--t4)"></i>26-30 min</span>
-        <span><i style="background:var(--panel);border:2px solid var(--muted)"></i>con cambio</span>
-        <b style="margin-top:4px">Linee per Luxembourg</b>
-        <span id="linelegend" class="sub" style="font-size:.78rem">–</span>
-        <span style="margin-top:4px"><i class="poi lux" style="width:11px;height:11px;border-radius:3px"></i>Bruxelles-Luxembourg · <i class="poi" style="width:11px;height:11px;border-radius:3px"></i>Maaseik</span>
-        <span>Pieno = 4 lati · anello = 3 lati · tratteggio = posizione approssimativa · alone giallo = stella</span>
-      </details>
-      <div class="empty" id="empty" hidden><div id="emptymsg"></div></div>
+      <div class="banner" id="banner" hidden></div>
     </div>
-  </div>
 
-  <section>
-    <h2 id="toptitle">Le 10 migliori del giorno</h2>
-    <div class="tablebox">
-      <table>
-        <thead><tr><th>#</th><th>Casa</th><th>Prezzo</th><th>Camere</th><th>Tipo</th><th>Stato</th><th>vs mercato</th><th>Stazione</th><th>Bici</th><th>Treno</th><th>Maaseik</th><th>Perché</th><th>Da verificare</th><th></th></tr></thead>
-        <tbody id="top"><tr><td colspan="14">Nessuna casa per questa data.</td></tr></tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Stazioni da tenere d'occhio</h2>
-    <div class="notes" id="notes"><p class="sub">Compariranno dopo il primo calcolo degli orari.</p></div>
-  </section>
-
-  <section class="foot" id="sources"></section>
+    <section class="sec">
+      <h2>Stazioni consigliate</h2>
+      <div class="stations" id="notes"><p class="foot">Compariranno dopo il primo calcolo degli orari.</p></div>
+    </section>
   </div>
 
   <section id="tab-fin" class="fin" role="tabpanel" hidden>
     <div class="fingrid">
-      <div class="card">
-        <h2 style="margin:0">I vostri numeri</h2>
+      <div class="box">
+        <h2>I vostri numeri</h2>
         <p class="fine" id="finsave">Valgono per tutti e due: ogni modifica si salva per entrambi.</p>
         <div class="form" id="finform">
           <h3>Risparmi</h3>
-          <label>Francesco <input type="number" step="1000" data-k="sav_f"></label>
-          <label>Karin <input type="number" step="1000" data-k="sav_k"></label>
-          <label>Riserva da non toccare <input type="number" step="1000" data-k="buffer"></label>
+          <label>Francesco <input type="number" id="f-sav_f" step="1000" data-k="sav_f"></label>
+          <label>Karin <input type="number" id="f-sav_k" step="1000" data-k="sav_k"></label>
+          <label>Riserva da non toccare <input type="number" id="f-buffer" step="1000" data-k="buffer"></label>
           <h3>Reddito netto mensile</h3>
-          <label>Francesco <input type="number" step="100" data-k="inc_f"></label>
-          <label>Karin <input type="number" step="100" data-k="inc_k"></label>
-          <label>Rata massima (% del reddito) <input type="number" step="1" data-k="max_pct"></label>
+          <label>Francesco <input type="number" id="f-inc_f" step="100" data-k="inc_f"></label>
+          <label>Karin <input type="number" id="f-inc_k" step="100" data-k="inc_k"></label>
+          <label>Rata massima (% del reddito) <input type="number" id="f-max_pct" step="1" data-k="max_pct"></label>
           <h3>Mutuo</h3>
-          <label>Tasso fisso 20 anni (%) <input type="number" step="0.05" data-k="rate20"></label>
-          <label>Tasso fisso 25 anni (%) <input type="number" step="0.05" data-k="rate25"></label>
-          <label>Spese atto di mutuo (% del mutuo) <input type="number" step="0.1" data-k="mort_cost"></label>
-          <label>Quota massima del prezzo finanziata (%) <input type="number" step="1" data-k="max_ltv"></label>
+          <label>Tasso fisso 20 anni (%) <input type="number" id="f-rate20" step="0.05" data-k="rate20"></label>
+          <label>Tasso fisso 25 anni (%) <input type="number" id="f-rate25" step="0.05" data-k="rate25"></label>
+          <label>Spese atto di mutuo (% del mutuo) <input type="number" id="f-mort_cost" step="0.1" data-k="mort_cost"></label>
+          <label>Quota massima finanziata (%) <input type="number" id="f-max_ltv" step="1" data-k="max_ltv"></label>
           <h3>Altro</h3>
-          <label>Lavori per le case da ristrutturare (€) <input type="number" step="5000" data-k="reno_budget"></label>
-          <label class="check"><input type="checkbox" data-k="first_home"> Prima e unica casa: aliquota ridotta (Fiandre 2%, Vallonia 3%, abbattimento a Bruxelles)</label>
+          <label>Lavori per le case da ristrutturare (€) <input type="number" id="f-reno_budget" step="5000" data-k="reno_budget"></label>
+          <label class="check"><input type="checkbox" id="f-first_home" data-k="first_home"> Prima e unica casa: aliquota ridotta (Fiandre 2%, Vallonia 3%, abbattimento a Bruxelles)</label>
         </div>
       </div>
-      <div style="display:grid;gap:16px;min-width:0">
-        <div class="card">
-          <h2 style="margin:0">Fin dove potete arrivare</h2>
+      <div style="display:grid;gap:14px;min-width:0">
+        <div class="box">
+          <h2>Fin dove potete arrivare</h2>
           <div class="kpis" id="kpis"></div>
           <p class="fine" id="kpinote"></p>
         </div>
-        <div class="card" style="padding:0;overflow:hidden">
-          <div style="padding:14px 16px 0"><h2 style="margin:0" id="fintitle">Le case, una per una</h2>
-          <p class="fine">Imposta di registro e notaio secondo la Regione della casa. Il mutuo copre ciò che manca dopo i vostri risparmi (meno la riserva). Tocca il nome per vederla sulla mappa.</p></div>
-          <div class="tablebox" style="border:0;border-radius:0"><table><thead><tr><th>Casa</th><th>Prezzo</th><th>Costi</th><th>Totale</th><th>Mutuo</th><th>Rata 20 anni</th><th>Rata 25 anni</th><th>Sostenibile?</th></tr></thead><tbody id="fintable"></tbody></table></div>
+        <div class="box" style="padding:16px 0 6px">
+          <div style="padding:0 18px;display:grid;gap:4px"><h2 id="fintitle">Le case, una per una</h2>
+          <p class="fine">Imposta di registro e notaio secondo la Regione della casa. Il mutuo copre ciò che manca dopo i vostri risparmi (tolta la riserva). Tocca il nome per vederla sulla mappa.</p></div>
+          <div class="tablebox"><table><thead><tr><th>Casa</th><th>Prezzo</th><th>Costi</th><th>Totale</th><th>Mutuo</th><th>Rata 20 anni</th><th>Rata 25 anni</th><th>Sostenibile</th></tr></thead><tbody id="fintable"></tbody></table></div>
         </div>
-        <div class="card fine" id="finsources">
-          <b style="color:var(--ink)">Da dove vengono i numeri</b>
-          <span><b>Fiandre</b>: 2% per l'unica casa di abitazione (atti dal 1/1/2025), altrimenti 12%. Condizioni: nessun'altra abitazione o terreno edificabile in piena proprietà, in Belgio o all'estero; residenza nella casa entro 3 anni e per almeno 1 anno. <a href="https://www.vlaanderen.be/belastingen-en-begroting/vlaamse-belastingen/registratiebelasting/verkooprecht/tarieven-in-het-verkooprecht/verlaagd-tarief-in-het-verkooprecht-voor-de-aankoop-van-de-enige-eigen-woning" target="_blank" rel="noopener">vlaanderen.be</a></span>
+        <div class="box fine sources">
+          <b style="color:var(--ink);font-size:.9rem">Da dove vengono i numeri</b>
+          <span><b>Fiandre</b>: 2% per l'unica casa di abitazione (atti dal 1/1/2025), altrimenti 12%. Nessun'altra abitazione o terreno edificabile in piena proprietà, in Belgio o all'estero; residenza nella casa entro 3 anni e per almeno 1 anno. <a href="https://www.vlaanderen.be/belastingen-en-begroting/vlaamse-belastingen/registratiebelasting/verkooprecht/tarieven-in-het-verkooprecht/verlaagd-tarief-in-het-verkooprecht-voor-de-aankoop-van-de-enige-eigen-woning" target="_blank" rel="noopener">vlaanderen.be</a></span>
           <span><b>Bruxelles</b>: 12,5%; i primi 200.000 € sono esenti se il prezzo non supera 600.000 € e ci andate a vivere. <a href="https://be.brussels/fr/impots-financement/impots-et-taxes/fiscalite-immobiliere/droits-denregistrement/abattement-sur-les-droits-de-vente" target="_blank" rel="noopener">be.brussels</a></span>
           <span><b>Vallonia</b>: 12,5%, ridotto al 3% se non possedete un'altra abitazione (o la vendete entro 3 anni) e ci stabilite la residenza entro 3 anni per almeno 3 anni. <a href="https://www.notaire.be/sites/default/files/files/2025-07/infofiche-achat-droit-enregistrement-wallonie_0.pdf" target="_blank" rel="noopener">notaire.be</a></span>
-          <span><b>Notaio</b>: onorario dalla tabella di legge più spese fisse (≈ 850 € amministrative, 300 € esborsi, 285 € trascrizione, 200 € diritto di scrittura) e IVA 21%: una stima, sull'esempio di <a href="https://www.notaire.be/sites/default/files/files/2025-07/infofiche-immo-frais-acte-wallonie.pdf" target="_blank" rel="noopener">notaire.be</a>. <b>Spese dell'atto di mutuo</b> e <b>tassi</b> sono ipotesi da aggiornare con le offerte delle banche; il calcolo esatto: <a href="https://www.notaire.be/calculateurs/immobilier/calcul-de-frais-dacte-de-credit-hypothecaire" target="_blank" rel="noopener">calcolatore dei notai</a>.</span>
+          <span><b>Notaio</b>: onorario dalla tabella di legge più spese fisse (≈ 850 € amministrative, 300 € esborsi, 285 € trascrizione, 200 € diritto di scrittura) e IVA 21%, stimato sull'esempio di <a href="https://www.notaire.be/sites/default/files/files/2025-07/infofiche-immo-frais-acte-wallonie.pdf" target="_blank" rel="noopener">notaire.be</a>. <b>Spese dell'atto di mutuo</b> e <b>tassi</b> sono ipotesi da aggiornare con le offerte delle banche; il calcolo esatto: <a href="https://www.notaire.be/calculateurs/immobilier/calcul-de-frais-dacte-de-credit-hypothecaire" target="_blank" rel="noopener">calcolatore dei notai</a>.</span>
         </div>
       </div>
     </div>
@@ -312,265 +342,217 @@ nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(-
 <script>
 (function(){
 const $=s=>document.querySelector(s);
-const S={status:null,stations:[],lines:[],communes:[],listings:new Map(),days:[],pois:[],base:null,stars:new Map(),dayIdx:-1,me:null,canWrite:true,db:null,user:null,names:{}};
-const eur=n=>n==null?"–":new Intl.NumberFormat("it-IT").format(n)+" €";
-const fmtDate=d=>{if(!d)return"–";const [y,m,g]=d.split("-");return `${g}/${m}/${y}`};
+const S={status:null,stations:[],lines:[],communes:[],listings:new Map(),days:[],pois:[],base:null,stars:new Map(),dayIdx:-1,me:null,canWrite:true,db:null,user:null,names:{},sel:null,chips:new Set()};
+const eur=n=>n==null?"–":new Intl.NumberFormat("it-IT").format(Math.round(n))+" €";
+const eurK=n=>n==null?"?":n>=1e6?(Math.round(n/1e5)/10).toString().replace(".",",")+" mln":Math.round(n/1000)+"k";
+const MONTHS=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+const fmtDate=d=>{if(!d)return"–";const [y,m,g]=d.split("-");return `${+g} ${MONTHS[+m-1]} ${y}`};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const LANG={nl:"Fiandre (NL)",bi:"Bruxelles (bilingue)",fr:"Vallonia (FR)"};
-const TYPE={open:"4 lati",halfopen:"3 lati (semi-isolata)",unknown:"da verificare"};
+const LANG={nl:"Fiandre",bi:"Bruxelles",fr:"Vallonia"};
+const TYPE={open:"4 lati",halfopen:"3 lati",unknown:"lati da verificare"};
 const typeOf=h=>h.type==="open"||h.type==="halfopen"?h.type:"unknown";
 const tcol=m=>m==null?tok("--muted"):m<=15?tok("--t1"):m<=20?tok("--t2"):m<=25?tok("--t3"):tok("--t4");
 function safe(f){try{return f()}catch(e){return null}}
 const km=n=>String(Math.round(n*10)/10).replace(".",",")+" km";
 function airKm(a,b){const r=Math.PI/180,dl=(b.lat-a.lat)*r,dn=(b.lon-a.lon)*r;const x=Math.sin(dl/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)**2;return 12742*Math.asin(Math.sqrt(x))}
 const poi=id=>S.pois.find(p=>p.id===id&&p.lat!=null&&p.lon!=null);
-// distanza da Maaseik: in auto se l'ha calcolata la raccolta, altrimenti in linea d'aria
-function maas(h){
-  const d=h.to_maaseik;
-  if(d&&d.km!=null)return{km:d.km,min:d.min,exact:true};
-  const p=poi("maaseik");if(!p||h.lat==null)return null;
-  return{km:airKm(p,h),min:null,exact:false};
-}
-const RENO={renovated:["Ristrutturata","reno-ok","ok"],to_renovate:["Da ristrutturare","reno-bad","bad"],refresh:["Da rinfrescare","reno-bad","bad"],unknown:["Stato da verificare","reno-unk","unk"]};
+function maas(h){const d=h.to_maaseik;if(d&&d.km!=null)return{km:d.km,min:d.min,exact:true};const p=poi("maaseik");if(!p||h.lat==null)return null;return{km:airKm(p,h),min:null,exact:false}}
+const maasTxt=m=>!m?"–":m.exact?`${km(m.km)} · ${m.min} min in auto`:`≈ ${km(m.km)} in linea d'aria`;
+const RENO={renovated:["Ristrutturata","ok"],to_renovate:["Da ristrutturare","bad"],refresh:["Da rinfrescare","warn"],unknown:["Stato da verificare","unk"]};
 const reno=h=>RENO[h.renovation]||RENO.unknown;
-function epcLabel(h){if(h.epc_kwh==null)return null;if(h.lang!=="nl")return `${h.epc_kwh} kWh/m²`;const k=h.epc_kwh;const l=k<0?"A+":k<=100?"A":k<=200?"B":k<=300?"C":k<=400?"D":k<=500?"E":"F";return `${l} (${k} kWh/m²)`}
-const gapPill=h=>{const g=h.market&&h.market.gap_pct;if(g==null)return'<span class="pill reno-unk">da stimare</span>';const t=(g>0?"+":"")+g+"%";return g<=-5?`<span class="pill deal">${t} sotto mercato</span>`:g>=5?`<span class="pill dear">${t} sopra mercato</span>`:`<span class="pill">${t} in linea</span>`};
-const LINECOL=["--ln1","--ln2","--ln3","--ln4","--ln5","--ln6","--ln7"];
+const renoTag=h=>{const r=reno(h);return `<span class="tag ${r[1]==="unk"?"line":r[1]}">${r[0]}</span>`};
+function epcLabel(h){if(h.epc_label&&h.lang==="nl")return `${h.epc_label}${h.epc_kwh!=null?` (${h.epc_kwh} kWh/m²)`:""}`;if(h.epc_kwh==null)return null;if(h.lang!=="nl")return `${h.epc_kwh} kWh/m²`;const k=h.epc_kwh;const l=k<0?"A+":k<=100?"A":k<=200?"B":k<=300?"C":k<=400?"D":k<=500?"E":"F";return `${l} (${k} kWh/m²)`}
+const gap=h=>h.market&&h.market.gap_pct!=null?h.market.gap_pct:null;
+const gapTag=h=>{const g=gap(h);if(g==null)return"";return g<=-5?`<span class="tag ok">${-g}% sotto mercato</span>`:g>=5?`<span class="tag bad">${g}% sopra mercato</span>`:`<span class="tag">in linea col mercato</span>`};
+const LINECOL=["--ln1","--ln2","--ln3","--ln4","--ln5"];
 function lineCode(l){const m=(l.name||"").match(/^(S\d+|IC|P|L)\b/);return m?m[1]:(l.kind||"?")}
-const maasTxt=m=>!m?"–":m.exact?`${km(m.km)}${m.min!=null?" · "+m.min+" min":""} in auto`:`≈ ${km(m.km)} in linea d'aria`;
+const ICON_LUX='<svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1 1.5 4v1h11V4L7 1Zm-4 5v5h1.5V6H3Zm3.25 0v5h1.5V6h-1.5ZM9.5 6v5H11V6H9.5ZM1.5 12h11v1.2h-11z"/></svg>';
+const ICON_HOME='<svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1.5 1 6.5h1.6V12.5h3.4v-4h2v4h3.4V6.5H13L7 1.5Z"/></svg>';
 
-// ---------- map ----------
-const map=L.map("map",{zoomSnap:.5,attributionControl:true}).setView([50.8,4.45],10);
+// ---------- mappa ----------
+const map=L.map("map",{zoomSnap:.5,zoomControl:false,attributionControl:true}).setView([50.8,4.45],10);
+L.control.zoom({position:"topright"}).addTo(map);
 map.attributionControl.setPrefix(false);
-if(innerWidth<860)document.getElementById("legend").open=false;
-map.on("popupopen",()=>document.getElementById("legend").classList.add("hide"));
-map.on("popupclose",()=>document.getElementById("legend").classList.remove("hide"));
+map.attributionControl.addAttribution("NMBS/SNCB GTFS · © OpenStreetMap");
 if(window.ResizeObserver)new ResizeObserver(()=>map.invalidateSize()).observe(document.getElementById("map"));
-map.attributionControl.addAttribution("Dati: NMBS/SNCB GTFS, OpenStreetMap contributors");
-const layers={base:L.layerGroup().addTo(map),communes:L.layerGroup().addTo(map),lines:L.layerGroup().addTo(map),bike:L.layerGroup().addTo(map),stations:L.layerGroup().addTo(map),houses:L.layerGroup().addTo(map),pois:L.layerGroup().addTo(map)};
-L.control.layers(null,{"Comuni":layers.communes,"Linee ferroviarie":layers.lines,"Area bici 10'":layers.bike,"Stazioni":layers.stations,"Case":layers.houses,"Punti di riferimento":layers.pois},{collapsed:true,position:"topright"}).addTo(map);
+const layers={base:L.layerGroup().addTo(map),communes:L.layerGroup(),bike:L.layerGroup(),sel:L.layerGroup().addTo(map),lines:L.layerGroup().addTo(map),stations:L.layerGroup().addTo(map),pois:L.layerGroup().addTo(map),houses:L.layerGroup().addTo(map)};
 let fitted=0;const markers=new Map();
 
 function drawBase(){
-  layers.base.clearLayers();
+  for(const k of ["base","communes","bike","lines","stations","pois"])layers[k].clearLayers();
   if(S.base){
-    for(const r of S.base.regions||[])L.polygon(r.rings||[],{color:tok("--land-line"),weight:1.2,fillColor:tok("--region-"+(r.lang||"nl")),fillOpacity:1,interactive:false}).addTo(layers.base);
-    for(const c of S.base.cities||[])L.marker([c.lat,c.lon],{icon:L.divIcon({html:"",className:"",iconSize:[0,0]}),interactive:false})
+    for(const r of S.base.regions||[])L.polygon(r.rings||[],{color:tok("--region-line"),weight:1,fillColor:tok("--region-"+(r.lang||"nl")),fillOpacity:1,interactive:false}).addTo(layers.base);
+    for(const c of S.base.cities||[])L.marker([c.lat,c.lon],{icon:L.divIcon({html:"",className:"",iconSize:[0,0]}),interactive:false,keyboard:false})
       .bindTooltip(esc(c.name),{permanent:true,direction:"center",className:"citylabel"}).addTo(layers.base);
   }
-  layers.communes.clearLayers();layers.lines.clearLayers();layers.bike.clearLayers();layers.stations.clearLayers();
   for(const c of S.communes){
-    const col=tok("--"+(c.lang||"nl"));
-    L.polygon(c.rings||[],{color:tok("--land-line"),weight:.7,fillColor:tok("--land"),fillOpacity:1,interactive:true})
-      .bindTooltip(`${esc(c.name)} · ${LANG[c.lang]||"?"}${c.facilities?" · a facilità":""}`,{sticky:true})
-      .addTo(layers.communes);
-    if(c.facilities)L.polygon(c.rings||[],{color:col,weight:1.2,dashArray:"3 3",fill:false,interactive:false}).addTo(layers.communes);
+    L.polygon(c.rings||[],{color:tok("--region-line"),weight:.8,fill:true,fillOpacity:0,interactive:true})
+      .bindTooltip(`${esc(c.name)} · ${LANG[c.lang]||"?"}${c.facilities?" · a facilità":""}`,{sticky:true}).addTo(layers.communes);
   }
   const codes=[...new Set(S.lines.map(lineCode))].sort((a,b)=>(a[0]==="S"?0:1)-(b[0]==="S"?0:1)||a.localeCompare(b,"it",{numeric:true}));
-  const colOf=c=>tok(LINECOL[codes.indexOf(c)%LINECOL.length]);
-  for(const l of S.lines){
-    const c=lineCode(l);
-    L.polyline(l.coords||[],{color:colOf(c),weight:c[0]==="S"?4.5:3,opacity:.9,dashArray:c[0]==="S"?null:"8 5"})
-      .bindTooltip(`<b>${esc(c)}</b> ${esc((l.name||"").replace(/^\S+\s/,""))}${l.trains?` · ${l.trains} treni al giorno`:""}`,{sticky:true}).addTo(layers.lines);
-  }
-  const ll=document.getElementById("linelegend");
-  if(ll)ll.innerHTML=codes.length?codes.map(c=>`<span style="white-space:nowrap"><i style="background:${colOf(c)};border-radius:2px;width:14px;height:4px;vertical-align:2px"></i>${esc(c)}</span>`).join(" "):"–";
+  const sCodes=codes.filter(c=>c[0]==="S");
+  const colOf=c=>c[0]==="S"?tok(LINECOL[sCodes.indexOf(c)%LINECOL.length]):c==="IC"?tok("--ln6"):tok("--ln7");
+  // casing bianco sotto, colore sopra: come le mappe dei trasporti
+  for(const l of S.lines)L.polyline(l.coords||[],{color:tok("--surface"),weight:7,opacity:1,interactive:false,lineCap:"round",lineJoin:"round"}).addTo(layers.lines);
+  for(const l of S.lines){const c=lineCode(l);
+    L.polyline(l.coords||[],{color:colOf(c),weight:c[0]==="S"?3.5:2.5,opacity:1,dashArray:c==="P"?"6 6":null,lineCap:"round",lineJoin:"round"})
+      .bindTooltip(`<b>${esc(c)}</b> ${esc((l.name||"").replace(/^\S+\s/,"").replace(" (schematica)",""))}${l.trains?` · ${l.trains} treni al giorno`:""}`,{sticky:true}).addTo(layers.lines)}
+  $("#linelegend").innerHTML=codes.length?codes.map(c=>`<span><i class="ls" style="background:${colOf(c)}"></i>${esc(c)}</span>`).join(""):"–";
   for(const s of S.stations){
     if(s.minutes==null||s.minutes>30)continue;
     const col=tcol(s.minutes);
-    if(s.bike_area&&s.bike_area.length)L.polygon(s.bike_area,{color:col,weight:1,opacity:.6,fillColor:col,fillOpacity:.08,interactive:false}).addTo(layers.bike);
-    else L.circle([s.lat,s.lon],{radius:2500,color:col,weight:1,dashArray:"4 4",fillColor:col,fillOpacity:.06,interactive:false}).addTo(layers.bike);
+    if(s.bike_area&&s.bike_area.length)L.polygon(s.bike_area,{color:col,weight:1,opacity:.5,fillColor:col,fillOpacity:.08,interactive:false}).addTo(layers.bike);
     const direct=s.direct!==false;
-    const m=L.circleMarker([s.lat,s.lon],{radius:7,color:col,weight:3,fillColor:direct?col:tok("--panel"),fillOpacity:1});
-    const freq=[s.peak_am!=null?`mattina ${s.peak_am}/h`:null,s.peak_pm!=null?`sera ${s.peak_pm}/h`:null].filter(Boolean).join(" · ")||"frequenza da calcolare";
-    m.bindPopup(`<div class="pop"><h3>${esc(s.name)}</h3><dl>
-      <dt>Treno</dt><dd>${s.minutes} min ${direct?"diretto":"con cambio a "+esc(s.change_at||"?")}</dd>
-      <dt>Ore di punta</dt><dd>${esc(freq)}</dd>
-      <dt>Comune</dt><dd>${esc(s.commune||"–")} · ${LANG[s.lang]||"?"}${s.facilities?" · a facilità":""}</dd>
-      <dt>Area bici</dt><dd>${s.bike_area&&s.bike_area.length?"percorso reale 10 min":"cerchio 2,5 km (approssimato)"}</dd>
-    </dl></div>`);
-    m.bindTooltip(`${esc(s.name)} · ${s.minutes}′`);
+    const m=L.circleMarker([s.lat,s.lon],{radius:5,color:tok("--surface"),weight:2,fillColor:direct?col:tok("--surface"),fillOpacity:1});
+    if(!direct)m.setStyle({color:col,weight:2.5});
+    const freq=[s.peak_am!=null?`${Math.round(s.peak_am)}/h al mattino`:null,s.peak_pm!=null?`${Math.round(s.peak_pm)}/h la sera`:null].filter(Boolean).join(" · ");
+    m.bindTooltip(`<b>${esc(s.name)}</b> · ${s.minutes}′ ${direct?"diretto":"cambio a "+esc(s.change_at||"?")}${freq?`<br><span style="color:var(--muted)">${esc(freq)} · ${LANG[s.lang]||""}${s.facilities?" · facilità":""}</span>`:""}`,{direction:"top",offset:[0,-6]});
     m.addTo(layers.stations);
   }
-  layers.pois.clearLayers();
   for(const p of S.pois){
-    if(p.lat==null||p.lon==null)continue;
-    const lux=p.id==="lux";
-    L.marker([p.lat,p.lon],{icon:L.divIcon({html:`<div class="poi${lux?" lux":""}">${lux?"🏛":"🏠"}</div>`,className:"",iconSize:[30,30]}),zIndexOffset:2000,title:p.name})
-      .bindTooltip(esc(p.label||p.name),{permanent:true,direction:"top",offset:[0,-16],className:"poilabel"})
-      .bindPopup(`<div class="pop"><h3>${esc(p.name)}</h3><p class="sub">${esc(p.note||"")}</p></div>`)
-      .addTo(layers.pois);
+    if(p.lat==null||p.lon==null)continue;const lux=p.id==="lux";
+    L.marker([p.lat,p.lon],{icon:L.divIcon({html:`<div class="poi${lux?" lux":""}">${lux?ICON_LUX:ICON_HOME}</div>`,className:"",iconSize:[26,26],iconAnchor:[13,13]}),zIndexOffset:900,title:p.name})
+      .bindTooltip(esc(p.label||p.name),{permanent:true,direction:"top",offset:[0,-14],className:"poilabel"}).addTo(layers.pois);
   }
-  if(S.stations.length||S.pois.length){
-    const pts=S.stations.filter(s=>s.minutes!=null&&s.minutes<=30).map(s=>[s.lat,s.lon]);
-    for(const p of S.pois)if(p.id==="lux"&&p.lat!=null)pts.push([p.lat,p.lon]);
-    if(pts.length&&pts.length!==fitted){map.fitBounds(pts,{padding:[30,30],maxZoom:13,animate:false});fitted=pts.length}
-  }
+  const pts=S.stations.filter(s=>s.minutes!=null&&s.minutes<=30).map(s=>[s.lat,s.lon]);
+  const lux=poi("lux");if(lux)pts.push([lux.lat,lux.lon]);
+  if(pts.length&&pts.length!==fitted){
+    const wide=innerWidth>900;map.fitBounds(pts,{paddingTopLeft:[wide?400:20,20],paddingBottomRight:[20,20],maxZoom:13,animate:false});fitted=pts.length}
+  drawSel();
 }
 
-// ---------- day / filters ----------
+// ---------- giorno e filtri ----------
 function curDay(){return S.days[S.dayIdx]||null}
-function F(){
-  const beds=[...document.querySelectorAll("#fbeds input:checked")].map(i=>+i.value);
-  const types=[...document.querySelectorAll("#ftype input:checked")].map(i=>i.value);
-  const langs=[...document.querySelectorAll("#flang input:checked")].map(i=>i.value).filter(v=>v!=="fac");
-  return{reno:$("#freno").checked,deal:$("#fdeal").checked,maas:+$("#fmaas").value,price:+$("#fprice").value,beds,types,langs,fac:$("#flfac").checked,onlyNew:$("#fnew").checked};
-}
+function F(){return{price:+$("#fprice").value,maas:+$("#fmaas").value,beds:[$("#fb4").checked&&4,$("#fb5").checked&&5].filter(Boolean),
+  half:$("#ft3").checked,unk:$("#ftu").checked,langs:["nl","bi","fr"].filter(l=>$("#fl-"+l).checked),fac:$("#ffac").checked}}
 function passes(h,f,day){
+  const c=S.chips;
   if(h.price!=null&&h.price>f.price)return false;
   if(h.bedrooms!=null&&!f.beds.includes(h.bedrooms))return false;
-  if(!f.types.includes(typeOf(h)))return false;
-  if(h.lang&&!f.langs.includes(h.lang))return false;
+  const t=typeOf(h);if(t==="halfopen"&&!f.half)return false;if(t==="unknown"&&!f.unk)return false;if(c.has("open")&&t!=="open")return false;
+  if(h.lang&&!f.langs.includes(h.lang))return false;if(c.has("nl")&&h.lang!=="nl")return false;
   if(f.fac&&!h.facilities)return false;
-  if(f.reno&&h.renovation!=="renovated")return false;
-  if(f.deal&&!(h.market&&h.market.gap_pct!=null&&h.market.gap_pct<=-5))return false;
+  if(c.has("reno")&&h.renovation!=="renovated")return false;
+  if(c.has("deal")&&!(gap(h)!=null&&gap(h)<=-5))return false;
+  if(c.has("new")&&!(day&&(day.new_ids||[]).includes(h.id)))return false;
   if(f.maas<200){const m=maas(h);if(m&&m.km>f.maas)return false}
-  if(f.onlyNew&&!(day&&(day.new_ids||[]).includes(h.id)))return false;
   return true;
 }
 function visible(){
-  const day=curDay(),f=F();const ids=new Set(day?day.ids||[]:[]);
-  const out=[];
+  const day=curDay(),f=F(),ids=new Set(day?day.ids||[]:[]),out=[];
   for(const h of S.listings.values()){
     const inDay=ids.has(h.id),starred=S.stars.has(h.id);
-    if(!inDay&&!starred)continue;
-    if(!starred&&!passes(h,f,day))continue;
+    if(S.chips.has("star")){if(!starred)continue}
+    else{if(!inDay&&!starred)continue;if(!starred&&!passes(h,f,day))continue}
     out.push({h,inDay,starred,isNew:!!(day&&(day.new_ids||[]).includes(h.id))});
   }
-  return out;
+  return out.sort((a,b)=>(b.h.score??-1)-(a.h.score??-1));
 }
 
+// ---------- case ----------
 function popupHtml(h,inDay,isNew){
-  const st=S.stars.get(h.id);const who=st&&st.by?(S.names[st.by]||""):"";
-  const band=h.price>=700000?' <span class="pill warn">700-800k</span>':"";
+  const st=S.stars.get(h.id);const who=st&&st.by?(S.names[st.by]||""):"";const r=reno(h);
   const tr=h.train_min==null?"–":`${h.train_min} min ${h.train_direct===false?"con cambio a "+esc(h.change_at||"?"):"diretto"}`;
-  const bike=h.bike_min==null?"da verificare":`${h.bike_min} min (${h.bike_km!=null?String(h.bike_km).replace(".",",")+" km":"?"})`;
+  const bike=h.bike_min==null?"da verificare":`${h.bike_min} min · ${h.bike_km!=null?String(h.bike_km).replace(".",",")+" km":"?"}`;
   const land=h.land_m2?new Intl.NumberFormat("it-IT").format(h.land_m2)+" m²":"da verificare";
-  return `<div class="pop"><h3>${eur(h.price)}${band}</h3>
-  <div>${isNew?'<span class="pill new">nuova</span> ':""}${inDay?"":'<span class="pill warn">non trovata in questa data</span> '}${h.approx?'<span class="pill approx">posizione approssimativa</span>':""}</div>
-  ${(r=>`<div class="renobar ${r[2]}"><b>${r[0]}</b><small>${esc(h.renovation_why||"")}</small></div>`)(reno(h))}
-  <dl>
-    <dt>Mercato</dt><dd>${gapPill(h)}${h.market&&h.market.expected?`<br><small class="sub">prezzo atteso ≈ ${eur(h.market.expected)} (${h.market.n} annunci di confronto)</small>`:""}</dd>
-    <dt>Camere</dt><dd>${h.bedrooms??"da verificare"}</dd>
-    <dt>Tipo</dt><dd>${TYPE[typeOf(h)]}</dd>
-    <dt>Giardino</dt><dd>${h.garden===true?"sì":"da verificare"}</dd>
-    <dt>Terreno</dt><dd>${land}</dd>
-    <dt>Abitabili</dt><dd>${h.living_m2?h.living_m2+" m²":"da verificare"}${h.year?` · costruita nel ${h.year}`:""}</dd>
+  const x=finFor(h.price,h.lang,h.renovation==="to_renovate"||h.renovation==="refresh");
+  const mk=h.market&&h.market.expected?`<br><span class="note">atteso ≈ ${eur(h.market.expected)} su ${h.market.n} annunci simili</span>`:"";
+  return `<div class="pop">
+  <div class="pop-h"><span class="price">${eur(h.price)}</span><span>${esc(h.commune||"")} · ${LANG[h.lang]||""}${h.facilities?" · facilità":""}${h.address?" · "+esc(h.address):""}</span></div>
+  <div class="tags">${isNew?'<span class="tag acc">Nuova</span>':""}${h.price>=700000?'<span class="tag warn">700-800k</span>':""}${gapTag(h)}${inDay?"":'<span class="tag line">non trovata in questa data</span>'}${h.approx?'<span class="tag line">posizione indicativa</span>':""}</div>
+  <div class="reno ${r[1]}"><b>${r[0]}</b><small>${esc(h.renovation_why||"")}</small></div>
+  <dl class="facts">
+    <dt>Casa</dt><dd>${h.bedrooms??"?"} camere · ${TYPE[typeOf(h)]}${h.living_m2?` · ${h.living_m2} m²`:""}</dd>
+    <dt>Terreno</dt><dd>${land}${h.year?` · del ${h.year}`:""}</dd>
     <dt>EPC</dt><dd>${epcLabel(h)||"da verificare"}</dd>
-    <dt>Stazione</dt><dd>${esc(h.station||"–")}</dd>
-    <dt>In bici</dt><dd>${bike}</dd>
-    <dt>Treno</dt><dd>${tr}</dd>
+    <dt>Treno</dt><dd>${tr} da ${esc(h.station||"–")}</dd>
+    <dt>Bici</dt><dd>${bike}</dd>
     <dt>Maaseik</dt><dd>${maasTxt(maas(h))}</dd>
-    <dt>Mutuo</dt><dd>${(x=>`${eur(x.loan)} · rata ${eur(Math.round(x.r25))}/mese a 25 anni (${pct(x.p25)} del reddito)`)(finFor(h.price,h.lang,h.renovation==="to_renovate"||h.renovation==="refresh"))}</dd>
-    <dt>Comune</dt><dd>${esc(h.commune||"–")} · ${LANG[h.lang]||"?"}${h.facilities?" · a facilità":""}</dd>
-    <dt>Indirizzo</dt><dd>${esc(h.address||"–")}</dd>
-    <dt>Vista</dt><dd>dal ${fmtDate(h.first_seen)} al ${fmtDate(h.last_seen)}</dd>
+    <dt>Mercato</dt><dd>${gap(h)==null?"da stimare":(gap(h)>0?"+":"")+gap(h)+"% rispetto alle case simili"}${mk}</dd>
+    <dt>Mutuo</dt><dd>${eur(x.loan)} · ${eur(x.r25)}/mese a 25 anni</dd>
   </dl>
-  ${h.to_verify&&h.to_verify.length?`<div class="sub">Da verificare: ${esc(h.to_verify.join(", "))}</div>`:""}
-  <div class="acts"><a href="${esc(h.url)}" target="_blank" rel="noopener">Apri l'annuncio (${esc(h.source||"fonte")})</a>
-  <button class="starbtn" data-star="${esc(h.id)}" aria-pressed="${!!st}" ${S.canWrite?"":"disabled"}>${st?"★ Con stella":"☆ Stella"}</button></div>
-  ${who?`<div class="sub">Stella di ${esc(who)}</div>`:""}</div>`;
+  ${h.to_verify&&h.to_verify.length?`<div class="note">Da verificare: ${esc(h.to_verify.join(", "))}</div>`:""}
+  <div class="pop-a"><a class="btn primary" href="${esc(h.url)}" target="_blank" rel="noopener">Apri l'annuncio</a>
+  <button class="btn ghost" data-star="${esc(h.id)}" aria-pressed="${!!st}" ${S.canWrite?"":"disabled"}>${st?"★ Con stella":"☆ Stella"}</button></div>
+  <div class="note">${esc(h.source||"")}${(h.other_urls||[]).length?` · anche su ${h.other_urls.length} altro annuncio`:""}${who?` · stella di ${esc(who)}`:""}</div></div>`;
 }
-
+let quiet=false;
 function renderHouses(){
-  layers.houses.clearLayers();markers.clear();
+  quiet=true;layers.houses.clearLayers();markers.clear();quiet=false;
   const v=visible();
   for(const {h,inDay,starred,isNew} of v){
     if(h.lat==null||h.lon==null)continue;
-    const t=typeOf(h);const col=tcol(h.train_min);
-    const cls=["hmark",t==="halfopen"?"half":"",h.approx?"approx":"",inDay?"":"gone",starred?"star":""].join(" ");
-    const size=isNew?24:20;
-    const html=`<div class="${cls}" style="width:${size}px;height:${size}px;background:${col};${t==="halfopen"?`border-color:${col};color:${col}`:""}">${h.bedrooms||"?"}</div>`;
-    const m=L.marker([h.lat,h.lon],{icon:L.divIcon({html,className:"",iconSize:[size,size]}),zIndexOffset:starred?1000:isNew?500:0,title:`${h.commune||""} ${eur(h.price)}`});
-    m.bindPopup(()=>popupHtml(h,inDay,isNew),{maxWidth:Math.min(330,innerWidth-100),maxHeight:Math.min(460,Math.round(innerHeight*.62)),autoPanPadding:[20,20]});
+    const cls=["pin",isNew?"new":"",starred?"star":"",inDay?"":"gone",S.sel===h.id?"sel":""].join(" ");
+    const html=`<div class="${cls}">${h.renovation==="renovated"?'<i class="dot"></i>':""}${eurK(h.price)}</div>`;
+    const m=L.marker([h.lat,h.lon],{icon:L.divIcon({html,className:"",iconSize:[0,0]}),zIndexOffset:S.sel===h.id?2000:starred?1000:isNew?500:0,title:`${h.commune||""} ${eur(h.price)}`,riseOnHover:true});
+    m.bindPopup(()=>popupHtml(h,inDay,isNew),{maxWidth:Math.min(330,innerWidth-60),maxHeight:Math.min(520,Math.round(innerHeight*.7)),offset:[0,-30],autoPanPadding:[24,24]});
+    m.on("click",()=>{S.sel=h.id;document.querySelectorAll(".pin.sel").forEach(p=>p.classList.remove("sel"));const el=m.getElement();if(el)el.querySelector(".pin")?.classList.add("sel");renderList(visible());drawSel()});
     m.addTo(layers.houses);markers.set(h.id,m);
   }
-  renderTop(v);
+  renderList(v);
 }
-
-function renderTop(v){
+function renderList(v){
+  $("#count").textContent=v.length;
   const day=curDay();
-  $("#toptitle").textContent=day?`Le 10 migliori del ${fmtDate(day.date)}`:"Le 10 migliori del giorno";
-  const rows=v.filter(x=>x.inDay).sort((a,b)=>(b.h.score??-1)-(a.h.score??-1)).slice(0,10);
-  const tb=$("#top");
-  if(!rows.length){tb.innerHTML=`<tr><td colspan="14">Nessuna casa per questa data con i filtri attuali.</td></tr>`;return}
-  tb.innerHTML=rows.map(({h,isNew},i)=>{
-    const st=S.stars.has(h.id);
-    return `<tr><td class="num">${i+1}</td>
-    <td><button class="linkbtn" data-go="${esc(h.id)}">${esc(h.commune||"?")}</button><br><span class="pill ${h.lang||""}">${h.lang?h.lang.toUpperCase():"?"}</span>${h.facilities?' <span class="pill">facilità</span>':""}${isNew?' <span class="pill new">nuova</span>':""}</td>
-    <td class="num">${eur(h.price)}${h.price>=700000?'<br><span class="pill warn">700-800k</span>':""}</td>
-    <td class="num">${h.bedrooms??"?"}</td><td>${TYPE[typeOf(h)]}</td>
-    <td>${(r=>`<span class="pill ${r[1]}">${r[0]}</span>`)(reno(h))}</td><td>${gapPill(h)}</td>
-    <td>${esc(h.station||"–")}</td>
-    <td class="num">${h.bike_min!=null?h.bike_min+"′":"?"}</td>
-    <td class="num">${h.train_min!=null?h.train_min+"′"+(h.train_direct===false?" +cambio":""):"?"}</td>
-    <td class="num">${(m=>!m?"–":(m.exact?"":"≈")+Math.round(m.km)+" km")(maas(h))}</td>
-    <td>${esc(h.reason||"")}</td><td>${esc((h.to_verify||[]).join(", "))||"–"}</td>
-    <td><button class="starbtn" data-star="${esc(h.id)}" aria-pressed="${st}" ${S.canWrite?"":"disabled"} aria-label="Stella">${st?"★":"☆"}</button> <a href="${esc(h.url)}" target="_blank" rel="noopener">annuncio</a></td></tr>`;
-  }).join("");
+  if(!v.length){$("#list").innerHTML=`<div class="empty"><b>${S.listings.size?"Nessuna casa con questi filtri":"Nessuna casa ancora"}</b><span>${S.listings.size?"Togli un filtro per vederne altre.":"La raccolta del mattino le aggiunge qui."}</span></div>`;return}
+  $("#list").innerHTML=v.map(({h,isNew,starred})=>{const m=maas(h);return `<button class="card" data-go="${esc(h.id)}" aria-current="${S.sel===h.id}">
+    <div class="card-top"><b>${esc(h.commune||"?")}</b><span class="price">${eur(h.price)}</span></div>
+    <div class="tags">${isNew?'<span class="tag acc">Nuova</span>':""}${starred?'<span class="tag star">★</span>':""}${renoTag(h)}${gapTag(h)}</div>
+    <div class="meta"><strong>${h.bedrooms??"?"} camere · ${TYPE[typeOf(h)]}</strong>${h.land_m2?` · terreno ${new Intl.NumberFormat("it-IT").format(h.land_m2)} m²`:""}</div>
+    <div class="meta">Treno <strong>${h.train_min??"?"}′</strong> da ${esc(h.station||"?")} · bici ${h.bike_min??"?"}′${m?` · Maaseik ${Math.round(m.km)} km`:""}</div>
+  </button>`}).join("");
+}
+function drawSel(){
+  layers.sel.clearLayers();
+  const h=S.sel&&S.listings.get(S.sel);if(!h)return;
+  const st=S.stations.find(s=>s.name===h.station);
+  if(st&&st.bike_area&&st.bike_area.length)L.polygon(st.bike_area,{color:tok("--accent"),weight:1.5,opacity:.6,fillColor:tok("--accent"),fillOpacity:.07,interactive:false}).addTo(layers.sel);
+}
+function select(id){
+  S.sel=id;renderHouses();drawSel();
+  const m=markers.get(id);
+  if(innerWidth<=900)$("#map").scrollIntoView({block:"start",behavior:"smooth"});
+  if(m){const wide=innerWidth>900;map.setView(m.getLatLng(),Math.max(map.getZoom(),13.5),{animate:false});if(wide)map.panBy([-180,0],{animate:false});setTimeout(()=>m.openPopup(),40)}
 }
 
+// ---------- date, fonti, stelle, stazioni ----------
 function renderDays(){
-  const box=$("#days");const r=$("#dayrange");
-  r.max=Math.max(0,S.days.length-1);r.value=Math.max(0,S.dayIdx);
-  const d=curDay();$("#dayout").textContent=d?fmtDate(d.date):"–";
+  const sel=$("#dayselect");
+  sel.innerHTML=S.days.map((d,i)=>`<option value="${i}">${fmtDate(d.date)}${(d.new_ids||[]).length?` · ${d.new_ids.length} nuove`:""}</option>`).join("")||"<option>Nessuna raccolta</option>";
+  sel.value=String(Math.max(0,S.dayIdx));sel.disabled=!S.days.length;
   $("#prev").disabled=S.dayIdx<=0;$("#next").disabled=S.dayIdx>=S.days.length-1;
-  box.innerHTML=S.days.map((d,i)=>{
-    const bad=(d.sources||[]).filter(s=>s.status!=="ok").length;
-    return `<button class="day" role="listitem" data-i="${i}" aria-current="${i===S.dayIdx}">
-      <span class="d">${fmtDate(d.date)}</span>
-      <span>${(d.new_ids||[]).length?`<span class="pill new">+${d.new_ids.length}</span>`:""}</span>
-      <span class="n">${(d.ids||[]).length} case${(d.gone_ids||[]).length?` · ${d.gone_ids.length} tolte`:""}${bad?` · <span class="pill warn">${bad} fonti non lette</span>`:""}</span>
-    </button>`}).reverse().join("")||`<p class="sub" style="padding:8px">Ancora nessuna raccolta.</p>`;
-  renderSources();
-}
-
-function renderSources(){
   const d=curDay();const el=$("#sources");
-  if(!d){el.innerHTML="";return}
-  el.innerHTML=`<b>Fonti lette il ${fmtDate(d.date)}</b><ul>${(d.sources||[]).map(s=>`<li>${esc(s.name)}: ${s.status==="ok"?"letta":esc(s.status)}${s.note?" – "+esc(s.note):""}</li>`).join("")}</ul>`;
+  if(!d){el.textContent="";return}
+  const bad=(d.sources||[]).filter(s=>s.status!=="ok");
+  el.innerHTML=`Fonti lette: ${(d.sources||[]).filter(s=>s.status==="ok").map(s=>esc(s.name)).join(", ")||"–"}${bad.length?` · non lette: ${bad.map(s=>`${esc(s.name)} (${esc(s.note||s.status)})`).join(", ")}`:""}`;
 }
-
-async function renderStars(){
-  const list=[...S.stars.keys()].map(id=>S.listings.get(id)).filter(Boolean);
-  $("#starcount").textContent=list.length;
+async function loadNames(){
   const ids=[...new Set([...S.stars.values()].map(s=>s.by).filter(Boolean))];
   if(S.user&&ids.length){const ps=await safe(()=>S.user.profiles(ids))?.catch?.(()=>null);if(ps)for(const id of ids)S.names[id]=(ps[id]&&ps[id].name)||""}
-  $("#starlist").innerHTML=list.length?list.sort((a,b)=>(b.score??0)-(a.score??0)).map(h=>{
-    const who=S.names[S.stars.get(h.id).by]||"";
-    return `<button class="staritem" data-go="${esc(h.id)}"><span class="starglyph">★</span><span>${esc(h.commune||"?")} · ${eur(h.price)}</span><small>${h.bedrooms??"?"} camere · ${TYPE[typeOf(h)]} · vista l'ultima volta il ${fmtDate(h.last_seen)}${who?" · "+esc(who):""}</small></button>`}).join("")
-    :`<p class="sub">Tocca ☆ su una casa per seguirla: resta sulla mappa in tutte le date.</p>`;
+  const n=S.stars.size;const c=document.querySelector('[data-chip="star"]');if(c)c.textContent=n?`★ Con stella (${n})`:"★ Con stella";
 }
-
 function renderNotes(){
-  const box=$("#notes");
-  const p=S.stations.filter(s=>s.promising);
-  if(!p.length){box.innerHTML=`<p class="sub">${S.stations.length?"Nessuna stazione segnata come promettente.":"Compariranno dopo il primo calcolo degli orari."}</p>`;return}
-  box.innerHTML=p.sort((a,b)=>a.minutes-b.minutes).map(s=>`<div class="note"><b>${esc(s.name)} · <span class="mono">${s.minutes}′</span></b>
-    <span><span class="pill ${s.lang||""}">${LANG[s.lang]||"?"}</span>${s.facilities?' <span class="pill">facilità</span>':""} ${s.direct===false?'<span class="pill warn">cambio</span>':""}</span>
-    <p>${esc(s.note||"")}</p></div>`).join("");
+  const p=S.stations.filter(s=>s.promising).sort((a,b)=>a.minutes-b.minutes);
+  $("#notes").innerHTML=p.length?p.map(s=>`<div class="st"><b><span>${esc(s.name)}</span><span class="num" style="color:${tcol(s.minutes)}">${s.minutes}′</span></b>
+    <div class="tags"><span class="tag">${LANG[s.lang]||"?"}</span>${s.facilities?'<span class="tag">facilità</span>':""}${s.direct===false?'<span class="tag warn">cambio</span>':'<span class="tag ok">diretto</span>'}</div>
+    <p>${esc(s.note||"")}</p></div>`).join(""):`<p class="foot">${S.stations.length?"Nessuna stazione segnata come consigliata.":"Compariranno dopo il primo calcolo degli orari."}</p>`;
 }
-
-function renderEmpty(){
-  const e=$("#empty");
+function renderBanner(){
+  const e=$("#banner");const st=S.status;
   if(S.days.length&&S.stations.length){e.hidden=true;return}
-  const st=S.status;const full=!S.stations.length;
-  e.classList.toggle("full",full);
-  $("#emptymsg").innerHTML=full?`<b>Ancora nessun dato sulla mappa</b>
-  <p>${esc(st&&st.message?st.message:"La raccolta giornaliera non è ancora partita.")}</p>
-  ${st&&st.updated?`<p class="sub">Ultimo controllo: ${esc(st.updated)}</p>`:""}`
-  :`<b>Nessuna raccolta di case ancora</b> <span class="sub">${esc(st&&st.message?st.message:"")}</span>`;
+  const full=!S.stations.length;e.classList.toggle("full",full);
+  e.innerHTML=`<b>${full?"Ancora nessun dato sulla mappa":"Nessuna raccolta di case ancora"}</b><p>${esc(st&&st.message?st.message:"La raccolta del mattino non è ancora partita.")}</p>`;
   e.hidden=false;
 }
-
-function renderAll(){renderDays();renderHouses();renderStars();renderEmpty();renderFin()}
+function renderAll(){renderDays();renderHouses();loadNames();renderBanner();renderFin()}
+function setDay(i){if(!S.days.length)return;S.dayIdx=Math.max(0,Math.min(S.days.length-1,i));renderDays();renderHouses();renderFin()}
 
 // ---------- piano finanziario ----------
 const FIN0={sav_f:150000,sav_k:200000,buffer:30000,inc_f:8000,inc_k:3000,max_pct:33,rate20:3.2,rate25:3.4,mort_cost:2,max_ltv:90,reno_budget:0,first_home:true};
 S.fin={...FIN0};
 const NOTARY=[[7500,.0456],[17500,.0285],[30000,.0228],[45495,.0171],[64095,.0114],[250095,.0057],[Infinity,.00057]];
-function notary(p){let h=0,lo=0;for(const [hi,r] of NOTARY){if(p>lo)h+=(Math.min(p,hi)-lo)*r;lo=hi}const fixed=850+300+285+200;return Math.round(h+fixed+.21*(h+850+300+200))}
+function notary(p){let h=0,lo=0;for(const [hi,r] of NOTARY){if(p>lo)h+=(Math.min(p,hi)-lo)*r;lo=hi}return Math.round(h+850+300+285+200+.21*(h+850+300+200))}
 function duty(p,lang){const f=S.fin.first_home;
   if(lang==="nl")return{amt:Math.round(p*(f?.02:.12)),txt:f?"2%":"12%"};
   if(lang==="bi"){if(f&&p<=600000)return{amt:Math.round(Math.max(0,p-200000)*.125),txt:"12,5% oltre 200k"};return{amt:Math.round(p*.125),txt:"12,5%"}}
@@ -581,108 +563,102 @@ function finFor(price,lang,reno){
   const F=S.fin,own=Math.max(0,(F.sav_f||0)+(F.sav_k||0)-(F.buffer||0)),d=duty(price,lang),n=notary(price),w=reno?(F.reno_budget||0):0;
   const base=price+d.amt+n+w-own,mc=(F.mort_cost||0)/100,M=Math.max(0,Math.round(base/(1-mc))),mcost=Math.round(M*mc);
   const inc=(F.inc_f||0)+(F.inc_k||0);const r20=annuity(M,F.rate20,20),r25=annuity(M,F.rate25,25);
-  return{price,duty:d,notary:n,works:w,mcost,total:price+d.amt+n+w+mcost,own,loan:M,ltv:M/price*100,r20,r25,p20:inc?r20/inc*100:null,p25:inc?r25/inc*100:null}}
+  return{duty:d,notary:n,works:w,mcost,total:price+d.amt+n+w+mcost,own,loan:M,ltv:M/price*100,r20,r25,p20:inc?r20/inc*100:null,p25:inc?r25/inc*100:null}}
 function maxPrice(lang,years){const F=S.fin,inc=(F.inc_f||0)+(F.inc_k||0),R=inc*(F.max_pct||0)/100,cap=capacity(years===20?F.rate20:F.rate25,years,R);
   let lo=50000,hi=3000000;for(let i=0;i<40;i++){const m=(lo+hi)/2,x=finFor(m,lang,false);if(x.loan<=cap&&x.ltv<=(F.max_ltv||100))lo=m;else hi=m}return{price:Math.floor(lo/5000)*5000,cap:Math.round(cap),R:Math.round(R)}}
 const pct=v=>v==null?"–":String(Math.round(v*10)/10).replace(".",",")+"%";
-function sustain(x){const F=S.fin,lim=F.max_pct||33,p=x.p25;if(p==null)return'<span class="pill reno-unk">–</span>';
-  if(x.ltv>(F.max_ltv||100))return`<span class="pill dear">mutuo oltre il ${F.max_ltv}% del prezzo</span>`;
-  return p<=lim?'<span class="pill ok">sì</span>':p<=lim+5?'<span class="pill warn">al limite</span>':'<span class="pill dear">troppo alta</span>'}
+function sustain(x){const F=S.fin,lim=F.max_pct||33,p=x.p25;if(p==null)return'<span class="tag line">–</span>';
+  if(x.ltv>(F.max_ltv||100))return`<span class="tag bad">mutuo oltre il ${F.max_ltv}%</span>`;
+  return p<=lim?'<span class="tag ok">sì</span>':p<=lim+5?'<span class="tag warn">al limite</span>':'<span class="tag bad">rata troppo alta</span>'}
 function renderFin(){
   const F=S.fin;document.querySelectorAll("#finform [data-k]").forEach(i=>{if(document.activeElement===i)return;if(i.type==="checkbox")i.checked=!!F[i.dataset.k];else i.value=F[i.dataset.k]??""});
   const own=Math.max(0,(F.sav_f||0)+(F.sav_k||0)-(F.buffer||0)),inc=(F.inc_f||0)+(F.inc_k||0);
   const m25={nl:maxPrice("nl",25),bi:maxPrice("bi",25),fr:maxPrice("fr",25)},m20=maxPrice("nl",20);
   $("#kpis").innerHTML=[
-    [eur(own),"risparmi da usare (tolta la riserva)"],
+    [eur(m25.nl.price),"prezzo massimo nelle Fiandre, mutuo 25 anni",true],
+    [eur(m20.price),"prezzo massimo nelle Fiandre, 20 anni"],
+    [eur(m25.fr.price),"prezzo massimo in Vallonia, 25 anni"],
+    [eur(m25.bi.price),"prezzo massimo a Bruxelles, 25 anni"],
+    [eur(own),"risparmi da usare, tolta la riserva"],
     [eur(m25.nl.R),`rata massima al mese (${F.max_pct}% di ${eur(inc)})`],
-    [eur(m25.nl.cap),"mutuo massimo a 25 anni"],
-    [eur(m25.nl.price),"prezzo massimo nelle Fiandre (25 anni)"],
-    [eur(m20.price),"prezzo massimo nelle Fiandre (20 anni)"],
-    [eur(m25.fr.price),"prezzo massimo in Vallonia (25 anni)"],
-    [eur(m25.bi.price),"prezzo massimo a Bruxelles (25 anni)"]
-  ].map(([v,l])=>`<div class="kpi"><b>${v}</b><span>${esc(l)}</span></div>`).join("");
-  const sf=(F.sav_f||0),sk=(F.sav_k||0),tf=(F.inc_f||0),tk=(F.inc_k||0);
-  $("#kpinote").textContent=`Il prezzo massimo tiene conto di imposta, notaio e spese del mutuo, e del limite del ${F.max_ltv}% di prezzo finanziato. Se dividete in proporzione: risparmi ${sf+sk?Math.round(sf/(sf+sk)*100):0}% Francesco e ${sf+sk?Math.round(sk/(sf+sk)*100):0}% Karin; rata ${tf+tk?Math.round(tf/(tf+tk)*100):0}% Francesco e ${tf+tk?Math.round(tk/(tf+tk)*100):0}% Karin.`;
+    [eur(m25.nl.cap),"mutuo massimo a 25 anni"]
+  ].map(([v,l,hi])=>`<div class="kpi${hi?" hi":""}"><b>${v}</b><span>${esc(l)}</span></div>`).join("");
+  const sf=F.sav_f||0,sk=F.sav_k||0,tf=F.inc_f||0,tk=F.inc_k||0;
+  $("#kpinote").textContent=`Il prezzo massimo include imposta, notaio e spese del mutuo e rispetta il limite del ${F.max_ltv}% di prezzo finanziato. In proporzione: risparmi ${sf+sk?Math.round(sf/(sf+sk)*100):0}% Francesco e ${sf+sk?Math.round(sk/(sf+sk)*100):0}% Karin; rata ${tf+tk?Math.round(tf/(tf+tk)*100):0}% Francesco e ${tf+tk?Math.round(tk/(tf+tk)*100):0}% Karin.`;
   const day=curDay();const ids=new Set(day?day.ids||[]:[]);
   const rows=[...S.listings.values()].filter(h=>h.price&&(ids.has(h.id)||S.stars.has(h.id))).sort((a,b)=>(b.score??0)-(a.score??0));
-  $("#fintitle").textContent=day?`Le case del ${fmtDate(day.date)}, una per una`:"Le case, una per una";
-  $("#fintable").innerHTML=rows.length?rows.map(h=>{const x=finFor(h.price,h.lang,h.renovation==="to_renovate"||h.renovation==="refresh");
-    return`<tr><td><button class="linkbtn" data-go="${esc(h.id)}">${esc(h.commune||"?")}</button><br><span class="pill ${h.lang||""}">${h.lang?h.lang.toUpperCase():"?"}</span> ${(r=>`<span class="pill ${r[1]}">${r[0]}</span>`)(reno(h))}</td>
-    <td class="num">${eur(h.price)}</td>
-    <td class="num"><small>imposta ${eur(x.duty.amt)} (${x.duty.txt})<br>notaio ${eur(x.notary)}<br>atto mutuo ${eur(x.mcost)}${x.works?`<br>lavori ${eur(x.works)}`:(h.renovation==="to_renovate"||h.renovation==="refresh"?'<br><span class="sub">lavori da stimare</span>':"")}</small></td>
-    <td class="num"><b>${eur(x.total)}</b></td><td class="num">${eur(x.loan)}<br><small class="sub">${pct(x.ltv)} del prezzo</small></td>
-    <td class="num">${eur(Math.round(x.r20))}<br><small class="sub">${pct(x.p20)} del reddito</small></td><td class="num">${eur(Math.round(x.r25))}<br><small class="sub">${pct(x.p25)} del reddito</small></td><td>${sustain(x)}</td></tr>`}).join("")
+  $("#fintitle").textContent=day?`Le case del ${fmtDate(day.date)}`:"Le case, una per una";
+  $("#fintable").innerHTML=rows.length?rows.map(h=>{const toR=h.renovation==="to_renovate"||h.renovation==="refresh";const x=finFor(h.price,h.lang,toR);
+    return`<tr><td><button class="linkbtn" data-go="${esc(h.id)}">${esc(h.commune||"?")}</button><div class="tags" style="margin-top:4px"><span class="tag">${LANG[h.lang]||"?"}</span>${renoTag(h)}</div></td>
+    <td class="n">${eur(h.price)}</td>
+    <td class="n" style="font-size:.8rem;color:var(--ink-2)">imposta ${eur(x.duty.amt)} (${x.duty.txt})<br>notaio ${eur(x.notary)}<br>atto mutuo ${eur(x.mcost)}${x.works?`<br>lavori ${eur(x.works)}`:(toR?'<br><span style="color:var(--muted)">lavori da stimare</span>':"")}</td>
+    <td class="n"><b>${eur(x.total)}</b></td><td class="n">${eur(x.loan)}<br><span style="color:var(--muted);font-size:.8rem">${pct(x.ltv)} del prezzo</span></td>
+    <td class="n">${eur(x.r20)}<br><span style="color:var(--muted);font-size:.8rem">${pct(x.p20)} del reddito</span></td><td class="n">${eur(x.r25)}<br><span style="color:var(--muted);font-size:.8rem">${pct(x.p25)} del reddito</span></td><td>${sustain(x)}</td></tr>`}).join("")
     :`<tr><td colspan="8">Nessuna casa per questa data.</td></tr>`;
 }
 let finTimer=null,finRef=null;
-function finChanged(e){const i=e.target.closest("[data-k]");if(!i)return;
-  S.fin[i.dataset.k]=i.type==="checkbox"?i.checked:(i.value===""?null:+i.value);renderFin();renderHouses();
+$("#finform").addEventListener("input",e=>{const i=e.target.closest("[data-k]");if(!i)return;
+  S.fin[i.dataset.k]=i.type==="checkbox"?i.checked:(i.value===""?null:+i.value);renderFin();
   safe(()=>localStorage.setItem("fin",JSON.stringify(S.fin)));
   clearTimeout(finTimer);finTimer=setTimeout(async()=>{if(!finRef||!S.canWrite)return;
     try{await finRef.set({...S.fin,at:new Date().toISOString(),by:S.me||null});$("#finsave").textContent="Salvato per tutti e due."}
-    catch(err){$("#finsave").textContent="Non salvato per l'altro: serve l'accesso da Editor. Le modifiche restano su questo dispositivo."}},800)}
-$("#finform").addEventListener("input",finChanged);
-function setTab(t){const fin=t==="fin";$("#tab-map").hidden=fin;$("#tab-map").style.display=fin?"none":"grid";$("#tab-fin").hidden=!fin;
+    catch(err){$("#finsave").textContent="Non salvato per l'altra persona: serve l'accesso da Editor. Le modifiche restano su questo dispositivo."}},800)});
+function setTab(t){const fin=t==="fin";$("#tab-map").style.display=fin?"none":"grid";$("#tab-fin").hidden=!fin;
   $("#t-map").setAttribute("aria-selected",!fin);$("#t-fin").setAttribute("aria-selected",fin);safe(()=>localStorage.setItem("tab",t));
   if(fin)renderFin();else setTimeout(()=>map.invalidateSize(),0)}
-$("#t-map").onclick=()=>setTab("map");$("#t-fin").onclick=()=>setTab("fin");
-function setDay(i){if(!S.days.length)return;S.dayIdx=Math.max(0,Math.min(S.days.length-1,i));safe(()=>localStorage.setItem("day",S.days[S.dayIdx].date));renderDays();renderHouses()}
 
-// ---------- events ----------
-$("#prev").onclick=()=>setDay(S.dayIdx-1);
-$("#next").onclick=()=>setDay(S.dayIdx+1);
-$("#dayrange").oninput=e=>setDay(+e.target.value);
-$("#days").onclick=e=>{const b=e.target.closest(".day");if(b)setDay(+b.dataset.i)};
-document.addEventListener("keydown",e=>{if(e.target.matches("input,textarea"))return;if(e.key==="ArrowLeft")setDay(S.dayIdx-1);if(e.key==="ArrowRight")setDay(S.dayIdx+1)});
+// ---------- eventi ----------
+$("#t-map").onclick=()=>setTab("map");$("#t-fin").onclick=()=>setTab("fin");
+$("#prev").onclick=()=>setDay(S.dayIdx-1);$("#next").onclick=()=>setDay(S.dayIdx+1);
+$("#dayselect").onchange=e=>setDay(+e.target.value);
+$("#ftoggle").onclick=e=>{const f=$("#filters");f.hidden=!f.hidden;e.currentTarget.setAttribute("aria-expanded",!f.hidden)};
+document.querySelectorAll("[data-chip]").forEach(b=>b.onclick=()=>{const k=b.dataset.chip;S.chips.has(k)?S.chips.delete(k):S.chips.add(k);b.setAttribute("aria-pressed",S.chips.has(k));renderHouses()});
 $("#fprice").oninput=e=>{$("#fpriceout").textContent=eur(+e.target.value);renderHouses()};
-$("#freno").onchange=renderHouses;$("#fdeal").onchange=renderHouses;
 $("#fmaas").oninput=e=>{const v=+e.target.value;$("#fmaasout").textContent=v>=200?"qualsiasi":v+" km";renderHouses()};
-document.querySelectorAll(".chips input").forEach(i=>i.onchange=renderHouses);
+document.querySelectorAll("#filters input[type=checkbox]").forEach(i=>i.onchange=renderHouses);
+$("#legendbtn").onclick=e=>{const b=$("#legendbox");b.hidden=!b.hidden;e.currentTarget.setAttribute("aria-expanded",!b.hidden);e.currentTarget.textContent=b.hidden?"Legenda":"Chiudi"};
+function layerToggle(id,layer){$(id).onclick=e=>{const on=!map.hasLayer(layer);on?layer.addTo(map):map.removeLayer(layer);e.currentTarget.setAttribute("aria-pressed",on)}}
+layerToggle("#lay-bike",layers.bike);layerToggle("#lay-comm",layers.communes);layerToggle("#lay-st",layers.stations);
+map.on("popupopen",()=>document.querySelector(".legend").hidden=true);
+map.on("popupclose",()=>{document.querySelector(".legend").hidden=false;if(quiet)return;S.sel=null;renderList(visible());drawSel();document.querySelectorAll(".pin.sel").forEach(p=>p.classList.remove("sel"))});
+document.addEventListener("keydown",e=>{if(e.target.matches("input,textarea,select"))return;if(e.key==="ArrowLeft")setDay(S.dayIdx-1);if(e.key==="ArrowRight")setDay(S.dayIdx+1)});
 document.addEventListener("click",async e=>{
   const g=e.target.closest("[data-go]");
-  if(g){if(!$("#tab-fin").hidden)setTab("map");const m=markers.get(g.dataset.go);if(m){$("#map").scrollIntoView({block:"nearest"});map.setView(m.getLatLng(),14,{animate:false});setTimeout(()=>m.openPopup(),60)}return}
+  if(g){if(!$("#tab-fin").hidden)setTab("map");select(g.dataset.go);return}
   const b=e.target.closest("[data-star]");if(!b||!S.db)return;
   const id=b.dataset.star;b.disabled=true;
-  try{
-    const ref=S.db.doc("stars/"+id);
-    if(S.stars.has(id))await ref.delete();
-    else await ref.set({by:S.me,at:new Date().toISOString()});
-  }catch(err){
-    if(err&&err.code==="invalid_argument"){S.canWrite=false;$("#status").textContent="Puoi vedere la mappa ma non mettere stelle: chiedi a Francesco di darti l'accesso da Editor."}
-  }finally{b.disabled=false}
+  try{const ref=S.db.doc("stars/"+id);if(S.stars.has(id))await ref.delete();else await ref.set({by:S.me,at:new Date().toISOString()})}
+  catch(err){S.canWrite=false;$("#status").textContent="Puoi vedere la mappa ma non mettere stelle: chiedi a Francesco l'accesso da Editor."}
+  finally{b.disabled=false}
 });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{drawBase();renderHouses()});
 new MutationObserver(()=>{drawBase();renderHouses()}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
 
-// ---------- data ----------
+// ---------- dati ----------
 (async()=>{
   const lf=safe(()=>JSON.parse(localStorage.getItem("fin")||"null"));if(lf)Object.assign(S.fin,lf);
   if(safe(()=>localStorage.getItem("tab"))==="fin"||location.hash==="#finanza")setTab("fin");
-  renderFin();
-  renderEmpty();
+  if(innerWidth>1100){$("#legendbox").hidden=false;$("#legendbtn").textContent="Chiudi";$("#legendbtn").setAttribute("aria-expanded","true")}
+  renderAll();
   const db=await claude.use("db");
   if(!db){$("#status").textContent="Il database della mappa non è disponibile in questa vista.";return}
   S.db=db;
-  claude.use("user").then(async u=>{if(!u)return;S.user=u;S.me=await u.id();const c=await u.can("data.write");if(c===false)S.canWrite=false;renderStars()});
-  db.doc("meta/status").onSnapshot(s=>{S.status=s.exists?s.data():null;
-    const d=S.status;$("#status").textContent=d&&d.updated?`Ultimo aggiornamento: ${d.updated}`:"In attesa della prima raccolta";
-    // geo parts listed in status
-    loadGeo(d);renderEmpty()});
-  db.doc("meta/stations").onSnapshot(s=>{S.stations=s.exists?(s.data().stations||[]):[];drawBase();renderNotes();renderEmpty()});
+  claude.use("user").then(async u=>{if(!u)return;S.user=u;S.me=await u.id();const c=await u.can("data.write");if(c===false)S.canWrite=false;loadNames()});
+  db.doc("meta/status").onSnapshot(s=>{S.status=s.exists?s.data():null;const d=S.status;
+    $("#status").textContent=d&&d.updated?`Aggiornata il ${d.updated}`:"In attesa della prima raccolta";loadGeo(d);renderBanner()});
+  db.doc("meta/stations").onSnapshot(s=>{S.stations=s.exists?(s.data().stations||[]):[];drawBase();renderNotes();renderBanner()});
   db.doc("geo/base").onSnapshot(s=>{S.base=s.exists?s.data():null;drawBase()});
   db.doc("meta/pois").onSnapshot(s=>{S.pois=s.exists?(s.data().pois||[]):[];drawBase();renderHouses()});
   db.doc("geo/lines").onSnapshot(s=>{S.lines=s.exists?(s.data().lines||[]):[];drawBase()});
-  db.collection("listings").onSnapshot(q=>{S.listings=new Map(q.docs.map(d=>[d.id,{id:d.id,...d.data()}]));renderHouses();renderStars()});
+  db.collection("listings").onSnapshot(q=>{S.listings=new Map(q.docs.map(d=>[d.id,{id:d.id,...d.data()}]));renderHouses();renderFin()});
   db.collection("days").onSnapshot(q=>{
     const keep=curDay()&&curDay().date;const wasLast=S.dayIdx===S.days.length-1;
     S.days=q.docs.map(d=>({date:d.id,...d.data()})).sort((a,b)=>a.date<b.date?-1:1);
-    let i=-1;const saved=safe(()=>localStorage.getItem("day"));
-    if(keep&&!wasLast)i=S.days.findIndex(d=>d.date===keep);
-    else if(!keep&&saved)i=-1; // open on the latest day
+    const i=keep&&!wasLast?S.days.findIndex(d=>d.date===keep):-1;
     S.dayIdx=i>=0?i:S.days.length-1;renderAll()});
   finRef=db.doc("finance/plan");
   finRef.onSnapshot(s=>{if(s.exists){const d=s.data();for(const k of Object.keys(FIN0))if(d[k]!==undefined)S.fin[k]=d[k]}renderFin();renderHouses()});
-  db.collection("stars").onSnapshot(q=>{S.stars=new Map(q.docs.map(d=>[d.id,d.data()]));renderHouses();renderStars()});
+  db.collection("stars").onSnapshot(q=>{S.stars=new Map(q.docs.map(d=>[d.id,d.data()]));renderHouses();loadNames();renderFin()});
 })();
 let geoKey="";
 async function loadGeo(st){
@@ -690,7 +666,7 @@ async function loadGeo(st){
   if(key===geoKey||!S.db)return;geoKey=key;
   const all=[];
   for(const p of parts){const s=await S.db.doc("geo/"+p).get().catch(()=>null);if(s&&s.exists)all.push(...(s.data().communes||[]))}
-  S.communes=all;drawBase();renderHouses();
+  S.communes=all;drawBase();
 }
 })();
 </script>

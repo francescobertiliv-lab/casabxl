@@ -39,9 +39,9 @@ Lingua: Fiandre (`nl`) preferite; i 19 comuni di Bruxelles sono bilingui (`bi`);
 ## Procedura
 
 ### 0. Controllo delle fonti
-Prova a raggiungere (curl con timeout): `sncb-opendata.hafas.de`, `api.irail.be`, `immovlan.be`, `www.realo.be`, `overpass-api.de`, `nominatim.openstreetmap.org`, `routing.openstreetmap.de`, `valhalla1.openstreetmap.de`.
+Prova a raggiungere (curl con timeout): `sncb-opendata.hafas.de`, `api.irail.be`, `www.immoscoop.be`, `immovlan.be`, `www.realo.be`, `overpass-api.de`, `nominatim.openstreetmap.org`, `routing.openstreetmap.de`, `valhalla1.openstreetmap.de`.
 Immoweb, Zimmo e Logic-Immo (che ora rimanda a Zimmo) rispondono 403 con la verifica antibot di Cloudflare: non provare ad aggirarla, registrali come `bloccato` con nota "antibot".
-Se non risponde nessun sito di annunci (Immovlan e Realo), oppure le stazioni mancano e il GTFS non si scarica:
+Se non risponde nessun sito di annunci (Immoscoop, Immovlan e Realo), oppure le stazioni mancano e il GTFS non si scarica:
 - aggiorna `meta/status` (`update`) con `updated` = data di oggi e `message` = quali host sono bloccati e che serve cambiare l'accesso di rete dell'ambiente;
 - cerca in Gmail tra le mail inviate l'oggetto "Case Luxembourg – fonti bloccate" degli ultimi 7 giorni; se non c'è, manda solo a francesco.berti.liv@gmail.com una mail con quell'oggetto, l'elenco degli host bloccati e il rimedio (menu dell'ambiente cloud → Edit → Network access);
 - fermati e rispondi "Fonti bloccate".
@@ -65,11 +65,13 @@ Geocodifica con Nominatim la stazione Bruxelles-Luxembourg (`railway=station`, "
 2. Immovlan, per i comuni delle stazioni ammesse (prima Fiandre, poi Vallonia e Bruxelles):
    `python3 immovlan.py 1560-hoeilaart 1640-sint-genesius-rode 1630-linkebeek 1650-beersel 1654-huizingen 3070-kortenberg 1800-vilvoorde 1930-zaventem 1831-diegem 1700-dilbeek 1702-groot-bijgaarden 1500-halle 1980-eppegem 1310-la-hulpe 1332-genval 1330-rixensart 1340-ottignies 1410-waterloo 1300-limal 1180-uccle 1170-watermael-boitsfort --all --out immovlan.json`
    `--all` apre anche gli annunci sopra budget: servono solo come confronto per il mercato. Legge solo ciò che l'annuncio scrive; lo stato dei lavori viene dal campo "Staat van het zoekertje" o da una frase della descrizione, che viene citata.
-3. Realo (`www.realo.be/nl/te-koop/huis/<comune>-<cap>`): leggi le pagine con curl e un User-Agent da browser; stesse regole, stesso formato di `immovlan.py` (`source: "Realo"`). Se non riesci, registrala come `errore` con il motivo.
-4. `python3 process.py immovlan.json base/stations.json pois.json AAAA-MM-GG --contact francesco.berti.liv@gmail.com --out listings.json` (con `pois.json` = `meta/pois` e `base/stations.json` = `meta/stations`). Applica i criteri (4-5 camere, giardino scritto nell'annuncio, niente case a schiera, 3 lati solo se il resto è molto buono, bici ≤ 3 km), calcola bici fino alla stazione migliore, auto fino a Maaseik, confronto col mercato e punteggio.
+3. Immoscoop (annunci delle agenzie fiamminghe, con indirizzo e coordinate), stessi comuni:
+   `python3 immoscoop.py <stessi comuni> --all --out immoscoop.json`. Usa solo le pagine per comune `/zoeken/te-koop/<cap>-<comune>`: robots.txt esclude `/zoeken/query/`, non usarla.
+4. Realo (`www.realo.be/nl/te-koop/huis/<comune>-<cap>`): leggi le pagine con curl e un User-Agent da browser; stesse regole, stesso formato di `immovlan.py` (`source: "Realo"`). Se non riesci, registrala come `errore` con il motivo.
+5. `python3 process.py immoscoop.json,immovlan.json base/stations.json pois.json AAAA-MM-GG --contact francesco.berti.liv@gmail.com --out listings.json` (con `pois.json` = `meta/pois` e `base/stations.json` = `meta/stations`). Applica i criteri (4-5 camere, giardino scritto nell'annuncio, niente case a schiera, 3 lati solo se il resto è molto buono, bici ≤ 3 km), calcola bici fino alla stazione migliore, auto fino a Maaseik, confronto col mercato e punteggio.
    Mercato: regressione sui prezzi richiesti di tutti gli annunci letti (m² abitabili, terreno, camere, 4 facciate, stato dei lavori, CAP). `market.gap_pct` negativo = più economica delle case simili della zona. Sono prezzi richiesti, non di vendita: scrivilo così, mai "affare garantito".
    Stato dei lavori (`renovation`): `renovated` (ristrutturata, nuova o in ottimo stato secondo l'annuncio), `to_renovate`, `refresh` (da rinfrescare), `unknown`. Preferenza per le ristrutturate: +8 nel punteggio, −8 da ristrutturare.
-5. Stesso immobile su più siti o pubblicato due volte: un solo record, con i link extra in `other_urls` (lo fa `process.py` per Immovlan; fallo tu tra siti diversi).
+6. Stesso immobile su più siti o pubblicato due volte: `process.py` tiene un solo record (quello con l'indirizzo esatto, di solito Immoscoop), completa i campi mancanti con gli altri annunci e mette i loro link in `other_urls`.
 
 ### 3. Scrittura nel database
 - `listings/<id>`: il record di `process.py`. Per una casa già nota conserva `first_seen` e `price_history` del database, aggiorna `last_seen` e aggiungi a `price_history` se il prezzo è cambiato. Non cancellare le case sparite: restano come storico e per le stelle.

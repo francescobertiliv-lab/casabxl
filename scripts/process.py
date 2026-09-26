@@ -99,7 +99,7 @@ def market(all_ads):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("ads")
+    ap.add_argument("ads", help="uno o più file di annunci separati da virgola (immoscoop.json,immovlan.json)")
     ap.add_argument("stations")
     ap.add_argument("pois")
     ap.add_argument("date")
@@ -109,29 +109,46 @@ def main():
     a = ap.parse_args()
     s = requests.Session()
     s.headers["User-Agent"] = f"casabxl/1.0 ({a.contact})"
-    ads = json.load(open(a.ads))
+    ads = [d for f in a.ads.split(",") for d in json.load(open(f))]
     stations = [x for x in json.load(open(a.stations))["stations"] if x.get("minutes") is not None and x["minutes"] <= 30]
     maaseik = next((p for p in json.load(open(a.pois))["pois"] if p["id"] == "maaseik"), None)
+
+    # stesso immobile su più siti o pubblicato due volte: stesso CAP, prezzo e camere,
+    # superficie abitabile simile se entrambi la dicono. Resta il record con l'indirizzo esatto;
+    # i campi che gli mancano si prendono dagli altri annunci.
+    def same(a, b):
+        if (a.get("postcode"), a.get("price"), a.get("bedrooms")) != (b.get("postcode"), b.get("price"), b.get("bedrooms")):
+            return False
+        if a.get("price") is None or a.get("bedrooms") is None:
+            return False
+        la, lb = a.get("living_m2"), b.get("living_m2")
+        return not (la and lb and abs(la - lb) > 0.1 * max(la, lb))
+
+    groups = []
+    for d in ads:
+        g = next((g for g in groups if same(g[0], d)), None)
+        (g.append(d) if g else groups.append([d]))
+    merged = []
+    for g in groups:
+        g.sort(key=lambda d: (bool(d.get("approx")), d.get("source") != "Immoscoop"))
+        p = dict(g[0])
+        for o in g[1:]:
+            for k, v in o.items():
+                if p.get(k) in (None, "", "unknown") and v not in (None, "", "unknown"):
+                    p[k] = v
+            if p.get("renovation") == "unknown" and o.get("renovation") not in (None, "unknown"):
+                p["renovation"], p["renovation_why"] = o["renovation"], o.get("renovation_why")
+        p["dups"] = [o["url"] for o in g[1:] if o["url"] != p["url"]]
+        merged.append(p)
+    ads = merged
     expect, n_model = market(ads)
     print(f"modello di mercato su {n_model} annunci", file=sys.stderr)
-
-    # stesso immobile pubblicato due volte: stesso CAP, prezzo, camere, m² abitabili e terreno
-    seen = {}
-    for d in ads:
-        k = (d.get("postcode"), d.get("price"), d.get("bedrooms"), d.get("living_m2"), d.get("land_m2"))
-        if k in seen and None not in k[1:3]:
-            seen[k].setdefault("dups", []).append(d["url"])
-            d["dup"] = True
-        else:
-            seen[k] = d
     import os
     cache = a.out + ".routes.json"
     if os.path.exists(cache):
         CACHE.update(json.load(open(cache)))
     out = []
     for d in ads:
-        if d.get("dup"):
-            continue
         if not d.get("in_budget", d.get("price", 0) <= a.max_price) or d.get("price") is None:
             continue
         if d.get("bedrooms") not in (4, 5):
