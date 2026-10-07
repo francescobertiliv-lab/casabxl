@@ -68,7 +68,7 @@
   "score": 71,
   "reason": "3 lati, 4′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -127,7 +127,7 @@
   "score": 53,
   "reason": "3 lati, 10′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -228,7 +228,7 @@
   "score": 61,
   "reason": "4 lati, 10′ di bici da Anderlecht, diretto in 28′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -284,7 +284,7 @@
   "score": 66,
   "reason": "9′ di bici da Bruxelles-Midi / Brussel-Zuid, diretto in 20′ con 4 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -318,9 +318,9 @@
  },
  "immoweb-21593693": {
   "id": "immoweb-21593693",
-  "price": 775000,
+  "price": 725000,
   "dropped": "3 facciate senza condizioni ottime",
-  "last_seen": "2026-09-26"
+  "last_seen": "2026-10-07"
  },
  "immoweb-21829181": {
   "id": "immoweb-21829181",
@@ -427,7 +427,7 @@
   "score": 59,
   "reason": "3 lati, 8′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -518,7 +518,7 @@
   "score": 77,
   "reason": "3 lati, 3′ di bici da Bockstael, diretto in 12′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -651,7 +651,7 @@
   "score": 76,
   "reason": "4 lati, 6′ di bici da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -700,7 +700,7 @@
   "score": 78,
   "reason": "4 lati, 2′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -771,7 +771,7 @@
   "score": 86,
   "reason": "4 lati, 6′ di bici da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -834,7 +834,7 @@
   "score": 50,
   "reason": "4 lati, 9′ di bici da Limal, con cambio a Ottignies in 30′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -893,7 +893,7 @@
   "score": 74,
   "reason": "4 lati, 8′ di bici da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -962,7 +962,7 @@
   "score": 52,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1030,7 +1030,7 @@
   "score": 73,
   "reason": "2′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1077,7 +1077,7 @@
   "score": 78,
   "reason": "4 lati, 5′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1127,7 +1127,7 @@
   "score": 58,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1178,7 +1178,7 @@
   "score": 73,
   "reason": "5′ di bici da Moensberg, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1323,7 +1323,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1373,7 +1373,7 @@
   "score": 72,
   "reason": "3 lati, 8′ di bici da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1527,7 +1527,7 @@
   "score": 60,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1575,7 +1575,7 @@
   "score": 66,
   "reason": "4 lati, 9′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1625,7 +1625,7 @@
   "score": 60,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1683,7 +1683,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1736,7 +1736,7 @@
   "score": 76,
   "reason": "3 lati, 5′ di bici da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1844,7 +1844,7 @@
   "score": 60,
   "reason": "4 lati, 11′ di bici da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1940,7 +1940,7 @@
   "score": 81,
   "reason": "3 lati, 6′ di bici da Watermael / Watermaal, diretto in 6′ con 2 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -1989,7 +1989,7 @@
   "score": 57,
   "reason": "3 lati, 7′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-26",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-26",
@@ -2196,7 +2196,7 @@
   "score": 63,
   "reason": "4 lati, bici da verificare da Hoeilaart, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2282,7 +2282,7 @@
   "score": 50,
   "reason": "9′ di bici da Halle, diretto in 29′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2458,7 +2458,7 @@
   "score": 67,
   "reason": "4 lati, bici da verificare da Hoeilaart, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2514,7 +2514,7 @@
   "score": 68,
   "reason": "3′ di bici da Halle, diretto in 29′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2591,7 +2591,7 @@
   "score": 83,
   "reason": "3 lati, 6′ di bici da Groenendaal, diretto in 14′ con 3 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2670,7 +2670,7 @@
   "score": 72,
   "reason": "4 lati, 8′ di bici da Huizingen, diretto in 25′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2719,7 +2719,7 @@
   "score": 72,
   "reason": "4 lati, 8′ di bici da Huizingen, diretto in 25′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2780,7 +2780,7 @@
   "score": 58,
   "reason": "4 lati, 11′ di bici da Halle, diretto in 29′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2841,7 +2841,7 @@
   "score": 72,
   "reason": "4 lati, 6′ di bici da Halle, diretto in 29′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2891,7 +2891,7 @@
   "score": 50,
   "reason": "7′ di bici da Halle, diretto in 29′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -2993,7 +2993,7 @@
   "score": 51,
   "reason": "4 lati, 12′ di bici da Anderlecht, diretto in 28′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3046,7 +3046,7 @@
   "score": 100,
   "reason": "4 lati, 6′ di bici da Groenendaal, diretto in 14′ con 3 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3097,7 +3097,7 @@
   "score": 67,
   "reason": "4 lati, bici da verificare da Hoeilaart, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3191,7 +3191,7 @@
   "score": 40,
   "reason": "4 lati, bici da verificare da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3243,7 +3243,7 @@
   "score": 40,
   "reason": "4 lati, bici da verificare da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3292,7 +3292,7 @@
   "score": 80,
   "reason": "4 lati, 6′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3339,7 +3339,7 @@
   "score": 90,
   "reason": "4 lati, 4′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3394,7 +3394,7 @@
   "score": 80,
   "reason": "4 lati, 8′ di bici da Linkebeek, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3449,7 +3449,7 @@
   "score": 62,
   "reason": "4 lati, 10′ di bici da Huizingen, diretto in 25′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3498,7 +3498,7 @@
   "score": 58,
   "reason": "4 lati, 11′ di bici da Huizingen, diretto in 25′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3563,7 +3563,7 @@
   "score": 63,
   "reason": "4 lati, 12′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3614,7 +3614,7 @@
   "score": 50,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3719,7 +3719,7 @@
   "score": 92,
   "reason": "4 lati, 5′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3774,7 +3774,7 @@
   "score": 83,
   "reason": "4 lati, 4′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3890,7 +3890,7 @@
   "score": 69,
   "reason": "4 lati, 10′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -3969,7 +3969,7 @@
   "score": 54,
   "reason": "4 lati, 12′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -4099,7 +4099,7 @@
   "score": 44,
   "reason": "bici da verificare da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -4216,7 +4216,7 @@
   "score": 57,
   "reason": "4 lati, 11′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -4342,7 +4342,7 @@
   "score": 49,
   "reason": "12′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -4395,7 +4395,7 @@
   "score": 70,
   "reason": "3 lati, 6′ di bici da Linkebeek, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-27",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-27",
@@ -4447,7 +4447,7 @@
   "score": 46,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4499,7 +4499,7 @@
   "score": 46,
   "reason": "4 lati, bici da verificare da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4546,7 +4546,7 @@
   "score": 63,
   "reason": "4 lati, 12′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4593,7 +4593,7 @@
   "score": 69,
   "reason": "4 lati, 10′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4640,7 +4640,7 @@
   "score": 87,
   "reason": "4 lati, 4′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4689,7 +4689,7 @@
   "score": 83,
   "reason": "4 lati, 4′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4744,7 +4744,7 @@
   "score": 86,
   "reason": "4 lati, 3′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4859,7 +4859,7 @@
   "score": 54,
   "reason": "4 lati, bici da verificare da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4918,7 +4918,7 @@
   "score": 80,
   "reason": "4 lati, 9′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -4965,7 +4965,7 @@
   "score": 80,
   "reason": "4 lati, 9′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5020,7 +5020,7 @@
   "score": 85,
   "reason": "1′ di bici da Groot-Bijgaarden, diretto in 24′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5040,7 +5040,7 @@
   "url": "https://www.immoweb.be/en/classified/21716160",
   "other_urls": [],
   "title": "HOUSE te koop Steenweg op Ukkel 40 1650 Beersel",
-  "price": 529428,
+  "price": 509428,
   "bedrooms": 4,
   "type": "open",
   "facades": 4,
@@ -5076,11 +5076,15 @@
   "score": 90,
   "reason": "4 lati, 3′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
     "price": 529428
+   },
+   {
+    "date": "2026-10-07",
+    "price": 509428
    }
   ]
  },
@@ -5090,7 +5094,7 @@
   "url": "https://www.immoweb.be/en/classified/21716159",
   "other_urls": [],
   "title": "HOUSE te koop Steenweg op Ukkel 40 1650 Beersel",
-  "price": 473559,
+  "price": 453559,
   "bedrooms": 4,
   "type": "open",
   "facades": 4,
@@ -5126,11 +5130,15 @@
   "score": 90,
   "reason": "4 lati, 3′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
     "price": 473559
+   },
+   {
+    "date": "2026-10-07",
+    "price": 453559
    }
   ]
  },
@@ -5187,7 +5195,7 @@
   "score": 49,
   "reason": "12′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5240,7 +5248,7 @@
   "score": 90,
   "reason": "4 lati, 6′ di bici da Linkebeek, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5287,7 +5295,7 @@
   "score": 78,
   "reason": "4 lati, 7′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5363,7 +5371,7 @@
   "score": 54,
   "reason": "4 lati, bici da verificare da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5422,7 +5430,7 @@
   "score": 78,
   "reason": "4 lati, 7′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5536,7 +5544,7 @@
   "score": 55,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5583,7 +5591,7 @@
   "score": 63,
   "reason": "4 lati, 12′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5642,7 +5650,7 @@
   "score": 69,
   "reason": "4 lati, 10′ di bici da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5697,7 +5705,7 @@
   "score": 77,
   "reason": "4 lati, 4′ di bici da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5746,7 +5754,7 @@
   "score": 68,
   "reason": "4 lati, 9′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5795,7 +5803,7 @@
   "score": 53,
   "reason": "4 lati, 12′ di bici da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5852,7 +5860,7 @@
   "score": 50,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5925,7 +5933,7 @@
   "score": 49,
   "reason": "12′ di bici da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -5994,7 +6002,7 @@
   "score": 50,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6047,7 +6055,7 @@
   "score": 41,
   "reason": "4 lati, bici da verificare da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6098,7 +6106,7 @@
   "score": 50,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6175,7 +6183,7 @@
   "score": 83,
   "reason": "4 lati, 7′ di bici da Zaventem, diretto in 20′ con 1 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6226,7 +6234,7 @@
   "score": 61,
   "reason": "4 lati, bici da verificare da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6275,7 +6283,7 @@
   "score": 68,
   "reason": "4 lati, 12′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6434,7 +6442,7 @@
   "score": 42,
   "reason": "12′ di bici da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6511,7 +6519,7 @@
   "score": 73,
   "reason": "3 lati, 5′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6697,7 +6705,7 @@
   "score": 42,
   "reason": "12′ di bici da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-28",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-28",
@@ -6900,7 +6908,7 @@
   "score": 31,
   "reason": "bici da verificare da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -6953,7 +6961,7 @@
   "score": 31,
   "reason": "bici da verificare da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7014,7 +7022,7 @@
   "score": 67,
   "reason": "8′ di bici da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7073,7 +7081,7 @@
   "score": 84,
   "reason": "4 lati, 7′ di bici da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7120,7 +7128,7 @@
   "score": 83,
   "reason": "4 lati, 7′ di bici da Zaventem, diretto in 20′ con 1 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7171,7 +7179,7 @@
   "score": 64,
   "reason": "4 lati, bici da verificare da Diegem, diretto in 17′ con 1 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7224,7 +7232,7 @@
   "score": 72,
   "reason": "4 lati, 12′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7295,7 +7303,7 @@
   "score": 90,
   "reason": "4 lati, 6′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7509,7 +7517,7 @@
   "score": 71,
   "reason": "4 lati, 11′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7564,7 +7572,7 @@
   "score": 71,
   "reason": "4 lati, 11′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7661,7 +7669,7 @@
   "score": 71,
   "reason": "4 lati, 10′ di bici da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7845,7 +7853,7 @@
   "score": 61,
   "reason": "4 lati, bici da verificare da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7922,7 +7930,7 @@
   "score": 78,
   "reason": "3 lati, 10′ di bici da Bordet, diretto in 12′ con 5 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -7989,7 +7997,7 @@
   "score": 74,
   "reason": "4 lati, 9′ di bici da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8039,7 +8047,7 @@
   "score": 50,
   "reason": "3 lati, 10′ di bici da Berchem-Sainte-Agathe / Sint-Agatha-Berchem, diretto in 20′ con 2 treni/ora",
   "first_seen": "2026-10-03",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-03",
@@ -8088,7 +8096,7 @@
   "score": 52,
   "reason": "4 lati, 12′ di bici da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8205,7 +8213,7 @@
   "score": 75,
   "reason": "4 lati, 7′ di bici da Eppegem, diretto in 28′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8280,7 +8288,7 @@
   "score": 52,
   "reason": "4 lati, bici da verificare da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8351,7 +8359,7 @@
   "score": 78,
   "reason": "4 lati, 5′ di bici da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8403,7 +8411,7 @@
   "score": 64,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8468,7 +8476,7 @@
   "score": 76,
   "reason": "4 lati, 10′ di bici da Hoeilaart, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8525,7 +8533,7 @@
   "score": 68,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8574,7 +8582,7 @@
   "score": 74,
   "reason": "4 lati, 6′ di bici da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-29",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-29",
@@ -8707,7 +8715,7 @@
   "score": 74,
   "reason": "5′ di bici da Beersel, diretto in 21′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -8758,7 +8766,7 @@
   "score": 55,
   "reason": "4 lati, bici da verificare da Dilbeek, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -8829,7 +8837,7 @@
   "score": 34,
   "reason": "bici da verificare da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -8881,7 +8889,7 @@
   "score": 64,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -8944,7 +8952,7 @@
   "score": 52,
   "reason": "4 lati, bici da verificare da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9058,7 +9066,7 @@
   "score": 75,
   "reason": "4 lati, 7′ di bici da Eppegem, diretto in 28′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9123,7 +9131,7 @@
   "score": 71,
   "reason": "3 lati, 7′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9182,7 +9190,7 @@
   "score": 34,
   "reason": "bici da verificare da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9235,7 +9243,7 @@
   "score": 34,
   "reason": "bici da verificare da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9288,7 +9296,7 @@
   "score": 34,
   "reason": "bici da verificare da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9340,7 +9348,7 @@
   "score": 59,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9392,7 +9400,7 @@
   "score": 64,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9475,7 +9483,7 @@
   "score": 79,
   "reason": "4 lati, 11′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9545,7 +9553,7 @@
   "score": 64,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9645,7 +9653,7 @@
   "score": 61,
   "reason": "bici da verificare da Watermael / Watermaal, diretto in 6′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9702,7 +9710,7 @@
   "score": 71,
   "reason": "4 lati, bici da verificare da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9754,7 +9762,7 @@
   "score": 62,
   "reason": "bici da verificare da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9801,7 +9809,7 @@
   "score": 83,
   "reason": "3 lati, 5′ di bici da Vivier D'Oie / Diesdelle, diretto in 12′ con 4 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9872,7 +9880,7 @@
   "score": 76,
   "reason": "3 lati, 8′ di bici da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9945,7 +9953,7 @@
   "score": 67,
   "reason": "3 lati, 8′ di bici da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -9998,7 +10006,7 @@
   "score": 71,
   "reason": "3 lati, 5′ di bici da Moensberg, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10045,7 +10053,7 @@
   "score": 86,
   "reason": "3 lati, 6′ di bici da Watermael / Watermaal, diretto in 6′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10100,7 +10108,7 @@
   "score": 94,
   "reason": "4′ di bici da Saint-Job / Sint-Job, diretto in 14′ con 4 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10205,7 +10213,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10254,7 +10262,7 @@
   "score": 64,
   "reason": "4 lati, 12′ di bici da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10301,7 +10309,7 @@
   "score": 81,
   "reason": "4 lati, 7′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10354,7 +10362,7 @@
   "score": 82,
   "reason": "4 lati, 2′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10401,7 +10409,7 @@
   "score": 64,
   "reason": "4 lati, 11′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10448,7 +10456,7 @@
   "score": 64,
   "reason": "3 lati, 6′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10500,7 +10508,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10547,7 +10555,7 @@
   "score": 68,
   "reason": "4 lati, 10′ di bici da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10610,7 +10618,7 @@
   "score": 60,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10661,7 +10669,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10712,7 +10720,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10763,7 +10771,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10815,7 +10823,7 @@
   "score": 50,
   "reason": "4 lati, bici da verificare da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10867,7 +10875,7 @@
   "score": 45,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10914,7 +10922,7 @@
   "score": 68,
   "reason": "4 lati, 3′ di bici da Limal, con cambio a Ottignies in 30′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -10961,7 +10969,7 @@
   "score": 84,
   "reason": "4 lati, 3′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11008,7 +11016,7 @@
   "score": 81,
   "reason": "4 lati, 7′ di bici da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11059,7 +11067,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11118,7 +11126,7 @@
   "score": 80,
   "reason": "4 lati, 8′ di bici da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11167,7 +11175,7 @@
   "score": 44,
   "reason": "4 lati, 9′ di bici da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11224,7 +11232,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11291,7 +11299,7 @@
   "score": 67,
   "reason": "4 lati, 2′ di bici da Limal, con cambio a Ottignies in 30′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11340,7 +11348,7 @@
   "score": 68,
   "reason": "4 lati, 7′ di bici da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11392,7 +11400,7 @@
   "score": 44,
   "reason": "4 lati, bici da verificare da Genval, diretto in 23′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11443,7 +11451,7 @@
   "score": 58,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11495,7 +11503,7 @@
   "score": 45,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11546,7 +11554,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11598,7 +11606,7 @@
   "score": 52,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11650,7 +11658,7 @@
   "score": 52,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11708,7 +11716,7 @@
   "score": 54,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11832,7 +11840,7 @@
   "score": 44,
   "reason": "4 lati, 9′ di bici da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11883,7 +11891,7 @@
   "score": 44,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -11934,7 +11942,7 @@
   "score": 49,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-09-30",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-09-30",
@@ -12014,7 +12022,7 @@
   "score": 46,
   "reason": "11′ di bici da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12069,7 +12077,7 @@
   "score": 52,
   "reason": "4 lati, 12′ di bici da Kortenberg, diretto in 25′ con 1 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12132,7 +12140,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12196,7 +12204,7 @@
   "score": 40,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12298,7 +12306,7 @@
   "score": 44,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12351,7 +12359,7 @@
   "score": 36,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12408,7 +12416,7 @@
   "score": 41,
   "reason": "4 lati, bici da verificare da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12461,7 +12469,7 @@
   "score": 52,
   "reason": "4 lati, 7′ di bici da Limal, con cambio a Ottignies in 30′ con 3 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12508,7 +12516,7 @@
   "score": 74,
   "reason": "4 lati, 10′ di bici da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12555,7 +12563,7 @@
   "score": 90,
   "reason": "4 lati, 5′ di bici da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12624,7 +12632,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12675,7 +12683,7 @@
   "score": 53,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12734,7 +12742,7 @@
   "score": 52,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12803,7 +12811,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12866,7 +12874,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12941,7 +12949,7 @@
   "score": 26,
   "reason": "9′ di bici da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -12993,7 +13001,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13042,7 +13050,7 @@
   "score": 49,
   "reason": "4 lati, 10′ di bici da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13116,7 +13124,7 @@
   "score": 20,
   "reason": "12′ di bici da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13166,7 +13174,7 @@
   "score": 20,
   "reason": "12′ di bici da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13229,7 +13237,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13293,7 +13301,7 @@
   "score": 22,
   "reason": "4 lati, bici da verificare da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13350,7 +13358,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13401,7 +13409,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13470,7 +13478,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13521,7 +13529,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13578,7 +13586,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13629,7 +13637,7 @@
   "score": 60,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13692,7 +13700,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13747,7 +13755,7 @@
   "score": 46,
   "reason": "4 lati, 11′ di bici da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13799,7 +13807,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13880,7 +13888,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -13967,7 +13975,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14024,7 +14032,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14088,7 +14096,7 @@
   "score": 30,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14143,7 +14151,7 @@
   "score": 62,
   "reason": "4 lati, 11′ di bici da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14200,7 +14208,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14257,7 +14265,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14308,7 +14316,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14365,7 +14373,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14416,7 +14424,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14465,7 +14473,7 @@
   "score": 64,
   "reason": "4 lati, 5′ di bici da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14517,7 +14525,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14605,7 +14613,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14711,7 +14719,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14831,7 +14839,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14888,7 +14896,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14940,7 +14948,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -14997,7 +15005,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -15055,7 +15063,7 @@
   "score": 30,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -15113,7 +15121,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -15189,7 +15197,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -15253,7 +15261,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -15322,7 +15330,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-01",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-01",
@@ -15373,7 +15381,7 @@
   "score": 42,
   "reason": "12′ di bici da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15425,7 +15433,7 @@
   "score": 57,
   "reason": "4 lati, bici da verificare da Vilvoorde, diretto in 22′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15525,7 +15533,7 @@
   "score": 35,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15637,7 +15645,7 @@
   "score": 46,
   "reason": "4 lati, 11′ di bici da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15712,7 +15720,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15770,7 +15778,7 @@
   "score": 56,
   "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15821,7 +15829,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15878,7 +15886,7 @@
   "score": 34,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -15935,7 +15943,7 @@
   "score": 39,
   "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -16011,7 +16019,7 @@
   "score": 26,
   "reason": "4 lati, bici da verificare da Céroux-Mousty, con cambio a Ottignies in 29′ con 2 treni/ora",
   "first_seen": "2026-10-02",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-02",
@@ -16080,7 +16088,7 @@
   "score": 50,
   "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
   "first_seen": "2026-10-03",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-03",
@@ -16167,7 +16175,7 @@
   "score": 68,
   "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
   "first_seen": "2026-10-03",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-03",
@@ -16250,7 +16258,7 @@
   "score": 54,
   "reason": "4 lati, 8′ di bici da Waterloo, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-04",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-04",
@@ -16309,7 +16317,7 @@
   "score": 82,
   "reason": "4 lati, 8′ di bici da Hoeilaart, diretto in 18′ con 2 treni/ora",
   "first_seen": "2026-10-05",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-05",
@@ -16356,7 +16364,7 @@
   "score": 80,
   "reason": "4 lati, 12′ di bici da Groenendaal, diretto in 14′ con 3 treni/ora",
   "first_seen": "2026-10-05",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-05",
@@ -16448,7 +16456,7 @@
   "score": 69,
   "reason": "2′ di bici da Rixensart, diretto in 26′ con 3 treni/ora",
   "first_seen": "2026-10-05",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-05",
@@ -16519,7 +16527,7 @@
   "score": 31,
   "reason": "bici da verificare da Sint-Martens-Bodegem, diretto in 30′ con 2 treni/ora",
   "first_seen": "2026-10-06",
-  "last_seen": "2026-10-06",
+  "last_seen": "2026-10-07",
   "price_history": [
    {
     "date": "2026-10-06",
@@ -16592,5 +16600,420 @@
   "price": 525000,
   "dropped": "bici oltre 3 km",
   "last_seen": "2026-10-06"
+ },
+ "immoweb-21774011": {
+  "id": "immoweb-21774011",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21774011",
+  "other_urls": [],
+  "title": "VILLA te koop 1640 Rhode-Saint-Genèse",
+  "price": 795000,
+  "bedrooms": 5,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 1399,
+  "living_m2": 250,
+  "address": null,
+  "approx": true,
+  "lat": 50.74503,
+  "lon": 4.34637,
+  "postcode": "1640",
+  "commune": "Rhode-Saint-Genèse",
+  "lang": "nl",
+  "facilities": true,
+  "year": 1976,
+  "condition": "TO_BE_DONE_UP",
+  "epc_kwh": 299,
+  "epc_score": "C",
+  "new_build": false,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "Sint-Genesius-Rode",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 26,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 2,
+  "peak_pm": 2,
+  "score": 46,
+  "reason": "4 lati, bici da verificare da Sint-Genesius-Rode, diretto in 26′ con 2 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 795000
+   }
+  ]
+ },
+ "immoweb-21891405": {
+  "id": "immoweb-21891405",
+  "price": 449000,
+  "dropped": "bici oltre 3 km",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21895706": {
+  "id": "immoweb-21895706",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21895706",
+  "other_urls": [],
+  "title": "VILLA te koop 3090 Overijse",
+  "price": 750000,
+  "bedrooms": 4,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 1794,
+  "living_m2": 220,
+  "address": null,
+  "approx": true,
+  "lat": 50.77293,
+  "lon": 4.53852,
+  "postcode": "3090",
+  "commune": "Overijse",
+  "lang": "nl",
+  "facilities": false,
+  "year": 1969,
+  "condition": "AS_NEW",
+  "epc_kwh": 285,
+  "epc_score": "C",
+  "new_build": false,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "La Hulpe",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 20,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 3,
+  "peak_pm": 3,
+  "score": 59,
+  "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 750000
+   }
+  ]
+ },
+ "immoweb-21894309": {
+  "id": "immoweb-21894309",
+  "price": 592500,
+  "dropped": "giardino non indicato e terreno sotto la soglia",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21893810": {
+  "id": "immoweb-21893810",
+  "price": 495000,
+  "dropped": "casa a schiera (2 facciate)",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21896119": {
+  "id": "immoweb-21896119",
+  "price": 429000,
+  "dropped": "casa a schiera (2 facciate)",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21895457": {
+  "id": "immoweb-21895457",
+  "price": 399750,
+  "dropped": "casa a schiera (2 facciate)",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21895351": {
+  "id": "immoweb-21895351",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21895351",
+  "other_urls": [],
+  "title": "HOUSE te koop 1300 Wavre Limal",
+  "price": 565000,
+  "bedrooms": 4,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 620,
+  "living_m2": 150,
+  "address": null,
+  "approx": true,
+  "lat": 50.70472,
+  "lon": 4.59082,
+  "postcode": "1300",
+  "commune": "Wavre Limal",
+  "lang": "fr",
+  "facilities": false,
+  "year": 1987,
+  "condition": "GOOD",
+  "epc_kwh": 185,
+  "epc_score": "C",
+  "new_build": false,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "Ottignies",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 21,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 56,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 565000
+   }
+  ]
+ },
+ "immoweb-21895338": {
+  "id": "immoweb-21895338",
+  "price": 445000,
+  "dropped": "casa a schiera (2 facciate)",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21894407": {
+  "id": "immoweb-21894407",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21894407",
+  "other_urls": [],
+  "title": "HOUSE te koop 1332 Rixensart Genval",
+  "price": 796620,
+  "bedrooms": 4,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 1684,
+  "living_m2": 237,
+  "address": null,
+  "approx": true,
+  "lat": 50.72074,
+  "lon": 4.49714,
+  "postcode": "1332",
+  "commune": "Rixensart Genval",
+  "lang": "fr",
+  "facilities": false,
+  "year": null,
+  "condition": "AS_NEW",
+  "epc_kwh": null,
+  "epc_score": "A+",
+  "new_build": true,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "IVA 21% (nuova costruzione)",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "La Hulpe",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 20,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 3,
+  "peak_pm": 3,
+  "score": 45,
+  "reason": "4 lati, bici da verificare da La Hulpe, diretto in 20′ con 3 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 796620
+   }
+  ]
+ },
+ "immoweb-21893282": {
+  "id": "immoweb-21893282",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21893282",
+  "other_urls": [],
+  "title": "COUNTRY_COTTAGE te koop 1301 Wavre",
+  "price": 700000,
+  "bedrooms": 4,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 3612,
+  "living_m2": 143,
+  "address": null,
+  "approx": true,
+  "lat": 50.71118,
+  "lon": 4.5894,
+  "postcode": "1301",
+  "commune": "Wavre",
+  "lang": "fr",
+  "facilities": false,
+  "year": 1933,
+  "condition": "TO_RENOVATE",
+  "epc_kwh": 628,
+  "epc_score": "G",
+  "new_build": false,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "Ottignies",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 21,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 56,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 700000
+   }
+  ]
+ },
+ "immoweb-21896166": {
+  "id": "immoweb-21896166",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21896166",
+  "other_urls": [],
+  "title": "HOUSE te koop 1420 Braine-l'Alleud",
+  "price": 647344,
+  "bedrooms": 4,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 701,
+  "living_m2": 191,
+  "address": null,
+  "approx": true,
+  "lat": 50.69409,
+  "lon": 4.35481,
+  "postcode": "1420",
+  "commune": "Braine-l'Alleud",
+  "lang": "fr",
+  "facilities": false,
+  "year": null,
+  "condition": "AS_NEW",
+  "epc_kwh": null,
+  "epc_score": "A+",
+  "new_build": true,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "IVA 21% (nuova costruzione)",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "Waterloo",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 30,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 2,
+  "peak_pm": 2,
+  "score": 31,
+  "reason": "4 lati, bici da verificare da Waterloo, diretto in 30′ con 2 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 647344
+   }
+  ]
+ },
+ "immoweb-21895587": {
+  "id": "immoweb-21895587",
+  "price": 525000,
+  "dropped": "3 facciate senza condizioni ottime",
+  "last_seen": "2026-10-07"
+ },
+ "immoweb-21894391": {
+  "id": "immoweb-21894391",
+  "source": "Immoweb",
+  "url": "https://www.immoweb.be/en/classified/21894391",
+  "other_urls": [],
+  "title": "HOUSE te koop 1490 Court-Saint-Etienne",
+  "price": 522463,
+  "bedrooms": 4,
+  "type": "open",
+  "facades": 4,
+  "garden": null,
+  "garden_m2": null,
+  "land_m2": 1378,
+  "living_m2": 184,
+  "address": null,
+  "approx": true,
+  "lat": 50.64432,
+  "lon": 4.56858,
+  "postcode": "1490",
+  "commune": "Court-Saint-Etienne",
+  "lang": "fr",
+  "facilities": false,
+  "year": null,
+  "condition": "AS_NEW",
+  "epc_kwh": null,
+  "epc_score": "A+",
+  "new_build": true,
+  "to_verify": [
+   "giardino",
+   "posizione",
+   "IVA 21% (nuova costruzione)",
+   "distanza bici"
+  ],
+  "position": "centro del codice postale",
+  "station": "Ottignies",
+  "bike_km": null,
+  "bike_min": null,
+  "train_min": 21,
+  "train_direct": true,
+  "change_at": null,
+  "peak_am": 7,
+  "peak_pm": 7,
+  "score": 52,
+  "reason": "4 lati, bici da verificare da Ottignies, diretto in 21′ con 7 treni/ora",
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-10-07",
+  "price_history": [
+   {
+    "date": "2026-10-07",
+    "price": 522463
+   }
+  ]
+ },
+ "immoweb-21893707": {
+  "id": "immoweb-21893707",
+  "price": 495000,
+  "dropped": "lontana dalle stazioni",
+  "last_seen": "2026-10-07"
  }
 }
